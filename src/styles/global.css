@@ -8,5 +8,10 @@
   
   body {
     font-family: 'Poppins';
-    background-color: #54D5FE;
+    background-color: #F7F9FC;
   }
+
+  .sidebar-item {
+    color: #FFFFFF; /* Change text color here */
+  }
+  
