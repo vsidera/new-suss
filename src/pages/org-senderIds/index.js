@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import Sidebar from "../../components/sidebar/sidebar";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Table from "../../components/table/table";
-import { appservicesAction } from "../../actions/appservices/appservicesAction";
-import {useParams} from 'react-router-dom';
+import { appservicesAction } from "../../pages/api/actions/appservices/appservicesAction";
+// import {useParams} from 'react-router-dom';
 import MiniDrawer from "../../components/sidebar2/sidebar2";
 
 const getMuiTheme = () =>
@@ -66,9 +65,9 @@ const getMuiTheme = () =>
   });
 
 const AppServices = () => {
-  const params = useParams();
+  // const params = useParams();
 
-  const app_id = params.id
+  const app_id = 1
 
   const [appservices, setAppservices] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);

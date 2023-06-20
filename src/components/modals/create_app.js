@@ -4,7 +4,7 @@ import Modal from "@mui/material/Modal";
 import { Backdrop } from "@mui/material";
 import { Box, CardContent, TextField } from '@mui/material';
 import SnackbarAlert from "../utils/snackbar";
-import { appCreate } from "../../actions/applications/appsActions";
+import { appCreate } from "../../pages/api/actions/applications/appsActions";
 
 const CreateAppModal = ({
   createAppModal,

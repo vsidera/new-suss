@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Table from "../../components/table/table"
-import {servicesAction} from "../../pages/api/actions/services/servicesAction"
+import {servicesAction} from "../api/actions/services/servicesAction"
 import CreateServiceModal from "../../components/modals/create_service";
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
-import MiniDrawer2 from "../../components/sidebar2/sidebar2";
+import MiniDrawer2 from "../../components/adminSidebar2/adminSidebar2";
 
 const getMuiTheme = () =>
   createTheme({
@@ -236,7 +236,7 @@ const AllServices = () => {
           onClick={() =>setCreateServiceModal(true)}
         >
           <LibraryAddIcon />
-          <p className="ml-4">Add Service</p>
+          <p className="ml-4">Add Sender Ids</p>
         </button>
       </div>
 

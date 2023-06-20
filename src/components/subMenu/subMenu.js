@@ -6,11 +6,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Link from 'next/link';
 
-
-
-// Sidebar item with submenu
-// Sidebar item with submenu
-export default function SidebarItemWithSubmenu({ primary, icon, submenuItems }) {
+export default function SidebarItemWithSubmenu({ primary, icon, submenuItems,href }) {
   const [open, setOpen] = useState(false);
 
   const handleToggle = () => {
@@ -21,14 +17,14 @@ export default function SidebarItemWithSubmenu({ primary, icon, submenuItems }) 
     <>
     <ListItemButton onClick={handleToggle}>
       <ListItemIcon>{icon}</ListItemIcon>
-      <Link href="/contacts" passHref>
+      <Link href={href} passHref>
         <ListItemText primary={primary} sx={{ color: '#D1D1D1' }} /> {/* Change text color here */}
       </Link>
       {open ? <ExpandLessIcon sx={{ color: '#D1D1D1' }} /> : <ExpandMoreIcon sx={{ color: '#D1D1D1' }} />}
     </ListItemButton>
     <Collapse in={open} timeout="auto" unmountOnExit>
       <List component="div" disablePadding>
-        {submenuItems.map((item) => (
+        {submenuItems && submenuItems.map((item) => (
           <ListItemButton key={item.primary} sx={{ pl: 4 }}>
             <ListItemIcon>{item.icon}</ListItemIcon>
             <Link href={item.href} passHref>

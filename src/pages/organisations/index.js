@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import "./styles.css";
+// import "./styles.css";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Table from "../../components/table/table"
-import { appsAction } from "../../actions/applications/appsActions";
-import AdminSidebar from "../../components/adminSidebar/adminSidebar";
+import { appsAction } from "../../pages/api/actions/applications/appsActions";
 import CreateAppModal from "../../components/modals/create_app";
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import AttachServiceModal from "../../components/modals/attach_service";
 import AttachUserModal from "../../components/modals/attach_user";
-import {useParams} from 'react-router-dom';
-import MiniDrawer from "../../components/sidebar2/sidebar2";
+// import {useParams} from 'react-router-dom';
+import MiniDrawer2 from "../../components/adminSidebar2/adminSidebar2";
 
 const getMuiTheme = () =>
   createTheme({
@@ -70,11 +69,11 @@ const getMuiTheme = () =>
      
     },
   });
-const AllApps = () => {
+const Organisations = () => {
 
-  const params = useParams();
+//   const params = useParams();
 
-  const app_id = params.id
+  const app_id = 1
 
   const [apps, setApps] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -299,7 +298,7 @@ const AllApps = () => {
   }
 
   return (
-    <MiniDrawer>
+    <MiniDrawer2>
     <CreateAppModal createAppModal={createAppModal} closeCreateAppModal={closeCreateAppModal}/>
     <AttachServiceModal attachServiceModal={attachServiceModal} closeAttachServiceModal={closeAttachServiceModal} app_id={app_id} appId={appId}/>
     <AttachUserModal attachUserModal={attachUserModal} closeAttachUserModal={closeAttachUserModal} app_id={app_id} appId={appId}/>
@@ -322,8 +321,8 @@ const AllApps = () => {
         <Table columns={columns} options={options} data={apps} />
       </ThemeProvider>
     </div>
-    </MiniDrawer>
+    </MiniDrawer2>
   );
 };
 
-export default AllApps;
+export default Organisations;

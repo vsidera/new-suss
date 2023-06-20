@@ -6,7 +6,7 @@ import AsyncSelect from "react-select/async";
 import {
   serviceAttach,
   serviceSearch,
-} from "../../actions/services/servicesAction";
+} from "../../pages/api/actions/services/servicesAction";
 import SnackbarAlert from "../utils/snackbar";
 
 const AttachServiceModal = ({

@@ -143,13 +143,37 @@ export default function MiniDrawer({ children }) {
         </DrawerHeader>
         <Divider />
         <List>
+        <NextLink href="/home" passHref>
+            <ListItemButton
+              component="a"
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+                color: "#D1D1D1",
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                  color: "#D1D1D1",
+                }}
+              >
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </NextLink>
         <SidebarItemWithSubmenu
             primary="Contacts"
+            href="/contacts"
             style={{ color: '#D1D1D1' }} // Set text color inline
             icon={<InboxIcon sx={{ color: '#D1D1D1' }} />} // Change icon color here
             submenuItems={[
               { primary: 'Add Contact', icon: <MailIcon sx={{ color: '#D1D1D1' }} />, href: '/contacts/add' }, // Change icon color here
-              { primary: 'Upload Contacts', icon: <MailIcon sx={{ color: '#D1D1D1' }} /> }, // Change icon color here
+              { primary: 'Upload Contacts', icon: <MailIcon sx={{ color: '#D1D1D1' }} />, href: '/contacts/upload' }, // Change icon color here
               // Add more submenu items as needed
             ]}
           />
@@ -159,14 +183,14 @@ export default function MiniDrawer({ children }) {
             style={{ color: '#D1D1D1' }}
             icon={<InboxIcon sx={{ color: '#D1D1D1' }} />}
             submenuItems={[
-              { primary: 'Send sms', icon: <MailIcon sx={{ color: '#D1D1D1' }} />, href: '/messages/sms' },
-              { primary: 'Send bulk', icon: <MailIcon sx={{ color: '#D1D1D1' }} />, href: '/messages/bulk' },
+              { primary: 'Send sms', icon: <MailIcon sx={{ color: '#D1D1D1' }} />, href: '/messages/send' },
+              { primary: 'Send bulk', icon: <MailIcon sx={{ color: '#D1D1D1' }} />, href: '/messages/broadcast' },
               // Add more submenu items with href as needed
             ]}
           />
 
 
-          <NextLink href="/messages" passHref>
+          <NextLink href="/org-senderIds" passHref>
             <ListItemButton
               component="a"
               sx={{
@@ -194,28 +218,52 @@ export default function MiniDrawer({ children }) {
         </List>
         <Divider />
         <List>
-          {["Analytics", "Suss", "Logout"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
+        <NextLink href="/analytics" passHref>
+            <ListItemButton
+              component="a"
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+                color: "#D1D1D1",
+              }}
+            >
+              <ListItemIcon
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                  color: "#D1D1D1",
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                  }}
-                >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="Analytics" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </NextLink>
+          <NextLink href="/logout" passHref>
+            <ListItemButton
+              component="a"
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? "initial" : "center",
+                px: 2.5,
+                color: "#D1D1D1",
+              }}
+            >
+              <ListItemIcon
+                sx={{
+                  minWidth: 0,
+                  mr: open ? 3 : "auto",
+                  justifyContent: "center",
+                  color: "#D1D1D1",
+                }}
+              >
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText primary="Logout" sx={{ opacity: open ? 1 : 0 }} />
+            </ListItemButton>
+          </NextLink>
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>

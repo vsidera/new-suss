@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Table from "../../components/table/table";
-import { contactsAction } from "../../pages/api/actions/contacts/contactsAction";
+import { contactsAction } from "../api/actions/contacts/contactsAction";
 import AddIcon from "@mui/icons-material/Add";
 import UploadIcon from '@mui/icons-material/Upload';
 import CreateModal from "../../components/modals/create_contact";
