@@ -126,7 +126,7 @@ export default function MiniDrawer2({ children }) {
             component="div"
             sx={{ color: "#000F2D" }}
           >
-            Your go to trusted client in SMSs
+             Unlock the Power of Communication: Send Messages That Make an Impact!
           </Typography>
         </Toolbar>
       </AppBar>
@@ -143,7 +143,7 @@ export default function MiniDrawer2({ children }) {
         </DrawerHeader>
         <Divider />
         <List>
-        <NextLink href="/home" passHref>
+        <NextLink href="/admin" passHref>
             <ListItemButton
               component="a"
               sx={{
@@ -163,7 +163,7 @@ export default function MiniDrawer2({ children }) {
               >
                 <InboxIcon />
               </ListItemIcon>
-              <ListItemText primary="Home" sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText primary="Dashboard" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </NextLink>
         <SidebarItemWithSubmenu
@@ -199,7 +199,7 @@ export default function MiniDrawer2({ children }) {
         </List>
         <Divider style={{ backgroundColor: '#000000' }}/>
         <List>
-        <NextLink href="/analytics" passHref>
+        <NextLink href="/reports" passHref>
             <ListItemButton
               component="a"
               sx={{

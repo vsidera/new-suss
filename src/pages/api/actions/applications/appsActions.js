@@ -1,6 +1,6 @@
 import axios from 'axios';
 import apiUrl from "../../utils/apiUtils/apiUrl";
-import { authHeaders } from '../../utils/headers/headers';
+import { authHeaders } from '../../../api/utils/headers/headers';
 
 export function appsAction(formValues) {
     const appsUrl = `${apiUrl.LIST_APPLICATIONS}?page=${formValues.page}&limit=${formValues.limit}`;
@@ -36,6 +36,7 @@ export function appsAction(formValues) {
 
   export function userApps() {
     const appsUrl = `${apiUrl.USER_APPS}`;
+    console.log("THE URL IS!!!!!!!", appsUrl)
     const config = authHeaders();
   
     return axios

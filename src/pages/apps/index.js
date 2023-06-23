@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import "./styles.css";
-
-import { userApps } from "../../actions/applications/appsActions";
+// import { Link } from "react-router-dom";
+import { userApps } from "../../pages/api/actions/applications/appsActions";
 import AppsCard from "../../components/appsCard/appsCard";
+import Link from 'next/link';
 
 const Applications = () => {
   const [apps, setApps] = useState([]);
@@ -30,7 +29,7 @@ const Applications = () => {
 
   return (
     <>
-    {isLoaded ? <div className="flex justify-center h-screen bg-gray-100 shadow-2xl shadow-top rounded-lg mb-4 m-16">
+    {isLoaded ? <div className="flex justify-center h-screen">
   <div
     className="flex flex-col justify-center items-center mt-6 mx-auto"
     style={{ width: "60vw" }}
@@ -40,7 +39,7 @@ const Applications = () => {
       </h4>
     {apps.map((app, index) => (
       <Link
-        to={`/apps/${app.code}`}
+        href={`/apps/${app.code}`}
         key={index}
         className="bg-white rounded-lg shadow-md p-4 m-2 w-2/4 h-24 flex flex-col justify-center items-center"
       >

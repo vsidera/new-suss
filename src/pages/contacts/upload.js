@@ -19,8 +19,8 @@ const UploadForm = () => {
         <MiniDrawer>
         <React.Fragment>
             <div className='m-16'>
-            <h2 className='mt-4'>Upload Contacts</h2>
-            <p className='mb-24'>Bulk upload contacts from a csv file</p>
+            <h2 className='mt-4 text-xl font-semibold'>Upload Contacts</h2>
+            <p className='mb-24 text-[#094C95]'>Bulk upload contacts from a csv file</p>
             <Card>
             <CardContent>
             <Typography variant="body1" sx={{ mb: 2 }}>
@@ -54,7 +54,9 @@ const UploadForm = () => {
                     sx={{ mb: 4 }}
                 />
                
-                <Button variant="outlined" color="secondary" type="submit">Upload</Button>
+               <Button variant="contained" sx={{ backgroundColor: '#094C95 !important', color: '#FFFFFF !important', '&:hover': { backgroundColor: '#001041 !important' } }} type="submit">
+                Upload
+                </Button>
                 </form>
             </CardContent>
             </Card>

@@ -222,7 +222,7 @@ const Users = () => {
   return (
     <MiniDrawer2>
     <RegisterUserModal registerModal={registerModal} closeRegisterModal={closeRegisterModal}/>
-    <h1 className="text-2xl text-black mb-6">All Users</h1>
+    <h2 className='mt-4 text-xl font-semibold'>All Users</h2>
     <h4 className="text-md text-gray-800 font-serif">A list of all the users </h4>
     <div className="flex justify-end">
         <button

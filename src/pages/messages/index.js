@@ -218,26 +218,27 @@ const Messages = () => {
 
     return (
       <MiniDrawer>
-      <h1 className="text-2xl text-black mb-6">Messages</h1>
-      <h4 className="text-md text-gray-800 font-serif">A list of messages sent to the client</h4>
+      <div className="m-16">
+      <h2 className='mt-4 text-xl font-semibold'>Messages</h2>
+            <p className='mb-24 text-[#094C95]'>These are the messages that have been sent out to clients</p>
       <div className="flex justify-end">
         
-      <button
+      {/* <button
           type="button"
           className="text-white w-36 bg-blue-900 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-2 py-2 mt-4 flex items-center mr-2"
           onClick={() =>setSmsModal(true)}
         >
           <SendToMobileIcon />
           <p className="ml-4">Send</p>
-        </button>
-        <button
+        </button> */}
+        {/* <button
           type="button"
           className="text-white w-36 bg-blue-900 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-2 py-2 mt-4 flex items-center mr-2"
           onClick={() =>setScheduleModal(true)}
         >
           <ScheduleSendIcon />
           <p className="ml-4">Schedule</p>
-        </button>
+        </button> */}
       </div>
       <SendSmsModal smsModal={smsModal} closeSendModal={closeSendModal}/>
       <ScheduleModal scheduleModal={scheduleModal} closeSendModal={closeSendModal}/>
@@ -249,6 +250,7 @@ const Messages = () => {
 
           <Table columns={columns} options={options} data={messages} />
         </ThemeProvider>
+      </div>
       </div>
       </MiniDrawer>
     )

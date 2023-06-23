@@ -1,8 +1,8 @@
-import MiniDrawer from "../../components/sidebar2/sidebar2";
+import MiniDrawer2 from "../../components/adminSidebar2/adminSidebar2";
 
-const Home = () => {
+const Admin = () => {
   return (
-    <MiniDrawer>
+    <MiniDrawer2>
     <div className="grid grid-cols-1 gap-6 mb-6 lg:grid-cols-3">
                     <div className="w-full px-4 py-5 bg-white rounded-lg shadow">
                         <div className="text-sm font-medium text-gray-500 truncate">
@@ -29,8 +29,8 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-    </MiniDrawer>
+    </MiniDrawer2>
   );
 };
 
-export default Home;
+export default Admin;

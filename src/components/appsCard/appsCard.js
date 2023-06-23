@@ -20,7 +20,7 @@ function AppsCard({ name, email, createdat }) {
   return (
 
       <div>
-      <h2 className="text-lg text-blue-800">{name}</h2>
+      <h2 className="text-xl text-[#094C95]">{name}</h2>
       </div>
 
   );

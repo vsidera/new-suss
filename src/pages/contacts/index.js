@@ -298,9 +298,10 @@ const Contacts = () => {
     <MiniDrawer>
       <BroadcastModal broadcastModal={broadcastModal} closeBroadcastModal={closeBroadcastModal} selectedPhoneNumbers={selectedPhoneNumbers}/>
       <CreateModal createModal={createModal} closeCreateModal={closeCreateModal} app_id={app_id}/>
-      <h1 className="text-2xl text-black mb-6">Contacts</h1>
-      <h4 className="text-md text-gray-800 font-serif">A list of contacts for the client</h4>
-      <div className="flex justify-end">
+      <div className="m-16">
+      <h2 className='mt-4 text-xl font-semibold'>Contacts</h2>
+            <p className='mb-24 text-[#094C95]'>These are all the contacts for this organisation</p>
+      {/* <div className="flex justify-end">
         <button
           type="button"
           className="text-white text-md text-thin font-light w-40 bg-blue-900 focus:ring-4 focus:outline-none rounded-lg px-2 py-2 mt-4 flex items-center mr-2"
@@ -328,12 +329,13 @@ const Contacts = () => {
       </div>
       {upload ? <div>
       <FileUpload closeUpload={closeUpload} app_id={app_id}/>
-      </div> : <div></div>}
+      </div> : <div></div>} */}
       
       <div className="mt-4">
         <ThemeProvider theme={getMuiTheme()}>
           <Table columns={columns} options={options} data={contacts} />
         </ThemeProvider>
+      </div>
       </div>
     </MiniDrawer>
   );

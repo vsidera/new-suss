@@ -19,7 +19,7 @@ const RegisterForm = () => {
         <MiniDrawer2>
         <React.Fragment>
             <div className='m-16'>
-            <h2 className='mt-4'>Add Organisation</h2>
+            <h2 className='mt-4 text-xl font-semibold'>Add Organisation</h2>
             <p className='mb-24'>This will create an Organisation</p>
             <Card>
                 <CardContent>
@@ -73,7 +73,9 @@ const RegisterForm = () => {
                     sx={{mb: 4}}
                 />
     
-                <Button variant="outlined" color="secondary" type="submit">Create</Button>
+                <Button variant="contained" sx={{ backgroundColor: '#094C95 !important', color: '#FFFFFF !important', '&:hover': { backgroundColor: '#001041 !important' } }} type="submit">
+                Create
+                </Button>
             </form>
             </CardContent>
       </Card>

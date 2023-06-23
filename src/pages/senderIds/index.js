@@ -227,7 +227,7 @@ const AllServices = () => {
   return (
     <MiniDrawer2>
     <CreateServiceModal createServiceModal={createServiceModal} closeCreateServiceModal={closeCreateServiceModal}/>
-    <h1 className="text-2xl text-black mb-6">All Sender Ids</h1>
+    <h2 className='mt-4 text-xl font-semibold'>All Sender Ids</h2>
     <h4 className="text-md text-gray-800 font-serif">A list of all the Sender Ids </h4>
     <div className="flex justify-end">
         <button
