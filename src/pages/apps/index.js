@@ -39,7 +39,7 @@ const Applications = () => {
       </h4>
     {apps.map((app, index) => (
       <Link
-        href={`/apps/${app.code}`}
+        href={`/apps/${app.code}/home`}
         key={index}
         className="bg-white rounded-lg shadow-md p-4 m-2 w-2/4 h-24 flex flex-col justify-center items-center"
       >
