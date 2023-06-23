@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Table from "../../components/table/table";
-import { appservicesAction } from "../../pages/api/actions/appservices/appservicesAction";
+import Table from "../../../../components/table/table";
+import { appservicesAction } from "../../../api/actions/appservices/appservicesAction";
 // import {useParams} from 'react-router-dom';
-import MiniDrawer from "../../components/sidebar2/sidebar2";
+import MiniDrawer from "../../../../components/sidebar2/sidebar2";
 
 const getMuiTheme = () =>
   createTheme({

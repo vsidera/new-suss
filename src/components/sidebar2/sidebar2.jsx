@@ -127,6 +127,7 @@ export default function MiniDrawer({ children }) {
   const handleClick = () => {
     setOpen1(!open1);
   };
+  
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -176,7 +177,8 @@ export default function MiniDrawer({ children }) {
             width: "100%",
             maxWidth: 360,
             bgcolor: "#233044", 
-            color: "#C4C7CF",
+            color: "#FFFFFF8F",
+            fontSize: '15px'
           }}
           component="nav"
           aria-labelledby="nested-list-subheader"
@@ -186,130 +188,182 @@ export default function MiniDrawer({ children }) {
           //   </ListSubheader>
           // }
         >
-          <NextLink href="/home" passHref>
+          <NextLink href="/apps/:id/home" passHref>
             <ListItemButton>
-              <ListItemIcon style={{ color: "#C4C7CF" }}>
+              <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <DashboardIcon />
               </ListItemIcon>
-              <ListItemText primary="Dashboard" />
+              <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Dashboard
+                </Typography>
+              </ListItemText>
             </ListItemButton>
           </NextLink>
-          <NextLink href="/contacts" passHref>
+          <NextLink href="/apps/:id/contacts" passHref>
             <ListItemButton onClick={handleClick}>
-              <ListItemIcon style={{ color: "#C4C7CF" }}>
+              <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <PeopleIcon />
               </ListItemIcon>
-              <ListItemText primary="Contacts" />
+              <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Contacts
+                </Typography>
+              </ListItemText>
               {open1 ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
-            <NextLink href="/contacts/add" passHref>
+            <NextLink href="/apps/:id/contacts/add" passHref>
               <Collapse in={open1} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon style={{ color: "#C4C7CF" }}>
+                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                       <PersonAddIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Add" />
+                    <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Add
+                </Typography>
+              </ListItemText>
                   </ListItemButton>
                 </List>
               </Collapse>
             </NextLink>
-            <NextLink href="/contacts/upload" passHref>
+            <NextLink href="/apps/:id/contacts/upload" passHref>
               <Collapse in={open1} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon style={{ color: "#C4C7CF" }}>
+                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                       <PersonAddIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Upload" />
+                    <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Upload
+                </Typography>
+              </ListItemText>
                   </ListItemButton>
                 </List>
               </Collapse>
             </NextLink>
           </NextLink>
-          <NextLink href="/messages" passHref>
+          <NextLink href="/apps/:id/messages" passHref>
             <ListItemButton onClick={handleClick}>
-              <ListItemIcon style={{ color: "#C4C7CF" }}>
+              <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <MailIcon />
               </ListItemIcon>
-              <ListItemText primary="Messages" />
+              <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Messages
+                </Typography>
+              </ListItemText>
               {open1 ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
-            <NextLink href="/messages/send" passHref>
+            <NextLink href="/apps/:id/messages/send" passHref>
               <Collapse in={open1} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon style={{ color: "#C4C7CF" }}>
+                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                       <SendIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Send Sms" />
+                    <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Send Sms
+                </Typography>
+              </ListItemText>
                   </ListItemButton>
                 </List>
               </Collapse>
             </NextLink>
-            <NextLink href="/messages/broadcast" passHref>
+            <NextLink href="/apps/:id/messages/broadcast" passHref>
               <Collapse in={open1} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon style={{ color: "#C4C7CF" }}>
+                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                       <ShareIcon />
                     </ListItemIcon>
-                    <ListItemText primary="Send Bulk" />
+                    <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Send Bulk
+                </Typography>
+              </ListItemText>
                   </ListItemButton>
                 </List>
               </Collapse>
             </NextLink>
           </NextLink>
-          <NextLink href="/org-senderIds" passHref>
+          <NextLink href="/apps/:id/org-senderIds" passHref>
             <ListItemButton>
-              <ListItemIcon style={{ color: "#C4C7CF" }}>
+              <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <ChecklistIcon />
               </ListItemIcon>
-              <ListItemText primary="Org Sender Ids" />
+              <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Sender Ids
+                </Typography>
+              </ListItemText>
             </ListItemButton>
           </NextLink>
-          <NextLink href="/analytics" passHref>
+          <NextLink href="/apps/:id/analytics" passHref>
             <ListItemButton>
-              <ListItemIcon style={{ color: "#C4C7CF" }}>
+              <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <AutoGraphIcon />
               </ListItemIcon>
-              <ListItemText primary="Analytics" />
+              <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Analytics
+                </Typography>
+              </ListItemText>
             </ListItemButton>
           </NextLink>
           <NextLink href="#" passHref>
             <Divider />
             <ListItemButton>
-              <ListItemIcon style={{ color: "#C4C7CF" }}>
+              <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <RequestQuoteIcon />
               </ListItemIcon>
-              <ListItemText primary="Request Units" />
+              <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Request Units
+                </Typography>
+              </ListItemText>
             </ListItemButton>
           </NextLink>
           <NextLink href="#" passHref>
             <Divider />
             <ListItemButton>
-              <ListItemIcon style={{ color: "#C4C7CF" }}>
+              <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <CodeIcon />
               </ListItemIcon>
-              <ListItemText primary="Developer" />
+              <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Developer
+                </Typography>
+              </ListItemText>
             </ListItemButton>
           </NextLink>
           <NextLink href="/#" passHref>
             <Divider />
             <ListItemButton>
-              <ListItemIcon style={{ color: "#C4C7CF" }}>
+              <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <SosIcon />
               </ListItemIcon>
-              <ListItemText primary="Support" />
+              <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Support
+                </Typography>
+              </ListItemText>
             </ListItemButton>
           </NextLink>
           <NextLink href="/#" passHref>
             <Divider />
             <ListItemButton>
-              <ListItemIcon style={{ color: "#C4C7CF" }}>
+              <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <ExitToAppIcon />
               </ListItemIcon>
-              <ListItemText primary="Logout" />
+              <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Logout
+                </Typography>
+              </ListItemText>
             </ListItemButton>
           </NextLink>
         </List>

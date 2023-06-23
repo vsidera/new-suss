@@ -1,4 +1,4 @@
-import MiniDrawer from "../../components/sidebar2/sidebar2";
+import MiniDrawer from "../../../../components/sidebar2/sidebar2";
 
 const Analytics = () => {
  

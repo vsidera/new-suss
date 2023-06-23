@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Table from "../../components/table/table";
-import { contactsAction } from "../api/actions/contacts/contactsAction";
+import Table from "../../../../components/table/table";
+import { contactsAction } from "../../../api/actions/contacts/contactsAction";
 import AddIcon from "@mui/icons-material/Add";
 import UploadIcon from '@mui/icons-material/Upload';
-import CreateModal from "../../components/modals/create_contact";
-import FileUpload from "../../components/file_upload/file_upload";
+import CreateModal from "../../../../components/modals/create_contact";
+import FileUpload from "../../../../components/file_upload/file_upload";
 // import {useParams} from 'react-router-dom';
-import BroadcastModal from "../../components/modals/broadcast";
+import BroadcastModal from "../../../../components/modals/broadcast";
 import SendIcon from '@mui/icons-material/Send';
-import MiniDrawer from "../../components/sidebar2/sidebar2";
+import MiniDrawer from "../../../../components/sidebar2/sidebar2";
 
 const getMuiTheme = () =>
   createTheme({

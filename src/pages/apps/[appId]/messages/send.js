@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import Link from 'next/link';
-import MiniDrawer from '../../components/sidebar2/sidebar2';
+import MiniDrawer from '../../../../components/sidebar2/sidebar2';
 import { Card, CardContent, Select, Button, Input, MenuItem, InputLabel, Typography, TextField, TextareaAutosize } from '@mui/material';
  
  

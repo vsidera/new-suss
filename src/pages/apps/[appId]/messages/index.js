@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Table from "../../components/table/table"
-import { messagesAction } from "../../pages/api/actions/messages/messagesAction";
+import Table from "../../../../components/table/table"
+import { messagesAction } from "../../../../pages/api/actions/messages/messagesAction";
 
 import SendToMobileIcon from '@mui/icons-material/SendToMobile';
-import SendSmsModal from "../../components/modals/send_sms";
-import ScheduleModal from "../../components/modals/schedule_sms";
+import SendSmsModal from "../../../../components/modals/send_sms";
+import ScheduleModal from "../../../../components/modals/schedule_sms";
 import ScheduleSendIcon from '@mui/icons-material/ScheduleSend';
 // import {useParams} from 'react-router-dom';
-import MiniDrawer from "../../components/sidebar2/sidebar2";
+import MiniDrawer from "../../../../components/sidebar2/sidebar2";
 
 const getMuiTheme = () =>
   createTheme({
