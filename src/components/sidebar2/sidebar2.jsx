@@ -20,26 +20,26 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 import SidebarItemWithSubmenu from "../subMenu/subMenu";
-import PeopleIcon from '@mui/icons-material/People';
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import GroupAddIcon from '@mui/icons-material/GroupAdd';
-import MessageIcon from '@mui/icons-material/Message';
-import SendIcon from '@mui/icons-material/Send';
-import ShareIcon from '@mui/icons-material/Share';
-import AutoGraphIcon from '@mui/icons-material/AutoGraph';
-import ChecklistIcon from '@mui/icons-material/Checklist';
-import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
-import SosIcon from '@mui/icons-material/Sos';
-import CodeIcon from '@mui/icons-material/Code';
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
-import ListSubheader from '@mui/material/ListSubheader';
-import DraftsIcon from '@mui/icons-material/Drafts';
+import PeopleIcon from "@mui/icons-material/People";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import MessageIcon from "@mui/icons-material/Message";
+import SendIcon from "@mui/icons-material/Send";
+import ShareIcon from "@mui/icons-material/Share";
+import AutoGraphIcon from "@mui/icons-material/AutoGraph";
+import ChecklistIcon from "@mui/icons-material/Checklist";
+import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
+import SosIcon from "@mui/icons-material/Sos";
+import CodeIcon from "@mui/icons-material/Code";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
+import ListSubheader from "@mui/material/ListSubheader";
+import DraftsIcon from "@mui/icons-material/Drafts";
 // import SendIcon from '@mui/icons-material/Send';
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
-import StarBorder from '@mui/icons-material/StarBorder';
-import Collapse from '@mui/material/Collapse';
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import StarBorder from "@mui/icons-material/StarBorder";
+import Collapse from "@mui/material/Collapse";
 
 const drawerWidth = 240;
 
@@ -122,10 +122,10 @@ export default function MiniDrawer({ children }) {
     setOpen(false);
   };
 
-  // const [open, setOpen] = React.useState(true);
+  const [open1, setOpen1] = React.useState(true);
 
   const handleClick = () => {
-    setOpen(!open);
+    setOpen1(!open1);
   };
 
   return (
@@ -169,271 +169,150 @@ export default function MiniDrawer({ children }) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        <List>
+        
+
+        <List
+          sx={{
+            width: "100%",
+            maxWidth: 360,
+            bgcolor: "#233044", 
+            color: "#C4C7CF",
+          }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          // subheader={
+          //   <ListSubheader component="div" id="nested-list-subheader">
+          //     Nested List Items
+          //   </ListSubheader>
+          // }
+        >
           <NextLink href="/home" passHref>
-            <ListItemButton
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 1.8,
-                color: "#C4C7CF",
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                  color: "#C4C7CF",
-                }}
-              >
+            <ListItemButton>
+              <ListItemIcon style={{ color: "#C4C7CF" }}>
                 <DashboardIcon />
               </ListItemIcon>
-              <ListItemText
-                primary="Dashboard"
-                sx={{ opacity: open ? 1 : 0 }}
-              />
+              <ListItemText primary="Dashboard" />
             </ListItemButton>
           </NextLink>
-          <SidebarItemWithSubmenu
-            primary="Contacts"
-            href="/contacts"
-            style={{ color: "#C4C7CF" }} // Set text color inline
-            icon={<PeopleIcon sx={{ color: "#C4C7CF" }} />} // Change icon color here
-            submenuItems={[
-              {
-                primary: "Add Contact",
-                icon: <PersonAddIcon sx={{ color: "#C4C7CF" }} />,
-                href: "/contacts/add",
-              }, // Change icon color here
-              {
-                primary: "Upload Contacts",
-                icon: <PersonAddIcon sx={{ color: "#C4C7CF" }} />,
-                href: "/contacts/upload",
-              }, // Change icon color here
-              // Add more submenu items as needed
-            ]}
-          />
-          <SidebarItemWithSubmenu
-            primary="Messages"
-            href="/messages" // Specify the destination URL
-            style={{ color: "#C4C7CF" }}
-            icon={<MailIcon sx={{ color: "#C4C7CF" }} />}
-            submenuItems={[
-              {
-                primary: "Send sms",
-                icon: <SendIcon sx={{ color: "#C4C7CF" }} />,
-                href: "/messages/send",
-              },
-              {
-                primary: "Send bulk",
-                icon: <ShareIcon sx={{ color: "#C4C7CF" }} />,
-                href: "/messages/broadcast",
-              },
-              // Add more submenu items with href as needed
-            ]}
-          />
-
+          <NextLink href="/contacts" passHref>
+            <ListItemButton onClick={handleClick}>
+              <ListItemIcon style={{ color: "#C4C7CF" }}>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary="Contacts" />
+              {open1 ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <NextLink href="/contacts/add" passHref>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon style={{ color: "#C4C7CF" }}>
+                      <PersonAddIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Add" />
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </NextLink>
+            <NextLink href="/contacts/upload" passHref>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon style={{ color: "#C4C7CF" }}>
+                      <PersonAddIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Upload" />
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </NextLink>
+          </NextLink>
+          <NextLink href="/messages" passHref>
+            <ListItemButton onClick={handleClick}>
+              <ListItemIcon style={{ color: "#C4C7CF" }}>
+                <MailIcon />
+              </ListItemIcon>
+              <ListItemText primary="Messages" />
+              {open1 ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+            <NextLink href="/messages/send" passHref>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon style={{ color: "#C4C7CF" }}>
+                      <SendIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Send Sms" />
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </NextLink>
+            <NextLink href="/messages/broadcast" passHref>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon style={{ color: "#C4C7CF" }}>
+                      <ShareIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Send Bulk" />
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </NextLink>
+          </NextLink>
           <NextLink href="/org-senderIds" passHref>
-            <ListItemButton
-              component="a"
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 1.9,
-                color: "#C4C7CF",
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                  color: "#C4C7CF",
-                }}
-              >
+            <ListItemButton>
+              <ListItemIcon style={{ color: "#C4C7CF" }}>
                 <ChecklistIcon />
               </ListItemIcon>
-              <ListItemText
-                primary="Org Sender Ids"
-                sx={{ opacity: open ? 1 : 0 }}
-              />
+              <ListItemText primary="Org Sender Ids" />
             </ListItemButton>
           </NextLink>
           <NextLink href="/analytics" passHref>
-            <ListItemButton
-              component="a"
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 1.9,
-                color: "#C4C7CF",
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                  color: "#C4C7CF",
-                }}
-              >
+            <ListItemButton>
+              <ListItemIcon style={{ color: "#C4C7CF" }}>
                 <AutoGraphIcon />
               </ListItemIcon>
-              <ListItemText
-                primary="Analytics"
-                sx={{ opacity: open ? 1 : 0 }}
-              />
+              <ListItemText primary="Analytics" />
             </ListItemButton>
           </NextLink>
-
-          {/* Rest of the sidebar options */}
-        </List>
-        <Divider />
-        <List>
           <NextLink href="#" passHref>
-            <ListItemButton
-              component="a"
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 1.8,
-                color: "#C4C7CF",
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                  color: "#C4C7CF",
-                }}
-              >
+            <Divider />
+            <ListItemButton>
+              <ListItemIcon style={{ color: "#C4C7CF" }}>
                 <RequestQuoteIcon />
               </ListItemIcon>
-              <ListItemText
-                primary="Request Units"
-                sx={{ opacity: open ? 1 : 0 }}
-              />
+              <ListItemText primary="Request Units" />
             </ListItemButton>
           </NextLink>
-
           <NextLink href="#" passHref>
-            <ListItemButton
-              component="a"
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 1.8,
-                color: "#C4C7CF",
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                  color: "#C4C7CF",
-                }}
-              >
-                <SosIcon />
-              </ListItemIcon>
-              <ListItemText primary="Support" sx={{ opacity: open ? 1 : 0 }} />
-            </ListItemButton>
-          </NextLink>
-
-          <NextLink href="#" passHref>
-            <ListItemButton
-              component="a"
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 1.8,
-                color: "#C4C7CF",
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                  color: "#C4C7CF",
-                }}
-              >
+            <Divider />
+            <ListItemButton>
+              <ListItemIcon style={{ color: "#C4C7CF" }}>
                 <CodeIcon />
               </ListItemIcon>
-              <ListItemText
-                primary="Developer"
-                sx={{ opacity: open ? 1 : 0 }}
-              />
+              <ListItemText primary="Developer" />
             </ListItemButton>
           </NextLink>
-          <NextLink href="/logout" passHref>
-            <ListItemButton
-              component="a"
-              sx={{
-                minHeight: 48,
-                justifyContent: open ? "initial" : "center",
-                px: 1.8,
-                color: "#C4C7CF",
-              }}
-            >
-              <ListItemIcon
-                sx={{
-                  minWidth: 0,
-                  mr: open ? 3 : "auto",
-                  justifyContent: "center",
-                  color: "#C4C7CF",
-                }}
-              >
+          <NextLink href="/#" passHref>
+            <Divider />
+            <ListItemButton>
+              <ListItemIcon style={{ color: "#C4C7CF" }}>
+                <SosIcon />
+              </ListItemIcon>
+              <ListItemText primary="Support" />
+            </ListItemButton>
+          </NextLink>
+          <NextLink href="/#" passHref>
+            <Divider />
+            <ListItemButton>
+              <ListItemIcon style={{ color: "#C4C7CF" }}>
                 <ExitToAppIcon />
               </ListItemIcon>
-              <ListItemText primary="Logout" sx={{ opacity: open ? 1 : 0, fontWeight: 100 }} />
+              <ListItemText primary="Logout" />
             </ListItemButton>
           </NextLink>
         </List>
-        <List
-      sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
-      component="nav"
-      aria-labelledby="nested-list-subheader"
-      subheader={
-        <ListSubheader component="div" id="nested-list-subheader">
-          Nested List Items
-        </ListSubheader>
-      }
-    >
-      <ListItemButton>
-        <ListItemIcon>
-          <SendIcon />
-        </ListItemIcon>
-        <ListItemText primary="Sent mail" />
-      </ListItemButton>
-      <ListItemButton>
-        <ListItemIcon>
-          <DraftsIcon />
-        </ListItemIcon>
-        <ListItemText primary="Drafts" />
-      </ListItemButton>
-      <ListItemButton onClick={handleClick}>
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-        <ListItemText primary="Inbox" />
-        {open ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <NextLink href="/org-senderIds" passHref>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }}>
-            <ListItemIcon>
-              <StarBorder />
-            </ListItemIcon>
-            <ListItemText primary="Starred" />
-          </ListItemButton>
-        </List>
-      </Collapse>
-      </NextLink>
-    </List>
       </Drawer>
 
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
@@ -441,47 +320,76 @@ export default function MiniDrawer({ children }) {
         {children}
       </Box>
       <AppBar position="fixed" open={open} sx={{ top: "auto", bottom: 0 }}>
-  <Toolbar sx={{ backgroundColor: "#FFFFFF", display: "flex", alignItems: "center" }}>
-    <Typography variant="caption" color="textPrimary" sx={{ position: "relative", paddingRight: 1 }}>
-      Socials  |
-      <span
-        sx={{
-          position: "absolute",
-          top: "50%",
-          right: 0,
-          transform: "translateY(-50%)",
-          height: "50%",
-          width: 1,
-          backgroundColor: "#000000",
-        }}
-      />
-    </Typography>
-    <NextLink href="https://www.facebook.com/Suss-103409912014881" passHref>
-      <Typography variant="caption" color="textPrimary" sx={{ ml: 1, cursor: "pointer" }}>
-        Facebook
-      </Typography>
-    </NextLink>
-    <NextLink href="https://twitter.com/Sussdigital" passHref>
-      <Typography variant="caption" color="textPrimary" sx={{ ml: 1, cursor: "pointer" }}>
-        Twitter
-      </Typography>
-    </NextLink>
-    <NextLink href="https://www.linkedin.com/company/suss-digital-africa/" passHref>
-      <Typography variant="caption" color="textPrimary" sx={{ ml: 1, cursor: "pointer" }}>
-        LinkedIn  |
-      </Typography>
-    </NextLink>
-    <NextLink href="https://suss.co.ke/privacy-policy/" passHref>
-      <Typography variant="caption" color="textPrimary" sx={{ ml: 1, cursor: "pointer" }}>
-        Privacy Policy  |
-      </Typography>
-    </NextLink>
-    {/* Add more social media site names and links as needed */}
-  </Toolbar>
-</AppBar>
-
-
-
+        <Toolbar
+          sx={{
+            backgroundColor: "#FFFFFF",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <Typography
+            variant="caption"
+            color="textPrimary"
+            sx={{ position: "relative", paddingRight: 1 }}
+          >
+            Socials |
+            <span
+              sx={{
+                position: "absolute",
+                top: "50%",
+                right: 0,
+                transform: "translateY(-50%)",
+                height: "50%",
+                width: 1,
+                backgroundColor: "#000000",
+              }}
+            />
+          </Typography>
+          <NextLink
+            href="https://www.facebook.com/Suss-103409912014881"
+            passHref
+          >
+            <Typography
+              variant="caption"
+              color="textPrimary"
+              sx={{ ml: 1, cursor: "pointer" }}
+            >
+              Facebook
+            </Typography>
+          </NextLink>
+          <NextLink href="https://twitter.com/Sussdigital" passHref>
+            <Typography
+              variant="caption"
+              color="textPrimary"
+              sx={{ ml: 1, cursor: "pointer" }}
+            >
+              Twitter
+            </Typography>
+          </NextLink>
+          <NextLink
+            href="https://www.linkedin.com/company/suss-digital-africa/"
+            passHref
+          >
+            <Typography
+              variant="caption"
+              color="textPrimary"
+              sx={{ ml: 1, cursor: "pointer" }}
+            >
+              LinkedIn |
+            </Typography>
+          </NextLink>
+          <NextLink href="https://suss.co.ke/privacy-policy/" passHref>
+            <Typography
+              variant="caption"
+              color="textPrimary"
+              sx={{ ml: 1, cursor: "pointer" }}
+            >
+              Privacy Policy |
+            </Typography>
+          </NextLink>
+          {/* Add more social media site names and links as needed */}
+        </Toolbar>
+      </AppBar>
     </Box>
   );
 }
