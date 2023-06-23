@@ -48,6 +48,7 @@ const SendForm = () => {
                     variant='outlined'
                     color='secondary'
                     label="Mobile"
+                    placeholder='0711438911'
                     onChange={e => setMobile(e.target.value)}
                     value={mobile}
                     required
@@ -59,7 +60,7 @@ const SendForm = () => {
                       id="content"
                       name="content"
                       aria-label="empty textarea"
-                      placeholder="Type your message here"
+                      placeholder="Hello Client, This is to notify you ..."
                     //   value={state.content}
                     //   onChange={handleChange}
                       minRows={3}
