@@ -170,7 +170,7 @@ const SendSmsModal = ({ smsModal, closeSendModal }) => {
                       id="content"
                       name="content"
                       aria-label="empty textarea"
-                      placeholder="Type your message here"
+                      placeholder="This allows a maximum of 140 characters"
                       value={state.content}
                       onChange={handleChange}
                       minRows={3}

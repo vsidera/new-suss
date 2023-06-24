@@ -60,7 +60,7 @@ const SendForm = () => {
                       id="content"
                       name="content"
                       aria-label="empty textarea"
-                      placeholder="Hello Client, This is to notify you ..."
+                      placeholder="This allows a maximum of 140 characters"
                     //   value={state.content}
                     //   onChange={handleChange}
                       minRows={3}
