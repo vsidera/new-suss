@@ -314,7 +314,7 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
             </ListItemButton>
           </NextLink>
-          <NextLink href="#" passHref>
+          <NextLink href="/requestUnits" passHref>
             <Divider />
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
@@ -327,7 +327,7 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
             </ListItemButton>
           </NextLink>
-          <NextLink href="#" passHref>
+          <NextLink href="https://swagger.io/solutions/api-documentation/" passHref>
             <Divider />
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
