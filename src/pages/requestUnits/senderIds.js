@@ -21,9 +21,9 @@ const Support = () => {
   return (
     <MiniDrawer>
       <div className="m-16">
-        <h2 className="mt-4 text-xl font-semibold">Request Units</h2>
+        <h2 className="mt-4 text-xl font-semibold">Request Sender Ids</h2>
         <p className="mb-24 text-[#094C95]">
-          Here you can request units or a sender Id
+          Here you can request a sender id
         </p>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">

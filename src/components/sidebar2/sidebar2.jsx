@@ -314,9 +314,8 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
             </ListItemButton>
           </NextLink>
-          <NextLink href="/requestUnits" passHref>
-            <Divider />
-            <ListItemButton>
+
+          <ListItemButton onClick={handleClick}>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <RequestQuoteIcon />
               </ListItemIcon>
@@ -325,8 +324,40 @@ export default function MiniDrawer({ children }) {
                   Request Units
                 </Typography>
               </ListItemText>
+              {open1 ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
-          </NextLink>
+          <NextLink href="/requestUnits/senderIds" passHref>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                      <PersonAddIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Buy Sender Id
+                </Typography>
+              </ListItemText>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </NextLink>
+            <NextLink href="/requestUnits/SMS" passHref>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                      <PersonAddIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Buy SMS Units
+                </Typography>
+              </ListItemText>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </NextLink>
           <NextLink href="https://swagger.io/solutions/api-documentation/" passHref>
             <Divider />
             <ListItemButton>
