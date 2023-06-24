@@ -340,7 +340,7 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
             </ListItemButton>
           </NextLink>
-          <NextLink href="/#" passHref>
+          <NextLink href="/support" passHref>
             <Divider />
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
@@ -348,7 +348,7 @@ export default function MiniDrawer({ children }) {
               </ListItemIcon>
               <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Support
+                  Support/Faqs
                 </Typography>
               </ListItemText>
             </ListItemButton>
