@@ -40,6 +40,8 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
 import Collapse from "@mui/material/Collapse";
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { signOut } from "next-auth/react"
 
 const drawerWidth = 240;
 
@@ -126,6 +128,11 @@ export default function MiniDrawer({ children }) {
 
   const handleClick = () => {
     setOpen1(!open1);
+  };
+
+  const handleLogout = (e) => {
+    localStorage.clear();
+    signOut();
   };
   
 
@@ -331,7 +338,7 @@ export default function MiniDrawer({ children }) {
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
                     <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                      <PersonAddIcon />
+                      <ShoppingCartIcon />
                     </ListItemIcon>
                     <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
@@ -347,7 +354,7 @@ export default function MiniDrawer({ children }) {
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
                     <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                      <PersonAddIcon />
+                      <ShoppingCartIcon />
                     </ListItemIcon>
                     <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
@@ -384,14 +391,14 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
             </ListItemButton>
           </NextLink>
-          <NextLink href="/#" passHref>
+          <NextLink href="/login" passHref>
             <Divider />
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <ExitToAppIcon />
               </ListItemIcon>
               <ListItemText>
-                <Typography variant="body2" style={{ fontSize: 15 }}>
+                <Typography variant="body2" style={{ fontSize: 15 }} onClick={handleLogout}>
                   Logout
                 </Typography>
               </ListItemText>
@@ -417,7 +424,7 @@ export default function MiniDrawer({ children }) {
             color="textPrimary"
             sx={{ position: "relative", paddingRight: 1 }}
           >
-            Socials |
+            SOCIALS |
             <span
               sx={{
                 position: "absolute",
@@ -437,7 +444,7 @@ export default function MiniDrawer({ children }) {
             <Typography
               variant="caption"
               color="textPrimary"
-              sx={{ ml: 1, cursor: "pointer" }}
+              sx={{ ml: 1, cursor: "pointer", color: "#094C95" }}
             >
               Facebook
             </Typography>
@@ -446,7 +453,7 @@ export default function MiniDrawer({ children }) {
             <Typography
               variant="caption"
               color="textPrimary"
-              sx={{ ml: 1, cursor: "pointer" }}
+              sx={{ ml: 1, cursor: "pointer" , color: "#094C95"}}
             >
               Twitter
             </Typography>
@@ -458,7 +465,7 @@ export default function MiniDrawer({ children }) {
             <Typography
               variant="caption"
               color="textPrimary"
-              sx={{ ml: 1, cursor: "pointer" }}
+              sx={{ ml: 1, cursor: "pointer" , color: "#094C95"}}
             >
               LinkedIn |
             </Typography>
@@ -467,7 +474,7 @@ export default function MiniDrawer({ children }) {
             <Typography
               variant="caption"
               color="textPrimary"
-              sx={{ ml: 1, cursor: "pointer" }}
+              sx={{ ml: 1, cursor: "pointer" ,color: "#094C95" }}
             >
               Privacy Policy |
             </Typography>

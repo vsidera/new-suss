@@ -45,7 +45,7 @@ const Support = () => {
                 color="text.secondary"
                 className="mb-4"
               >
-                This product registers a Sender ID with the Safaricom network.
+                This product registers a Sender ID with the Safaricom Ltd network.
               </Typography>
               <Typography
                 variant="body1"
@@ -91,7 +91,7 @@ const Support = () => {
                 color="text.secondary"
                 className="mb-4"
               >
-                This product registers a Sender ID with the Airtel network.
+                This product registers a Sender ID with the Airtel Ltd network.
               </Typography>
               <Typography
                 variant="body1"
@@ -106,8 +106,8 @@ const Support = () => {
                   backgroundColor: "#094C95 !important",
                   color: "#FFFFFF !important",
                   "&:hover": { backgroundColor: "#001041 !important" },
-                  fontSize: "10px", // Adjust the font size to reduce the button size
-                  padding: "4px 12px", // Adjust the padding to control the overall button size
+                  fontSize: "10px",
+                  padding: "4px 12px",
                   minWidth: "auto",
                 }}
               >
@@ -137,7 +137,7 @@ const Support = () => {
                 color="text.secondary"
                 className="mb-4"
               >
-                This product registers a Sender ID with the Telkom network.
+                This product registers a Sender ID with the Telkom Ltd network.
               </Typography>
               <Typography
                 variant="body1"
@@ -152,8 +152,8 @@ const Support = () => {
                   backgroundColor: "#094C95 !important",
                   color: "#FFFFFF !important",
                   "&:hover": { backgroundColor: "#001041 !important" },
-                  fontSize: "10px", // Adjust the font size to reduce the button size
-                  padding: "4px 12px", // Adjust the padding to control the overall button size
+                  fontSize: "10px",
+                  padding: "4px 12px",
                   minWidth: "auto",
                 }}
               >

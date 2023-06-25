@@ -123,15 +123,22 @@ const RequestSMS = () => {
                   color="text.secondary"
                   className="mb-4"
                 >
-                  <strong>Account Name:</strong> Suss Digital Africa Ltd USD{" "}
+                  <strong>Account Name</strong> 
                   <br />
-                  <strong>Account Number:</strong> 1294531123 KES <br />
-                  <strong>Account Number:</strong> 1287299288 KCB <br />
-                  <strong>Paybill:</strong> 7131671 Bank: KCB Bank Kenya <br />
-                  <strong>Branch:</strong> Milimani Bank Code: 01 Branch Code:
+                  Suss Digital Africa Ltd USD{" "} <br />
+                  <strong>Account Number</strong>  <br />
+                  1294531123 KES <br />
+                  <strong>Account Number</strong>  <br />
+                  1287299288 KCB <br />
+                  <strong>Paybill:</strong>  <br />
+                  7131671 Bank: KCB Bank Kenya <br />
+                  <strong>Branch:</strong>  <br />
+                  Milimani Bank Code: 01 Branch Code:
                   175 Swift Code: KCBLKENX <br />
-                  <strong>Mpesa Paybill:</strong> 4096067 <br />
-                  <strong>Paypal:</strong> paypal@suss.co.ke
+                  <strong>Mpesa Paybill:</strong>  <br />
+                  4096067 <br />
+                  <strong>Paypal:</strong> <br />
+                  paypal@suss.co.ke
                 </Typography>
               </CardContent>
             </Card>
