@@ -39,7 +39,7 @@ const Home = () => {
         <Grid container spacing={4} className="mt-8">
           <Grid item xs={12} md={4} lg={4}>
             {/* Left card */}
-            <div className="bg-blue-100 h-full p-4">
+            <div className="bg-blue-100 h-full p-4 shadow-sm">
               <div className="flex items-center mb-4">
                 <FormatQuote className="text-[#094C95] mr-2" />
                 <p className="m-16 text-2xl font-bold text-[#094C95]">

@@ -42,6 +42,8 @@ import StarBorder from "@mui/icons-material/StarBorder";
 import Collapse from "@mui/material/Collapse";
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { signOut } from "next-auth/react"
+import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
 const drawerWidth = 240;
 
@@ -228,7 +230,7 @@ export default function MiniDrawer({ children }) {
                     </ListItemIcon>
                     <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Add
+                  Add one contact
                 </Typography>
               </ListItemText>
                   </ListItemButton>
@@ -240,11 +242,11 @@ export default function MiniDrawer({ children }) {
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
                     <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                      <PersonAddIcon />
+                      <GroupAddIcon />
                     </ListItemIcon>
                     <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Upload
+                  Add many contacts
                 </Typography>
               </ListItemText>
                   </ListItemButton>
@@ -338,7 +340,7 @@ export default function MiniDrawer({ children }) {
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
                     <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                      <ShoppingCartIcon />
+                      <ShoppingBasketIcon />
                     </ListItemIcon>
                     <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
@@ -354,7 +356,7 @@ export default function MiniDrawer({ children }) {
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
                     <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                      <ShoppingCartIcon />
+                      <ShoppingBagIcon />
                     </ListItemIcon>
                     <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
