@@ -7,26 +7,21 @@ import { FormatQuote } from "@mui/icons-material";
 import { useRouter } from "next/router";
 
 const Home = () => {
-  const [quote, setQuote] = useState("");
-
   const router = useRouter();
 
-  useEffect(() => {
-    fetchQuote();
-  }, []);
-
-  const fetchQuote = async () => {
-    try {
-      const response = await axios.get(
-        "https://uselessfacts.jsph.pl/api/v2/facts/random"
-      );
-      const data = response.data;
-      setQuote(data.text);
-    } catch (error) {
-      console.log(error);
-    }
+  const quotes = [
+    "Create personalized two-way messaging campaigns which bring out experiences that drive conversions.",
+    "Target different customer groups and send them SMSs on the latest and offerings not be missed.",
+    "Send important notifications and triggers through SMS.",
+    "Automate reminders on renewals, payments, next appointments, and other repetitive future events.",
+    "Generate leads, upsell, and cross-sell with a low running cost and higher ROI platform as compared to other traditional forms of advertisement."
+    // Add more quotes as needed
+  ];
+  
+  const getRandomQuote = () => {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    return quotes[randomIndex];
   };
-
   const handleNavigate = () => {
     router.push("/requestUnits/SMS");
   };
@@ -39,14 +34,14 @@ const Home = () => {
         <Grid container spacing={4} className="mt-8">
           <Grid item xs={12} md={4} lg={4}>
             {/* Left card */}
-            <div className="bg-blue-100 h-full p-4">
+            <div className="bg-blue-100 h-full p-4 shadow-sm">
               <div className="flex items-center mb-4">
                 <FormatQuote className="text-[#094C95] mr-2" />
                 <p className="m-16 text-2xl font-bold text-[#094C95]">
-                  {quote}
+                {getRandomQuote()}
                 </p>
               </div>
-              <p className="text-xs mt-1 text-gray-500">some useless facts... to make your day</p>
+              <p className="text-xs mt-1 text-gray-500">Boost Your Business With An Easy-To-Use SMS Service.</p>
             </div>
           </Grid>
 
