@@ -3,10 +3,13 @@ import { useEffect, useState } from "react";
 import { userApps } from "../../pages/api/actions/applications/appsActions";
 import AppsCard from "../../components/appsCard/appsCard";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Applications = () => {
   const [apps, setApps] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const router = useRouter();
 
   const getApps = () => {
     userApps()
@@ -21,6 +24,17 @@ const Applications = () => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleAppClick = (appId) => {
+    const storedAppId = localStorage.getItem('appId');
+    if (storedAppId !== appId) {
+      // Clear the previous appId from local storage
+      localStorage.removeItem('appId');
+    }
+    // Set the new appId in local storage
+    localStorage.setItem('appId', appId);
+    router.push(`/apps/${appId}/home`);
   };
 
   useEffect(() => {
@@ -38,13 +52,9 @@ const Applications = () => {
         Select an Organisation
       </h4>
     {apps.map((app, index) => (
-      <Link
-        href={`/apps/${app.code}/home`}
-        key={index}
-        className="bg-white rounded-lg shadow-md p-4 m-2 w-2/4 h-24 flex flex-col justify-center items-center"
-      >
+        <button className="bg-white rounded-lg shadow-md p-4 m-2 w-2/4 h-24 flex flex-col justify-center items-center" onClick={() => handleAppClick(app.code)}>
         <AppsCard key={index} {...app} />
-      </Link>
+        </button>
     ))}
   </div>
 </div> :

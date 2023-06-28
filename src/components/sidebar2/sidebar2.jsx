@@ -44,6 +44,8 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { signOut } from "next-auth/react"
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import { useRouter } from "next/router";
+
 
 const drawerWidth = 240;
 
@@ -117,6 +119,11 @@ const Drawer = styled(MuiDrawer, {
 export default function MiniDrawer({ children }) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+
+  const router = useRouter();
+  const { id } = router.query;
+
+  const appId = localStorage.getItem('appId');
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -197,7 +204,7 @@ export default function MiniDrawer({ children }) {
           //   </ListSubheader>
           // }
         >
-          <NextLink href="/apps/:id/home" passHref>
+          <NextLink href={`/apps/${appId}/home`} passHref>
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <DashboardIcon />
@@ -209,7 +216,7 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
             </ListItemButton>
           </NextLink>
-          <NextLink href="/apps/:id/contacts" passHref>
+          <NextLink href={`/apps/${appId}/contacts`} passHref>
             <ListItemButton onClick={handleClick}>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <PeopleIcon />
@@ -221,7 +228,7 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
               {open1 ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
-            <NextLink href="/apps/:id/contacts/add" passHref>
+            <NextLink href={`/apps/${appId}/contacts/add`} passHref>
               <Collapse in={open1} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
@@ -237,7 +244,7 @@ export default function MiniDrawer({ children }) {
                 </List>
               </Collapse>
             </NextLink>
-            <NextLink href="/apps/:id/contacts/upload" passHref>
+            <NextLink href={`/apps/${appId}/contacts/upload`} passHref>
               <Collapse in={open1} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
@@ -254,7 +261,7 @@ export default function MiniDrawer({ children }) {
               </Collapse>
             </NextLink>
           </NextLink>
-          <NextLink href="/apps/:id/messages" passHref>
+          <NextLink href={`/apps/${appId}/messages`} passHref>
             <ListItemButton onClick={handleClick}>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <MailIcon />
@@ -266,7 +273,7 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
               {open1 ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
-            <NextLink href="/apps/:id/messages/send" passHref>
+            <NextLink href={`/apps/${appId}/messages/send`} passHref>
               <Collapse in={open1} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
@@ -282,7 +289,7 @@ export default function MiniDrawer({ children }) {
                 </List>
               </Collapse>
             </NextLink>
-            <NextLink href="/apps/:id/messages/broadcast" passHref>
+            <NextLink href={`/apps/${appId}/messages/broadcast`} passHref>
               <Collapse in={open1} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   <ListItemButton sx={{ pl: 4 }}>
@@ -299,7 +306,7 @@ export default function MiniDrawer({ children }) {
               </Collapse>
             </NextLink>
           </NextLink>
-          <NextLink href="/apps/:id/org-senderIds" passHref>
+          <NextLink href={`/apps/${appId}/org-senderIds`} passHref>
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <ChecklistIcon />
@@ -311,7 +318,7 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
             </ListItemButton>
           </NextLink>
-          <NextLink href="/apps/:id/analytics" passHref>
+          <NextLink href={`/apps/${appId}/analytics`} passHref>
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <AutoGraphIcon />
