@@ -27,15 +27,26 @@ const Applications = () => {
   };
 
   const handleAppClick = (appId) => {
-    const storedAppId = localStorage.getItem('appId');
-    if (storedAppId !== appId) {
-      // Clear the previous appId from local storage
-      localStorage.removeItem('appId');
+    if (typeof window !== 'undefined') {
+      const storedAppId = localStorage.getItem('appId');
+      if (storedAppId !== appId) {
+        localStorage.removeItem('appId');
+      }
+      localStorage.setItem('appId', appId);
+      router.push(`/apps/${appId}/home`);
     }
-    // Set the new appId in local storage
-    localStorage.setItem('appId', appId);
-    router.push(`/apps/${appId}/home`);
   };
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Clear the stored appId if it is not valid or does not exist
+      const storedAppId = localStorage.getItem('appId');
+      if (!storedAppId || !apps.find((app) => app.id === storedAppId)) {
+        localStorage.removeItem('appId');
+      }
+    }
+  }, [apps]);
+
 
   useEffect(() => {
     getApps();
