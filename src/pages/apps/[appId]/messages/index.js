@@ -9,6 +9,7 @@ import ScheduleModal from "../../../../components/modals/schedule_sms";
 import ScheduleSendIcon from '@mui/icons-material/ScheduleSend';
 // import {useParams} from 'react-router-dom';
 import MiniDrawer from "../../../../components/sidebar2/sidebar2";
+import { useRouter } from "next/router";
 
 const getMuiTheme = () =>
   createTheme({
@@ -71,16 +72,16 @@ const getMuiTheme = () =>
 
 const Messages = () => {
 
+  const router = useRouter();
+  const app_id = router.query.appId;
+
   const [messages, setMessages] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false)
   const [smsModal, setSmsModal] = useState(false)
 
   const [scheduleModal, setScheduleModal] = useState(false)
   
-  // const params = useParams();
 
-  // const app_id = params.id
-  const app_id = 1
 
   const getMessages = () => {
 
