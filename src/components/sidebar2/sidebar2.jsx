@@ -123,7 +123,13 @@ export default function MiniDrawer({ children }) {
   const router = useRouter();
   const { id } = router.query;
 
-  const appId = localStorage.getItem('appId');
+  let appId = null
+
+  if (typeof window !== 'undefined') {
+     appId = localStorage.getItem('appId');
+  }
+
+  
 
   const handleDrawerOpen = () => {
     setOpen(true);
