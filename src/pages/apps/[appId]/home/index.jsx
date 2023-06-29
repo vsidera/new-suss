@@ -5,6 +5,7 @@ import Image from "next/image";
 import axios from "axios";
 import { FormatQuote } from "@mui/icons-material";
 import { useRouter } from "next/router";
+import DateRangePickerValue from "../../../../components/utils/datePicker";
 
 const Home = () => {
   const router = useRouter();
@@ -30,6 +31,12 @@ const Home = () => {
     <MiniDrawer>
       <div className="m-16">
         <h2 className="mt-4 text-xl font-semibold">Dashboard</h2>
+        <div className="flex justify-end">
+  <div>
+    <DateRangePickerValue />
+  </div>
+</div>
+        
 
         <Grid container spacing={4} className="mt-8">
           <Grid item xs={12} md={4} lg={4}>
