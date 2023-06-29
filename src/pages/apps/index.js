@@ -63,7 +63,7 @@ const Applications = () => {
           <h4 className="text-xl text-primary flex justify-center m-16">
               Welcome to the Suss-SMS Platform.
             </h4>
-            <h4 className="text-lg text-blue flex justify-center m-16 font-semibold text-[#094C95]">
+            <h4 className="text-lg text-blue flex justify-center m-16 text-[#094C95]">
               SELECT AN ORGANISATION
             </h4>
             <div className="flex flex-col justify-center items-center gap-4"> {/* Add the gap-4 class to create margin between cards */}
