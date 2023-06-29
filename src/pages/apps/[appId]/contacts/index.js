@@ -74,7 +74,7 @@ const getMuiTheme = () =>
 const Contacts = () => {
   // const params = useParams();
 
-  const app_id = 1
+  const app_id = 3
 
   const [contacts, setContacts] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -146,7 +146,7 @@ const Contacts = () => {
       options: {
         filter: true,
         sort: false,
-        // setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#1F2937', color: 'white', fontSize: '0.9rem', lineHeight: 2.0} }),
+        setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#233044', color: 'white', fontSize: '0.9rem', lineHeight: 2.0} }),
       },
     },
     {
@@ -155,7 +155,7 @@ const Contacts = () => {
       options: {
         filter: true,
         sort: false,
-        // setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#1F2937', color: 'white', fontSize: '0.9rem', lineHeight: 2.0} }),
+        setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#233044', color: 'white', fontSize: '0.9rem', lineHeight: 2.0} }),
       },
     },
 
@@ -165,7 +165,7 @@ const Contacts = () => {
       options: {
         filter: true,
         sort: false,
-        // setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#1F2937', color: 'white', fontSize: '0.9rem', lineHeight: 2.0} }),
+        setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#233044', color: 'white', fontSize: '0.9rem', lineHeight: 2.0} }),
       },
     },
     {
@@ -174,7 +174,7 @@ const Contacts = () => {
       options: {
         filter: true,
         sort: false,
-        // setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#1F2937', color: 'white', fontSize: '0.9rem', lineHeight: 2.0} }),
+        setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#233044', color: 'white', fontSize: '0.9rem', lineHeight: 2.0} }),
       },
       
     },
@@ -184,7 +184,7 @@ const Contacts = () => {
       options: {
         filter: true,
         sort: false,
-        // setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#1F2937', color: 'white', fontSize: '0.9rem', lineHeight: 2.0 } }),
+        setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#233044', color: 'white', fontSize: '0.9rem', lineHeight: 2.0 } }),
       },
       
     },
@@ -192,53 +192,24 @@ const Contacts = () => {
 
   const options = {
     filter: false,
-    filterType: "textField",
-    responsive: "standard",
+    filterType: 'textField',
+    responsive: 'standard',
     print: false,
     tableId: "03009226196169874",
     fixedHeader: true,
-    fontFamily: "Ubuntu",
+    fontFamily: 'Ubuntu',
     viewColumns: false,
+    selectableRows: "none",
     fixedSelectColumn: true,
-    tableBodyHeight: "auto",
-    enableNestedDataAccess: ".",
-    serverSide:true,
-    count: 30,
+    tableBodyHeight: 'auto',
+    enableNestedDataAccess: '.',
     elevation: 0,
-    selectableRowsHeader: true,
-    selectableRows: "multiple",
-    onTableChange: (action, tableState) => {
-      console.log("ACTION IS !!!!", action);
-      if (action === "changePage") {
-
-        setIsLoaded(false);
-        setPage(tableState.page+1);
-
-      } else if (action === "changeRowsPerPage") {
-        console.log("action not handled.", tableState);
-        setIsLoaded(false);
-        setLimit(tableState.rowsPerPage);
-      }
-      else {
-        console.log("action not handled.");
-      }
-    },
-    onRowSelectionChange : (curRowSelected, allRowsSelected,rowMeta) => {
-
-      setSelectedIndices(rowMeta)
-      
-      },
-    
+    count: 30,
     rowsPerPageOptions: [10, 20, 50],
-    columnWidths: ['20%', '20%', '20%', '20%', '20%'], 
-    setTableProps: () => ({ 
-      style: { 
-        tableLayout: 'auto',
-      },
-    }),
+    serverSide: true,
     downloadOptions: {
-      separator: ",",
-      filename: "Customers Summary.csv",
+      separator: ',',
+      filename: 'Customers Summary.csv',
       filterOptions: {
         useDisplayedColumnsOnly: false, // it was true
         useDisplayedRowsOnly: false, // it was true
@@ -246,20 +217,16 @@ const Contacts = () => {
     },
     downloadFile: true,
     onDownload: (buildHead, buildBody, columns, data) => {
-      let val = `${buildHead(columns)}${buildBody(data)}`
-        .replace(/[^\x00-\x7F]/g, "")
-        .toString()
-        .trim();
+      let val = `${buildHead(columns)}${buildBody(data)}`.replace(/[^\x00-\x7F]/g, "").toString().trim();
       return val;
     },
-
+   
     textLabels: {
       body: {
-        noMatch: isLoaded ? (
-          "Sorry, no matching records exist in Suss"
-        ) : (
-          <div>......</div>
-        ),
+        noMatch: isLoaded ? "Sorry, no matching records exist in Suss"
+          : <div >
+            ......
+          </div>,
         toolTip: "Sort",
       },
       pagination: {
@@ -270,16 +237,16 @@ const Contacts = () => {
       },
       toolbar: {
         search: "Search A/C Number,Name or Payplans",
-        downloadCsv: "Download Cntacts Excel List",
+        downloadCsv: "Download Messages Excel List",
         print: "Print customers",
         viewColumns: "View Columns",
         filterTable: "Filter Table",
       },
       setFilterChipProps: () => {
         return {
-          color: "primary",
-          variant: "outlined",
-          className: "testClass123",
+          color: 'primary',
+          variant: 'outlined',
+          className: 'testClass123',
         };
       },
       viewColumns: {
@@ -291,8 +258,9 @@ const Contacts = () => {
         delete: "Delete",
         deleteAria: "Delete Selected Records",
       },
-    },
-  };
+    }
+  }
+
 
   return (
     <MiniDrawer>
