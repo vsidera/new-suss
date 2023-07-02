@@ -1,7 +1,7 @@
 import MiniDrawer from "../../../../components/sidebar2/sidebar2";
 import MessageTracker from "../../../../components/MessageTracker/messageTracker";
 import SuccessSummary from "../../../../components/deliveredChart/chart";
-import UnitsSpent from "../../../../components/deliveredChart/unitsSepent";
+import UnitsSpent from "../../../../components/deliveredChart/unitsSpent";
 import DatePickerValue from "../../../../components/utils/datePicker";
 
 const Analytics = () => {
