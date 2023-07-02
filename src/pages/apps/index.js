@@ -34,7 +34,12 @@ const Applications = () => {
         localStorage.removeItem('appId');
       }
       localStorage.setItem('appId', appId);
-      router.push(`/apps/${appId}/home`);
+      if (appId == 1){
+        router.push(`/apps/${appId}/admin`);
+      }{
+        router.push(`/apps/${appId}/home`);
+      }
+      
     }
   };
 

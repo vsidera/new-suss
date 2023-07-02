@@ -17,7 +17,6 @@
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.13.5",
     "@mui/x-date-pickers": "^6.9.0",
-    "@mui/x-date-pickers-pro": "^6.9.0",
     "@next/font": "13.4.6",
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",

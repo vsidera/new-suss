@@ -243,7 +243,7 @@ export default function MiniDrawer({ children }) {
                     </ListItemIcon>
                     <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Add one contact
+                  Add single contact
                 </Typography>
               </ListItemText>
                   </ListItemButton>
@@ -259,7 +259,7 @@ export default function MiniDrawer({ children }) {
                     </ListItemIcon>
                     <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Add many contacts
+                  Add bulk contacts
                 </Typography>
               </ListItemText>
                   </ListItemButton>
@@ -288,7 +288,7 @@ export default function MiniDrawer({ children }) {
                     </ListItemIcon>
                     <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Send Sms
+                  Send SMS
                 </Typography>
               </ListItemText>
                   </ListItemButton>
@@ -304,7 +304,7 @@ export default function MiniDrawer({ children }) {
                     </ListItemIcon>
                     <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Send Bulk
+                  Send Bulk SMS
                 </Typography>
               </ListItemText>
                   </ListItemButton>

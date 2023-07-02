@@ -1,23 +1,43 @@
-import * as React from 'react';
+import React from 'react';
 import dayjs from 'dayjs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
-import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
-
-export default function DateRangePickerValue() {
-  const [value, setValue] = React.useState([
-    dayjs('2022-04-17'),
-    dayjs('2022-04-21'),
-  ]);
+export default function DatePickerValue(){
+  const [fromDate, setFromDate] = React.useState(dayjs('2022-04-17'));
+  const [toDate, setToDate] = React.useState(dayjs('2022-04-17'));
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-
-          <DateRangePicker
-            value={value}
-            onChange={(newValue) => setValue(newValue)}
+      <div style={{ display: 'flex', gap: '16px' }}>
+        <div className="mx-2">
+          <DatePicker
+            label="From Date"
+            value={fromDate}
+            onChange={(newValue) => setFromDate(newValue)}
+            renderInput={(params) => (
+              <TextField {...params} style={{ width: '100px' }} />
+            )}
+            inputProps={{
+              style: { fontSize: '8px', padding: '8px' },
+            }}
           />
+        </div>
+        <div className="mx-2">
+          <DatePicker
+            label="To Date"
+            value={toDate}
+            onChange={(newValue) => setToDate(newValue)}
+            renderInput={(params) => (
+              <TextField {...params} style={{ width: '100px' }} />
+            )}
+            inputProps={{
+              style: { fontSize: '2px', padding: '2px' },
+            }}
+          />
+        </div>
+      </div>
     </LocalizationProvider>
   );
 }

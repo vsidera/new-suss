@@ -52,7 +52,7 @@ const Support = () => {
                 color="text.secondary"
                 className="mb-4"
               >
-                Ksh. 5,800.00
+                Ksh. 6,000.00
               </Typography>
               <Button
                 variant="contained"
@@ -82,7 +82,7 @@ const Support = () => {
                   sx={{ marginRight: "8px" }}
                 />
                 <Typography variant="h5" component="div">
-                  Aitel Sender ID
+                  Aitel Sender ID(Coming Soon)
                 </Typography>
               </div>
               <hr className="mb-2" /> {/* Divider below the header */}
@@ -128,7 +128,7 @@ const Support = () => {
                   sx={{ marginRight: "8px" }}
                 />
                 <Typography variant="h5" component="div">
-                  Telkom Sender ID
+                  Telkom Sender ID(Coming Soon)
                 </Typography>
               </div>
               <hr className="mb-2" /> {/* Divider below the header */}

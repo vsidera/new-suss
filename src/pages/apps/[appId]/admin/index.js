@@ -1,4 +1,4 @@
-import MiniDrawer from "../../../../components/sidebar2/sidebar2";
+import MiniDrawer2 from "../../../../components/adminSidebar2/adminSidebar2";
 import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import Image from "next/image";
@@ -7,7 +7,7 @@ import { FormatQuote } from "@mui/icons-material";
 import { useRouter } from "next/router";
 import DatePickerValue from "../../../../components/utils/datePicker";
 
-const Home = () => {
+const Admin = () => {
   const router = useRouter();
 
   const quotes = [
@@ -28,7 +28,7 @@ const Home = () => {
   };
 
   return (
-    <MiniDrawer>
+    <MiniDrawer2>
       <div className="m-16">
         <h2 className="mt-4 text-xl font-semibold">Dashboard</h2>
         <div className="flex justify-end">
@@ -135,8 +135,8 @@ const Home = () => {
           </Grid>
         </Grid>
       </div>
-    </MiniDrawer>
+    </MiniDrawer2>
   );
 };
 
-export default Home;
+export default Admin;
