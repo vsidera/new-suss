@@ -71,7 +71,7 @@ const UploadForm = () => {
     <MiniDrawer>
       <React.Fragment>
         <div className="m-16">
-          <h2 className="mt-4 text-xl font-semibold">Upload Contacts</h2>
+          <h2 className="mt-4 text-xl font-semibold">Add Bulk Contacts</h2>
           <p className="mb-24 text-[#094C95]">
             Bulk upload contacts from a csv file
           </p>
