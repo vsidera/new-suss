@@ -27,6 +27,8 @@ export default {
     // LOGIN_URL: `${NEXT_PUBLIC_SUSS_URL}/public/user/token`,
     LIST_CONTACTS: `https://suss-ads.zohari.tech/api/v1/contact`,
     CREATE_CONTACT: `https://suss-ads.zohari.tech/api/v1/contact`,
+    LIST_GROUPS: `https://suss-ads.zohari.tech/api/v1/group`,
+    CREATE_GROUP: `https://suss-ads.zohari.tech/api/v1/group`,
     CREATE_USER: `https://suss-ads.zohari.tech/api/v1/user/:app_id/registration`,
     BROADCAST_MESSAGE: `https://suss-ads.zohari.techapi/v1/message`,
     UPLOAD_CONTACTS: `https://suss-ads.zohari.techapi/v1/contact`,

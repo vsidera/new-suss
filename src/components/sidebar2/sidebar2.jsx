@@ -40,12 +40,14 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
 import Collapse from "@mui/material/Collapse";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { signOut } from "next-auth/react"
-import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { signOut } from "next-auth/react";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { useRouter } from "next/router";
-
+import GroupsIcon from "@mui/icons-material/Groups";
+import ListIcon from '@mui/icons-material/List';
+import AddIcon from '@mui/icons-material/Add';
 
 const drawerWidth = 240;
 
@@ -123,13 +125,11 @@ export default function MiniDrawer({ children }) {
   const router = useRouter();
   const { id } = router.query;
 
-  let appId = null
+  let appId = null;
 
-  if (typeof window !== 'undefined') {
-     appId = localStorage.getItem('appId');
+  if (typeof window !== "undefined") {
+    appId = localStorage.getItem("appId");
   }
-
-  
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -149,7 +149,6 @@ export default function MiniDrawer({ children }) {
     localStorage.clear();
     signOut();
   };
-  
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -192,15 +191,14 @@ export default function MiniDrawer({ children }) {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        
 
         <List
           sx={{
             width: "100%",
             maxWidth: 360,
-            bgcolor: "#233044", 
+            bgcolor: "#233044",
             color: "#FFFFFF8F",
-            fontSize: '15px'
+            fontSize: "15px",
           }}
           component="nav"
           aria-labelledby="nested-list-subheader"
@@ -242,10 +240,10 @@ export default function MiniDrawer({ children }) {
                       <PersonAddIcon />
                     </ListItemIcon>
                     <ListItemText>
-                <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Add single contact
-                </Typography>
-              </ListItemText>
+                      <Typography variant="body2" style={{ fontSize: 15 }}>
+                        Add single contact
+                      </Typography>
+                    </ListItemText>
                   </ListItemButton>
                 </List>
               </Collapse>
@@ -258,15 +256,59 @@ export default function MiniDrawer({ children }) {
                       <GroupAddIcon />
                     </ListItemIcon>
                     <ListItemText>
-                <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Add bulk contacts
-                </Typography>
-              </ListItemText>
+                      <Typography variant="body2" style={{ fontSize: 15 }}>
+                        Add bulk contacts
+                      </Typography>
+                    </ListItemText>
                   </ListItemButton>
                 </List>
               </Collapse>
             </NextLink>
           </NextLink>
+          <ListItemButton onClick={handleClick}>
+            <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+              <GroupsIcon />
+            </ListItemIcon>
+            <ListItemText>
+              <Typography variant="body2" style={{ fontSize: 15 }}>
+                Groups
+              </Typography>
+            </ListItemText>
+            {open1 ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <NextLink href={`/apps/${appId}/groups`} passHref>
+            <Collapse in={open1} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                    <ListIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body2" style={{ fontSize: 15 }}>
+                      List Groups
+                    </Typography>
+                  </ListItemText>
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </NextLink>
+          <NextLink href={`/apps/${appId}/groups/add`} passHref>
+            <Collapse in={open1} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                    <AddIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body2" style={{ fontSize: 15 }}>
+                      Create Group
+                    </Typography>
+                  </ListItemText>
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </NextLink>
+     
           <NextLink href={`/apps/${appId}/messages`} passHref>
             <ListItemButton onClick={handleClick}>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
@@ -287,10 +329,10 @@ export default function MiniDrawer({ children }) {
                       <SendIcon />
                     </ListItemIcon>
                     <ListItemText>
-                <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Send SMS
-                </Typography>
-              </ListItemText>
+                      <Typography variant="body2" style={{ fontSize: 15 }}>
+                        Send SMS
+                      </Typography>
+                    </ListItemText>
                   </ListItemButton>
                 </List>
               </Collapse>
@@ -303,10 +345,10 @@ export default function MiniDrawer({ children }) {
                       <ShareIcon />
                     </ListItemIcon>
                     <ListItemText>
-                <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Send Bulk SMS
-                </Typography>
-              </ListItemText>
+                      <Typography variant="body2" style={{ fontSize: 15 }}>
+                        Send Bulk SMS
+                      </Typography>
+                    </ListItemText>
                   </ListItemButton>
                 </List>
               </Collapse>
@@ -338,49 +380,52 @@ export default function MiniDrawer({ children }) {
           </NextLink>
 
           <ListItemButton onClick={handleClick}>
-              <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                <RequestQuoteIcon />
-              </ListItemIcon>
-              <ListItemText>
-                <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Request Units
-                </Typography>
-              </ListItemText>
-              {open1 ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
+            <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+              <RequestQuoteIcon />
+            </ListItemIcon>
+            <ListItemText>
+              <Typography variant="body2" style={{ fontSize: 15 }}>
+                Request Units
+              </Typography>
+            </ListItemText>
+            {open1 ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
           <NextLink href="/requestUnits/senderIds" passHref>
-              <Collapse in={open1} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                      <ShoppingBasketIcon />
-                    </ListItemIcon>
-                    <ListItemText>
-                <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Buy Sender Id
-                </Typography>
-              </ListItemText>
-                  </ListItemButton>
-                </List>
-              </Collapse>
-            </NextLink>
-            <NextLink href="/requestUnits/SMS" passHref>
-              <Collapse in={open1} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                      <ShoppingBagIcon />
-                    </ListItemIcon>
-                    <ListItemText>
-                <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Buy SMS Units
-                </Typography>
-              </ListItemText>
-                  </ListItemButton>
-                </List>
-              </Collapse>
-            </NextLink>
-          <NextLink href="https://swagger.io/solutions/api-documentation/" passHref>
+            <Collapse in={open1} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                    <ShoppingBasketIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body2" style={{ fontSize: 15 }}>
+                      Buy Sender Id
+                    </Typography>
+                  </ListItemText>
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </NextLink>
+          <NextLink href="/requestUnits/SMS" passHref>
+            <Collapse in={open1} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                    <ShoppingBagIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body2" style={{ fontSize: 15 }}>
+                      Buy SMS Units
+                    </Typography>
+                  </ListItemText>
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </NextLink>
+          <NextLink
+            href="https://swagger.io/solutions/api-documentation/"
+            passHref
+          >
             <Divider />
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
@@ -413,7 +458,11 @@ export default function MiniDrawer({ children }) {
                 <ExitToAppIcon />
               </ListItemIcon>
               <ListItemText>
-                <Typography variant="body2" style={{ fontSize: 15 }} onClick={handleLogout}>
+                <Typography
+                  variant="body2"
+                  style={{ fontSize: 15 }}
+                  onClick={handleLogout}
+                >
                   Logout
                 </Typography>
               </ListItemText>
@@ -468,7 +517,7 @@ export default function MiniDrawer({ children }) {
             <Typography
               variant="caption"
               color="textPrimary"
-              sx={{ ml: 1, cursor: "pointer" , color: "#094C95"}}
+              sx={{ ml: 1, cursor: "pointer", color: "#094C95" }}
             >
               Twitter
             </Typography>
@@ -480,7 +529,7 @@ export default function MiniDrawer({ children }) {
             <Typography
               variant="caption"
               color="textPrimary"
-              sx={{ ml: 1, cursor: "pointer" , color: "#094C95"}}
+              sx={{ ml: 1, cursor: "pointer", color: "#094C95" }}
             >
               LinkedIn |
             </Typography>
@@ -489,7 +538,7 @@ export default function MiniDrawer({ children }) {
             <Typography
               variant="caption"
               color="textPrimary"
-              sx={{ ml: 1, cursor: "pointer" ,color: "#094C95" }}
+              sx={{ ml: 1, cursor: "pointer", color: "#094C95" }}
             >
               Privacy Policy |
             </Typography>
