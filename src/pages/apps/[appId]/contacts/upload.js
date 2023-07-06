@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import MiniDrawer from "../../../../components/sidebar2/sidebar2";
 import {
@@ -12,17 +12,93 @@ import {
   Typography,
 } from "@mui/material";
 import { saveAs } from "file-saver";
+import { groupsAction } from "../../../api/actions/groups/groupsActions";
+import { contactsUpload } from "../../../api/actions/contacts/contactsAction";
+import { useRouter } from "next/router";
 
 const UploadForm = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log(firstName, lastName, email, mobile);
-  }
+  const router = useRouter();
+  const app_id = router.query.appId;
+
+  const [groups, setGroups] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
+  const [eventType, setEventType] = useState("");
+  const [eventMessage, setEventMessage] = useState("");
+  const [eventTitle, setEventTitle] = useState("");
+
+  const [selectedGroup, setSelectedGroup] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileSelect = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+  
+
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
+
+  const getGroups = () => {
+    groupsAction({ app_id, limit, page })
+      .then((res) => {
+        if (res.errors) {
+          console.log("AN ERROR HAS OCCURED");
+        } else {
+          setGroups(res.data);
+          setSelectedGroup(res.data[0]?.group_id || "");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getGroups();
+    setIsLoaded(true);
+  }, [page, limit]);
+
+  console.log("THE SELECTED GROUP IS!!!!!!!", selectedGroup)
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    if (!selectedFile || !selectedGroup) {
+      console.log('Please select a file and a group');
+      return;
+    }
+  
+    const formValues = {
+      app_id: app_id,
+      selectedGroup: selectedGroup,
+      formData: selectedFile,
+    };
+  
+    const res = contactsUpload(formValues)
+      .then((res) => {
+        if (res.status === 201) {
+          setEventType("success");
+          setEventMessage("Bulk Contacts Successfully Created");
+          setEventTitle("Bulk Contacts CREATE");
+          setIsSnackBarAlertOpen(true);
+        } else {
+          setEventType("fail");
+          setEventMessage("Bulk Contacts NOT Created");
+          setEventTitle("Bulk Contacts CREATE");
+          setIsSnackBarAlertOpen(true);
+        }
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
+  
+    return res;
+  };
+  
+  
 
   function handleDownloadTemplate() {
     // Create the template data in the desired format (e.g., JSON)
@@ -75,26 +151,25 @@ const UploadForm = () => {
           <p className="mb-24 text-[#094C95]">
             Bulk upload contacts from a csv file
           </p>
-          <div className='mb-4'>
-  <div style={{ display: 'flex', alignItems: 'center' }}>
-    <p className='mr-4'>Use this as a template:</p>
-    <Button
-      variant="contained"
-      sx={{
-        backgroundColor: '#094C95 !important',
-        color: '#FFFFFF !important',
-        '&:hover': { backgroundColor: '#001041 !important' },
-        padding: '8px 16px', // Adjust the padding to reduce button size
-        fontSize: '14px', // Adjust the font size to reduce button size
-        height: '32px', // Adjust the height to reduce button size
-      }}
-      onClick={handleDownloadTemplate}
-    >
-      Download Template
-    </Button>
-  </div>
-</div>
-
+          <div className="mb-4">
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <p className="mr-4">Use this as a template:</p>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#094C95 !important",
+                  color: "#FFFFFF !important",
+                  "&:hover": { backgroundColor: "#001041 !important" },
+                  padding: "8px 16px", // Adjust the padding to reduce button size
+                  fontSize: "14px", // Adjust the font size to reduce button size
+                  height: "32px", // Adjust the height to reduce button size
+                }}
+                onClick={handleDownloadTemplate}
+              >
+                Download Template
+              </Button>
+            </div>
+          </div>
 
           <Card>
             <CardContent>
@@ -108,17 +183,21 @@ const UploadForm = () => {
                 </InputLabel>
                 <Select
                   id="select-option"
-                  // value={selectedOption}
-                  // onChange={handleSelectChange}
+                  value={selectedGroup}
+                  onChange={(event) => setSelectedGroup(event.target.value)}
                   variant="outlined"
                   color="secondary"
                   fullWidth
                   required
                   sx={{ mb: 4 }}
                 >
-                  <MenuItem value="option1">Group 1</MenuItem>
-                  <MenuItem value="option2">Group 2</MenuItem>
+                  {groups.map((group) => (
+                    <MenuItem key={group.group_id} value={group.group_id}>
+                      {group.name}
+                    </MenuItem>
+                  ))}
                 </Select>
+
                 <InputLabel htmlFor="file-upload">
                   <span style={{ color: "red" }}>*</span>Upload CSV Group File
                   to Upload
@@ -128,7 +207,7 @@ const UploadForm = () => {
                   type="file"
                   variant="outlined"
                   color="secondary"
-                  // onChange={handleFileUpload}
+                  onChange={handleFileSelect} 
                   fullWidth
                   required
                   sx={{ mb: 4 }}
