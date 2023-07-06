@@ -49,6 +49,7 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import ListIcon from '@mui/icons-material/List';
 import AddIcon from '@mui/icons-material/Add';
 
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -220,51 +221,68 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
             </ListItemButton>
           </NextLink>
+     
+          <ListItemButton onClick={handleClick}>
+            <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+              <GroupsIcon />
+            </ListItemIcon>
+            <ListItemText>
+              <Typography variant="body2" style={{ fontSize: 15 }}>
+                Contacts
+              </Typography>
+            </ListItemText>
+            {open1 ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
           <NextLink href={`/apps/${appId}/contacts`} passHref>
-            <ListItemButton onClick={handleClick}>
-              <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                <PeopleIcon />
-              </ListItemIcon>
-              <ListItemText>
-                <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Contacts
-                </Typography>
-              </ListItemText>
-              {open1 ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-            <NextLink href={`/apps/${appId}/contacts/add`} passHref>
-              <Collapse in={open1} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                      <PersonAddIcon />
-                    </ListItemIcon>
-                    <ListItemText>
-                      <Typography variant="body2" style={{ fontSize: 15 }}>
-                        Add single contact
-                      </Typography>
-                    </ListItemText>
-                  </ListItemButton>
-                </List>
-              </Collapse>
-            </NextLink>
-            <NextLink href={`/apps/${appId}/contacts/upload`} passHref>
-              <Collapse in={open1} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                  <ListItemButton sx={{ pl: 4 }}>
-                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                      <GroupAddIcon />
-                    </ListItemIcon>
-                    <ListItemText>
-                      <Typography variant="body2" style={{ fontSize: 15 }}>
-                        Add bulk contacts
-                      </Typography>
-                    </ListItemText>
-                  </ListItemButton>
-                </List>
-              </Collapse>
-            </NextLink>
+            <Collapse in={open1} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                    <ListIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body2" style={{ fontSize: 15 }}>
+                      List Contacts
+                    </Typography>
+                  </ListItemText>
+                </ListItemButton>
+              </List>
+            </Collapse>
           </NextLink>
+          <NextLink href={`/apps/${appId}/contacts/add`} passHref>
+            <Collapse in={open1} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                    <AddIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body2" style={{ fontSize: 15 }}>
+                      Create Contact
+                    </Typography>
+                  </ListItemText>
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </NextLink>
+          <NextLink href={`/apps/${appId}/contacts/upload`} passHref>
+            <Collapse in={open1} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                    <GroupAddIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body2" style={{ fontSize: 15 }}>
+                      Create Bulk Contacts
+                    </Typography>
+                  </ListItemText>
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </NextLink>
+
+
           <ListItemButton onClick={handleClick}>
             <ListItemIcon style={{ color: "#FFFFFF8F" }}>
               <GroupsIcon />
@@ -308,6 +326,7 @@ export default function MiniDrawer({ children }) {
               </List>
             </Collapse>
           </NextLink>
+
      
           <NextLink href={`/apps/${appId}/messages`} passHref>
             <ListItemButton onClick={handleClick}>

@@ -10,6 +10,7 @@ import FileUpload from "../../../../components/file_upload/file_upload";
 import BroadcastModal from "../../../../components/modals/broadcast";
 import SendIcon from '@mui/icons-material/Send';
 import MiniDrawer from "../../../../components/sidebar2/sidebar2";
+import { useRouter } from "next/router";
 
 const getMuiTheme = () =>
   createTheme({
@@ -72,9 +73,8 @@ const getMuiTheme = () =>
 
 
 const Contacts = () => {
-  // const params = useParams();
-
-  const app_id = 3
+  const router = useRouter();
+  const app_id = router.query.appId;
 
   const [contacts, setContacts] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
