@@ -99,6 +99,16 @@ const AppServices = () => {
       options: {
         filter: true,
         sort: false,
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "180px",
+            maxWidth: "180px",
+            backgroundColor: "#233044",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
       },
     },
     {
@@ -107,6 +117,16 @@ const AppServices = () => {
       options: {
         filter: true,
         sort: false,
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "180px",
+            maxWidth: "180px",
+            backgroundColor: "#233044",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
       },
     },
     {
@@ -115,6 +135,16 @@ const AppServices = () => {
       options: {
         filter: true,
         sort: false,
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "180px",
+            maxWidth: "180px",
+            backgroundColor: "#233044",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
       },
     },
     {
@@ -123,6 +153,16 @@ const AppServices = () => {
       options: {
         filter: true,
         sort: false,
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "180px",
+            maxWidth: "180px",
+            backgroundColor: "#233044",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
       },
     },
   ];

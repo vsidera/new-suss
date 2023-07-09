@@ -13,7 +13,7 @@ const Analytics = () => {
 <div className="m-16">
   <h2 className="mt-4 text-xl font-semibold">Analytics</h2>
   <div className="flex justify-end">
-  <div>
+  <div className="m-2">
     <DatePickerValue />
   </div>
 </div>

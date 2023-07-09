@@ -32,9 +32,9 @@ const Home = () => {
       <div className="m-16">
         <h2 className="mt-4 text-xl font-semibold">Dashboard</h2>
         <div className="flex justify-end">
-  <div>
+  {/* <div>
     <DatePickerValue />
-  </div>
+  </div> */}
 </div>
         
 
