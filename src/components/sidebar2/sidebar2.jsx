@@ -40,7 +40,7 @@ import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
 import Collapse from "@mui/material/Collapse";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Button from '@mui/material/Button';
 import { signOut } from "next-auth/react";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
@@ -48,7 +48,7 @@ import { useRouter } from "next/router";
 import GroupsIcon from "@mui/icons-material/Groups";
 import ListIcon from '@mui/icons-material/List';
 import AddIcon from '@mui/icons-material/Add';
-
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 
 const drawerWidth = 240;
 
@@ -102,6 +102,8 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
+
+
 const Drawer = styled(MuiDrawer, {
   shouldForwardProp: (prop) => prop !== "open",
 })(({ theme, open }) => ({
@@ -131,6 +133,10 @@ export default function MiniDrawer({ children }) {
   if (typeof window !== "undefined") {
     appId = localStorage.getItem("appId");
   }
+
+  const handleSwitch = () => {
+    router.push('/apps');
+  };
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -203,11 +209,19 @@ export default function MiniDrawer({ children }) {
           }}
           component="nav"
           aria-labelledby="nested-list-subheader"
-          // subheader={
-          //   <ListSubheader component="div" id="nested-list-subheader">
-          //     Nested List Items
-          //   </ListSubheader>
-          // }
+          subheader={
+            <ListSubheader component="div" id="nested-list-subheader">
+              <Button variant='contained'
+              sx={{
+                backgroundColor: "#094C95 !important",
+                color: "#FFFFFF !important",
+                "&:hover": { backgroundColor: "#001041 !important" },
+              }}
+              onClick={handleSwitch}>
+                SWITCH APPLICATION
+              </Button>
+            </ListSubheader>
+          }
         >
           <NextLink href={`/apps/${appId}/home`} passHref>
             <ListItemButton>
@@ -285,7 +299,7 @@ export default function MiniDrawer({ children }) {
 
           <ListItemButton onClick={handleClick}>
             <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-              <GroupsIcon />
+              <Diversity3Icon />
             </ListItemIcon>
             <ListItemText>
               <Typography variant="body2" style={{ fontSize: 15 }}>
@@ -328,18 +342,33 @@ export default function MiniDrawer({ children }) {
           </NextLink>
 
      
+          <ListItemButton onClick={handleClick}>
+            <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+              <MessageIcon />
+            </ListItemIcon>
+            <ListItemText>
+              <Typography variant="body2" style={{ fontSize: 15 }}>
+                Messages
+              </Typography>
+            </ListItemText>
+            {open1 ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
           <NextLink href={`/apps/${appId}/messages`} passHref>
-            <ListItemButton onClick={handleClick}>
-              <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText>
-                <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Messages
-                </Typography>
-              </ListItemText>
-              {open1 ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
+            <Collapse in={open1} timeout="auto" unmountOnExit>
+              <List component="div" disablePadding>
+                <ListItemButton sx={{ pl: 4 }}>
+                  <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                    <ListIcon />
+                  </ListItemIcon>
+                  <ListItemText>
+                    <Typography variant="body2" style={{ fontSize: 15 }}>
+                      List Messages
+                    </Typography>
+                  </ListItemText>
+                </ListItemButton>
+              </List>
+            </Collapse>
+          </NextLink>
             <NextLink href={`/apps/${appId}/messages/send`} passHref>
               <Collapse in={open1} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
@@ -372,7 +401,7 @@ export default function MiniDrawer({ children }) {
                 </List>
               </Collapse>
             </NextLink>
-          </NextLink>
+          {/* </NextLink> */}
           <NextLink href={`/apps/${appId}/org-senderIds`} passHref>
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>

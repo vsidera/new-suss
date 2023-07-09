@@ -51,14 +51,24 @@ const Login = () => {
           setEventTitle('LOGIN');
           setIsSnackBarAlertOpen(true);
         } else {
+          console.log("ADMIN OR CLIENT!!!!!!!", res)
           setEventType('success');
           setEventMessage('Logged In Successfully!');
           setEventTitle('LOGIN');
           setIsSnackBarAlertOpen(true);
-          setTimeout(() => {
-            router.push("/apps");
-            // props.history.push('/sidebar');
-          }, 1000);
+          if (res.data.type == 'CLIENT'){
+            setTimeout(() => {
+              router.push("/apps");
+            }, 1000);
+
+          }else{
+            setTimeout(() => {
+              localStorage.setItem('appId', 1);
+              router.push("/apps/1/admin");
+            }, 1000);
+
+          }
+          
         }
         // Schedule a logout function to run after one hour
         const logoutTimer = setTimeout(function () {

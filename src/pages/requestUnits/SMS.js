@@ -22,14 +22,16 @@ const RequestSMS = () => {
   const calculateUnits = (inputAmount) => {
     let calculatedUnits = "";
 
-    if (inputAmount <= 0) {
-      calculatedUnits = "";
-    } else if (inputAmount <= 1000) {
-      calculatedUnits = "200 each";
-    } else if (inputAmount <= 2500) {
-      calculatedUnits = "150 each";
-    } else if (inputAmount <= 10000) {
-      calculatedUnits = "100 each";
+    if (inputAmount >= 1 && inputAmount <= 99000) {
+      calculatedUnits = (inputAmount * 0.45).toFixed(2) + " KES";
+    } else if (inputAmount >= 100000 && inputAmount <= 499999) {
+      calculatedUnits = (inputAmount * 0.4).toFixed(2) + " KES";
+    } else if (inputAmount >= 500000 && inputAmount <= 999999) {
+      calculatedUnits = (inputAmount * 0.35).toFixed(2) + " KES";
+    } else if (inputAmount >= 1000000 && inputAmount <= 2500000) {
+      calculatedUnits = (inputAmount * 0.25).toFixed(2) + " KES";
+    } else if (inputAmount >= 2500000) {
+      calculatedUnits = (inputAmount * 0.25).toFixed(2) + " KES";
     } else {
       calculatedUnits = "";
     }
@@ -42,12 +44,14 @@ const RequestSMS = () => {
     setAmount(event.target.value);
     calculateUnits(inputAmount);
   };
-  
+
   return (
     <MiniDrawer>
       <div className="m-16">
         <h2 className="mt-4 text-xl font-semibold">Request SMS Units</h2>
-        <p className="mb-4 text-[#094C95]">Here you can request SMS units</p>
+        <p className="mb-4 text-[#094C95]">
+          View the Rate Card and Request Units
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <Card className="w-full">
@@ -71,13 +75,13 @@ const RequestSMS = () => {
               <CardContent>
                 <Typography
                   variant="subtitle1"
-                  color="text.secondary"
+                  // color="text.secondary"
                   className="mb-8 mt-16"
                 >
                   Key in the amount of units you would like to purchase:
                 </Typography>
                 <TextField
-                  label="Units in USD"
+                  label="Units in KES"
                   variant="outlined"
                   fullWidth
                   className="mb-8 mt-16"
@@ -104,41 +108,58 @@ const RequestSMS = () => {
                 {units && (
                   <Typography
                     variant="body1"
-                    color="text.secondary"
+                    // color="text.secondary"
                     className="mt-8"
                   >
-                    Corresponding units: {units}
+                    Corresponding Amount:{" "}
+                    <span className="text-lg text-blue-800">{units}</span>
                   </Typography>
                 )}
               </CardContent>
             </Card>
 
             <Card className="w-full">
-              <CardContent>
+              <CardContent className="text-center">
                 <Typography variant="h5" component="div" className="mb-2">
                   Payment Details
                 </Typography>
                 <Typography
                   variant="body1"
-                  color="text.secondary"
                   className="mb-4"
                 >
-                  <strong>Account Name</strong> 
+                  <strong>Account Name</strong>
                   <br />
-                  Suss Digital Africa Ltd USD{" "} <br />
-                  <strong>Account Number</strong>  <br />
-                  1294531123 KES <br />
-                  <strong>Account Number</strong>  <br />
-                  1287299288 KCB <br />
-                  <strong>Paybill:</strong>  <br />
-                  7131671 Bank: KCB Bank Kenya <br />
-                  <strong>Branch:</strong>  <br />
-                  Milimani Bank Code: 01 Branch Code:
-                  175 Swift Code: KCBLKENX <br />
-                  <strong>Mpesa Paybill:</strong>  <br />
-                  4096067 <br />
-                  <strong>Paypal:</strong> <br />
-                  paypal@suss.co.ke
+                  <span className="text-blue-900">
+                    Suss Digital Africa Ltd USD
+                  </span>
+                  <br />
+                  <strong>Account Number</strong>
+                  <br />
+                  <span className="text-blue-900">1294531123 KES</span>
+                  <br />
+                  <strong>Account Number</strong>
+                  <br />
+                  <span className="text-blue-900">1287299288 KCB</span>
+                  <br />
+                  <strong>Paybill:</strong>
+                  <br />
+                  <span className="text-blue-900">
+                    7131671 Bank: KCB Bank Kenya
+                  </span>
+                  <br />
+                  <strong>Branch:</strong>
+                  <br />
+                  <span className="text-blue-900">
+                    Milimani Bank Code: 01 Branch Code: 175 Swift Code: KCBLKENX
+                  </span>
+                  <br />
+                  <strong>Mpesa Paybill:</strong>
+                  <br />
+                  <span className="text-blue-900">4096067</span>
+                  <br />
+                  <strong>Paypal:</strong>
+                  <br />
+                  <span className="text-blue-900">paypal@suss.co.ke</span>
                 </Typography>
               </CardContent>
             </Card>
