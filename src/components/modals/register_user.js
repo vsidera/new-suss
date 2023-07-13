@@ -42,7 +42,7 @@ const RegisterUserModal = ({
         password: state.password
       };
   
-      const res = userCreate(newUser).then((res) => {
+      const res = userCreate({newUser,app_id}).then((res) => {
         if (res.status === 201) {
           setEventType('success');
           setEventMessage('User Successfully Created');

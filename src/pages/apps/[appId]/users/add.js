@@ -2,21 +2,72 @@ import React, {useState} from 'react';
 import Link from 'next/link';
 import MiniDrawer2 from '../../../../components/adminSidebar2/adminSidebar2';
 import { Card, CardContent, TextField, Button, Stack, Typography } from '@mui/material';
- 
+import SnackbarAlert from '../../../../components/utils/snackbar';
+import { userCreate } from '../../../api/actions/login/loginAction';
+import { useRouter } from 'next/router';
  
 const RegisterForm = () => {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [mobile, setMobile] = useState('')
- 
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log(firstName, lastName, email, mobile) 
-    }
- 
+
+    const router = useRouter();
+    const app_id = router.query.appId;
+
+    const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
+    const [eventType, setEventType] = useState('');
+    const [eventMessage, setEventMessage] = useState('');
+    const [eventTitle, setEventTitle] = useState('');
+    const [isButtonClicked, setIsButtonClicked] = useState(false);
+  
+    const [state, setState] = React.useState({
+      email: '',
+      firstname: '',
+      lastname: '',
+      password: ''
+    });
+  
+    const handleChange = (e) => {
+      const value = e.target.value;
+      setState({
+        ...state,
+        [e.target.name]: value,
+      });
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+  
+      const newUser = {
+        email: state.email,
+        firstname: state.firstname,
+        lastname: state.lastname,
+        password: state.password
+      };
+  
+      const res = userCreate({newUser,app_id}).then((res) => {
+        if (res.status === 201) {
+          setEventType('success');
+          setEventMessage('User Successfully Created');
+          setEventTitle('USER CREATE');
+          setIsSnackBarAlertOpen(true);
+        } else {
+          setEventType('fail');
+          setEventMessage('USER NOT Created');
+          setEventTitle('USER CREATE');
+          setIsSnackBarAlertOpen(true);
+        }
+      });
+  
+      return res;
+    };
+
     return (
         <MiniDrawer2>
+            <SnackbarAlert
+          open={isSnackBarAlertOpen}
+          type={eventType}
+          message={eventMessage}
+          handleClose={() => setIsSnackBarAlertOpen(false)}
+          title={eventTitle}
+        />
         <React.Fragment>
             <div className='m-16'>
             <h2 className='mt-4 text-xl font-semibold'>Add User</h2>
@@ -33,8 +84,9 @@ const RegisterForm = () => {
                         variant='outlined'
                         color='secondary'
                         label="First Name"
-                        onChange={e => setFirstName(e.target.value)}
-                        value={firstName}
+                        onChange={handleChange}
+                        name='firstname'
+                        value={state.firstName}
                         fullWidth
                         required
                     />
@@ -43,8 +95,9 @@ const RegisterForm = () => {
                         variant='outlined'
                         color='secondary'
                         label="Last Name"
-                        onChange={e => setLastName(e.target.value)}
-                        value={lastName}
+                        onChange={handleChange}
+                        name='lastname'
+                        value={state.lastName}
                         fullWidth
                         required
                     />
@@ -54,8 +107,9 @@ const RegisterForm = () => {
                     variant='outlined'
                     color='secondary'
                     label="Email"
-                    onChange={e => setEmail(e.target.value)}
-                    value={email}
+                    onChange={handleChange}
+                    value={state.email}
+                    name='email'
                     fullWidth
                     required
                     sx={{mb: 4}}
@@ -65,8 +119,9 @@ const RegisterForm = () => {
                     variant='outlined'
                     color='secondary'
                     label="Password"
-                    onChange={e => setMobile(e.target.value)}
-                    value={mobile}
+                    onChange={handleChange}
+                    value={state.password}
+                    name='password'
                     required
                     fullWidth
                     sx={{mb: 4}}

@@ -226,10 +226,9 @@ export default function MiniDrawer2({ children }) {
               </ListItemText>
             </ListItemButton>
           </NextLink>
-          <NextLink href={`/apps/${appId}/organisations`} passHref>
-            <ListItemButton onClick={handleClick}>
+          <ListItemButton onClick={handleClick}>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                <BusinessIcon />
+              <BusinessIcon />
               </ListItemIcon>
               <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
@@ -238,6 +237,22 @@ export default function MiniDrawer2({ children }) {
               </ListItemText>
               {open1 ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
+            <NextLink href={`/apps/${appId}/organisations`} passHref>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                      <ListIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  List Organisations
+                </Typography>
+              </ListItemText>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </NextLink>
             <NextLink href={`/apps/${appId}/organisations/add`} passHref>
               <Collapse in={open1} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
@@ -254,11 +269,10 @@ export default function MiniDrawer2({ children }) {
                 </List>
               </Collapse>
             </NextLink>
-          </NextLink>
-          <NextLink href={`/apps/${appId}/senderIds`} passHref>
+
             <ListItemButton onClick={handleClick}>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
-                <SendToMobileIcon />
+              <SendToMobileIcon />
               </ListItemIcon>
               <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
@@ -267,6 +281,22 @@ export default function MiniDrawer2({ children }) {
               </ListItemText>
               {open1 ? <ExpandLess /> : <ExpandMore />}
             </ListItemButton>
+            <NextLink href={`/apps/${appId}/senderIds`} passHref>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                      <ListIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  List Sender Ids
+                </Typography>
+              </ListItemText>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </NextLink>
             <NextLink href={`/apps/${appId}/senderIds/add`} passHref>
               <Collapse in={open1} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
@@ -283,8 +313,6 @@ export default function MiniDrawer2({ children }) {
                 </List>
               </Collapse>
             </NextLink>
-          </NextLink>
-
 
           <ListItemButton onClick={handleClick}>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>

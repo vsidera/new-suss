@@ -3,7 +3,7 @@ import apiUrl from "../../utils/apiUtils/apiUrl";
 import { authHeaders } from '../../../api/utils/headers/headers';
 
 export function appsAction(formValues) {
-    const appsUrl = `${apiUrl.LIST_APPLICATIONS}?page=${formValues.page}&limit=${formValues.limit}`;
+    const appsUrl = `${apiUrl.LIST_APPLICATIONS}/${formValues.app_id}/list?page=${formValues.page}&limit=${formValues.limit}`;
     const config = authHeaders();
   
     return axios

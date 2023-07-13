@@ -34,11 +34,11 @@ export function loginAction(formValues) {
   }
 
   export function userCreate(formValues) {
-    const userCreateUrl = apiUrl.CREATE_USER;
+    const userCreateUrl = `${apiUrl.CREATE_USER}/${formValues.app_id}/registration`;
     const config = authHeaders();
   
     return axios
-      .post(userCreateUrl, formValues, config)
+      .post(userCreateUrl, formValues.newUser, config)
       .then((res) => {
       
         if (res.data && res.status === 200) {
