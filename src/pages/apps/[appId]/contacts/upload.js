@@ -21,13 +21,14 @@ const UploadForm = () => {
   const router = useRouter();
   const app_id = router.query.appId;
 
-  const [groups, setGroups] = useState([]);
+  
   const [isLoaded, setIsLoaded] = useState(false);
   const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
   const [eventType, setEventType] = useState("");
   const [eventMessage, setEventMessage] = useState("");
   const [eventTitle, setEventTitle] = useState("");
-
+  
+  const [groups, setGroups] = useState([]);
   const [selectedGroup, setSelectedGroup] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
 
