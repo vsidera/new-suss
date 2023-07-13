@@ -330,7 +330,7 @@ export default function MiniDrawer2({ children }) {
               </Collapse>
             </NextLink>
 
-            <NextLink href={`/apps/${appId}/analytics`} passHref>
+            <NextLink href={`/apps/${appId}/reports`} passHref>
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <AutoGraphIcon />
