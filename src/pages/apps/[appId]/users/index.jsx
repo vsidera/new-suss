@@ -224,16 +224,7 @@ const Users = () => {
     <RegisterUserModal registerModal={registerModal} closeRegisterModal={closeRegisterModal}/>
     <h2 className='mt-4 text-xl font-semibold'>All Users</h2>
     <h4 className="text-md text-gray-800 font-serif">A list of all the users </h4>
-    <div className="flex justify-end">
-        <button
-          type="button"
-          className="text-white w-36 bg-blue-900 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-2 py-2 mt-4 flex items-center mr-2"
-          onClick={() =>setRegisterModal(true)}
-        >
-          <PersonAddAlt1Icon />
-          <p className="ml-4">Register User</p>
-        </button>
-      </div>
+
     <div className="mt-4">
       <ThemeProvider theme={getMuiTheme()}>
 

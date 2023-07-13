@@ -62,7 +62,9 @@ const RegisterForm = () => {
                     sx={{mb: 4}}
                 />
     
-                <Button variant="outlined" color="secondary" type="submit">Create</Button>
+    <Button variant="contained" sx={{ backgroundColor: '#094C95 !important', color: '#FFFFFF !important', '&:hover': { backgroundColor: '#001041 !important' } }} type="submit">
+                Create
+                </Button>
             </form>
             </CardContent>
       </Card>
