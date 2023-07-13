@@ -1,5 +1,6 @@
 
 export function authHeaders() {
+  if (typeof window !== 'undefined') {
     const tokenKey = JSON.parse(localStorage.getItem('key'));
     const authToken = `Token ${tokenKey}`;
     return {
@@ -9,4 +10,4 @@ export function authHeaders() {
         Authorization: authToken,
       },
     };
-  }
+  }}
