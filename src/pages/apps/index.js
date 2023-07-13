@@ -96,31 +96,30 @@ const Applications = () => {
             height: '100%',
             backgroundImage: 'url("/images/backgirl5.jpg")',
             backgroundSize: 'cover',
+            border:'none',
             backgroundPosition: 'center',
           }}
         ></Box>
       </Grid>
-      <Grid item xs={5} sm={5} sx={{ bgcolor: 'bg-blue-900' }}>
+      <Grid item xs={5} sm={5} sx={{ bgcolor: 'bg-blue-900',border:'none', }}>
         <Box
           sx={{
             height: '100%',
             display: 'flex',
             alignItems: 'center',
+            border:'none',
             justifyContent: 'center',
             background: 'linear-gradient(to right, #EDF2F7, #A5B4FC)',
           }}
           component={Paper}
-          elevation={3}
+          elevation={2}
         >
           <div
-            sx={{
-              padding: '20px',
-              height: '100%',
-              // background: 'linear-gradient(to left, #ffffff, #f8f8f8)',
-            }}
+          style={{background: 'linear-gradient(to right, #EDF2F7, #A5B4FC)',border:'none'}}
+         
           >
             <p className="text-2xl font-bold ml-4 text-blue-900">Welcome to</p>
-            <div className="">
+            <div className="border-none">
               <img src="/images/logo.png" alt="Logo" />
             </div>
             <h4 className="text-lg text-blue flex justify-center m-16 text-[#094C95]">
