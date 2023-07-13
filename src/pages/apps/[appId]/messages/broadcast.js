@@ -1,14 +1,48 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Link from 'next/link';
 import MiniDrawer from '../../../../components/sidebar2/sidebar2';
 import { Card, CardContent, Select, Button, Input, MenuItem, InputLabel, Typography, TextField, TextareaAutosize } from '@mui/material';
+import { groupsAction } from '../../../api/actions/groups/groupsActions';
+import { useRouter } from "next/router";
  
  
 const SendForm = () => {
+
+
+    const router = useRouter();
+    const app_id = router.query.appId;
+
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [mobile, setMobile] = useState('')
+
+    const [groups, setGroups] = useState([]);
+    const [selectedGroup, setSelectedGroup] = useState("");
+
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(10);
+
+  
+    const getGroups = () => {
+      groupsAction({ app_id, limit, page })
+        .then((res) => {
+          if (res.errors) {
+            console.log("AN ERROR HAS OCCURED");
+          } else {
+            setGroups(res.data);
+            setSelectedGroup(res.data[0]?.group_id || "");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+  
+    useEffect(() => {
+      getGroups();
+    //   setIsLoaded(true);
+    }, [page, limit]);
  
     function handleSubmit(event) {
         event.preventDefault();
@@ -28,20 +62,25 @@ const SendForm = () => {
             </Typography>
                 <form className="m-4" onSubmit={handleSubmit}>
 
-                <InputLabel htmlFor="select-option"><span style={{ color: 'red' }}>*</span>Select Contact Group</InputLabel>
+                <InputLabel htmlFor="select-option">
+                  <span style={{ color: "red" }}>*</span>Select Group
+                </InputLabel>
                 <Select
-                    id="select-option"
-                    // value={selectedOption}
-                    // onChange={handleSelectChange}
-                    variant='outlined'
-                    color='secondary'
-                    fullWidth
-                    required
-                    sx={{ mb: 4 }}
+                  id="select-option"
+                  value={selectedGroup}
+                  onChange={(event) => setSelectedGroup(event.target.value)}
+                  variant="outlined"
+                  color="secondary"
+                  fullWidth
+                  required
+                  sx={{ mb: 4 }}
                 >
-                    <MenuItem value="option1">Contact Group 1</MenuItem>
-                    <MenuItem value="option2">Contact Group 2</MenuItem>
-                </Select>    
+                  {groups.map((group) => (
+                    <MenuItem key={group.group_id} value={group.group_id}>
+                      {group.name}
+                    </MenuItem>
+                  ))}
+                </Select>
 
                 <InputLabel htmlFor="select-option"><span style={{ color: 'red' }}>*</span>Select Sender Id</InputLabel>
                 <Select
