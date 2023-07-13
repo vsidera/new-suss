@@ -214,7 +214,7 @@ export default function MiniDrawer2({ children }) {
           //   </ListSubheader>
           // }
         >
-          <NextLink href={`/apps/${appId}/home`} passHref>
+          <NextLink href={`/apps/${appId}/admin`} passHref>
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
                 <DashboardIcon />
