@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Table from "../../components/table/table"
-import RegisterUserModal from "../../components/modals/register_user";
+import Table from "../../../../components/table/table"
+import RegisterUserModal from "../../../../components/modals/register_user";
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
-import MiniDrawer2 from "../../components/adminSidebar2/adminSidebar2";
+import MiniDrawer2 from "../../../../components/adminSidebar2/adminSidebar2";
 
 const getMuiTheme = () =>
   createTheme({

@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
-// import "./styles.css";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Table from "../../components/table/table"
-import { appsAction } from "../../pages/api/actions/applications/appsActions";
-import CreateAppModal from "../../components/modals/create_app";
-import AddBusinessIcon from '@mui/icons-material/AddBusiness';
-import PersonAddIcon from '@mui/icons-material/PersonAdd';
-import AttachServiceModal from "../../components/modals/attach_service";
-import AttachUserModal from "../../components/modals/attach_user";
-// import {useParams} from 'react-router-dom';
-import MiniDrawer2 from "../../components/adminSidebar2/adminSidebar2";
+import Table from "../../../../components/table/table"
+import {servicesAction} from "../../../api/actions/services/servicesAction"
+import CreateServiceModal from "../../../../components/modals/create_service";
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import MiniDrawer2 from "../../../../components/adminSidebar2/adminSidebar2";
 
 const getMuiTheme = () =>
   createTheme({
@@ -69,60 +64,27 @@ const getMuiTheme = () =>
      
     },
   });
-const Organisations = () => {
 
-//   const params = useParams();
-
-  const app_id = 1
-
-  const [apps, setApps] = useState([]);
+const AllServices = () => {
+  const [services, setServices] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const [createAppModal, setCreateAppModal] = useState(false);
-  const [attachServiceModal, setAttachServiceModal] = useState(false);
-  const [attachUserModal, setAttachUserModal] = useState(false);
-  const [appId, setAppId] = useState(null)
-
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(10)
 
-  const closeCreateAppModal = (e) => {
+  const [createServiceModal, setCreateServiceModal] = useState(false);
+
+  const closeCreateServiceModal = (e) => {
     e.preventDefault();
-    setCreateAppModal(false)
+    setCreateServiceModal(false)
   }
 
-
-  const closeAttachUserModal = (e) => {
-    e.preventDefault();
-    setAttachUserModal(false)
-
-  }
-
-  const closeAttachServiceModal = (e) => {
-    e.preventDefault();
-
-    setAttachServiceModal(false)
-  }
-
-  const handleClick2 = (code) => {
-    setAppId(code)
-    setAttachServiceModal(true)
-  }
-
-  const handleClick1 = (code) => {
-   
-    setAppId(code)
-    setAttachUserModal(true)
-  }
-
-
-  const getApps = () => {
-    appsAction({page,limit})
+  const getServices = () => {
+    servicesAction({page,limit})
       .then((res) => {
         if (res.errors) {
           console.log("AN ERROR HAS OCCURED");
         } else {
-          setApps(res.data);
+          setServices(res.data);
           setIsLoaded(true);
         }
       })
@@ -132,33 +94,35 @@ const Organisations = () => {
   };
 
   useEffect(() => {
-    getApps();
-  }, [createAppModal,page,limit]);
+    getServices();
+  }, [createServiceModal,page,limit]);
 
   const columns = [
-   
     {
-     name: "name",
-     label: "NAME",
+     name: "sender",
+     label: "SENDER",
      options: {
       filter: true,
       sort: false,
+      setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: 'white', color: 'black', fontSize: '0.9rem', lineHeight: 2.0} }),
      }
     },
     {
-     name: "email",
-     label: "EMAIL",
+     name: "provider",
+     label: "PROVIDER",
      options: {
       filter: true,
       sort: false,
+      setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: 'white', color: 'black', fontSize: '0.9rem', lineHeight: 2.0} }),
      }
     },
     {
-     name: "status_code",
+     name: "status",
      label: "STATUS",
      options: {
       filter: true,
       sort: false,
+      setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: 'white', color: 'black', fontSize: '0.9rem', lineHeight: 2.0} }),
      }
     },
     {
@@ -167,47 +131,9 @@ const Organisations = () => {
      options: {
       filter: true,
       sort: false,
+      setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: 'white', color: 'black', fontSize: '0.9rem', lineHeight: 2.0} }),
      }
     },
-    {
-      name: "code",
-      label: "CODE",
-      options: {
-       filter: true,
-       sort: false,
-      }
-     },
-    {
-      name: "",
-      label: "Attach Service",
-      options: {
-       filter: true,
-       sort: false,
-       customBodyRender: (tableMeta, dataIndex, rowIndex) => {
-        return (
-          <button onClick={() => handleClick2(dataIndex.rowData[4])}>
-          <PersonAddIcon />
-          </button>
-        );
-      }
-      }
-     },
-     {
-      name: "",
-      label: "Attach User",
-      options: {
-       filter: true,
-       sort: false,
-       customBodyRender: (tableMeta, dataIndex, rowIndex) => {
-        
-        return (
-          <button onClick={() => handleClick1(dataIndex.rowData[4])}>
-          <PersonAddIcon />
-          </button>
-        );
-      }
-      }
-     },
    ];
 
   const options = {
@@ -223,8 +149,9 @@ const Organisations = () => {
     fixedSelectColumn: true,
     tableBodyHeight: 'auto',
     enableNestedDataAccess: '.',
-    serverSide:true,
     elevation: 0,
+    serverSide: true,
+    page: page,
     count: 30,
     rowsPerPageOptions: [10, 20, 50],
     downloadOptions: {
@@ -235,9 +162,8 @@ const Organisations = () => {
         useDisplayedRowsOnly: false, // it was true
       },
     },
-    downloadFile: true,
     onTableChange: (action, tableState) => {
-      console.log("ACTION IS !!!!", action);
+
       if (action === "changePage") {
 
         setIsLoaded(false);
@@ -252,6 +178,7 @@ const Organisations = () => {
         console.log("action not handled.");
       }
     },
+    downloadFile: true,
     onDownload: (buildHead, buildBody, columns, data) => {
       let val = `${buildHead(columns)}${buildBody(data)}`.replace(/[^\x00-\x7F]/g, "").toString().trim();
       return val;
@@ -273,7 +200,7 @@ const Organisations = () => {
       },
       toolbar: {
         search: "Search A/C Number,Name or Payplans",
-        downloadCsv: "Download Organisation Excel List",
+        downloadCsv: "Download Sender Ids Excel List",
         print: "Print customers",
         viewColumns: "View Columns",
         filterTable: "Filter Table",
@@ -299,30 +226,28 @@ const Organisations = () => {
 
   return (
     <MiniDrawer2>
-    <CreateAppModal createAppModal={createAppModal} closeCreateAppModal={closeCreateAppModal}/>
-    <AttachServiceModal attachServiceModal={attachServiceModal} closeAttachServiceModal={closeAttachServiceModal} app_id={app_id} appId={appId}/>
-    <AttachUserModal attachUserModal={attachUserModal} closeAttachUserModal={closeAttachUserModal} app_id={app_id} appId={appId}/>
-    <h2 className='mt-4 text-xl font-semibold'>All Organisations</h2>
-    <h4 className="text-md text-gray-800 font-serif">A list of all the Organisations </h4>
+    <CreateServiceModal createServiceModal={createServiceModal} closeCreateServiceModal={closeCreateServiceModal}/>
+    <h2 className='mt-4 text-xl font-semibold'>All Sender Ids</h2>
+    <h4 className="text-md text-gray-800 font-serif">A list of all the Sender Ids </h4>
     <div className="flex justify-end">
         <button
           type="button"
           className="text-white w-36 bg-blue-900 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-2 py-2 mt-4 flex items-center mr-2"
-          onClick={() =>setCreateAppModal(true)}
+          onClick={() =>setCreateServiceModal(true)}
         >
-          <AddBusinessIcon />
-          <p className="ml-4">Create Org.</p>
+          <LibraryAddIcon />
+          <p className="ml-4">Add Sender Ids</p>
         </button>
       </div>
 
     <div className="mt-4">
       <ThemeProvider theme={getMuiTheme()}>
 
-        <Table columns={columns} options={options} data={apps} />
+        <Table columns={columns} options={options} data={services} />
       </ThemeProvider>
     </div>
     </MiniDrawer2>
   );
 };
 
-export default Organisations;
+export default AllServices;
