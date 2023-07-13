@@ -30,7 +30,7 @@ export default {
     UPLOAD_CONTACTS: `https://suss-ads.zohari.tech/api/v1/group`,
     LIST_GROUPS: `https://suss-ads.zohari.tech/api/v1/group`,
     CREATE_GROUP: `https://suss-ads.zohari.tech/api/v1/group`,
-    CREATE_USER: `https://suss-ads.zohari.tech/api/v1/user/:app_id/registration`,
+    CREATE_USER: `https://suss-ads.zohari.tech/api/v1/user`,
     BROADCAST_MESSAGE: `https://suss-ads.zohari.techapi/v1/message`,
     LIST_MESSAGES: `https://suss-ads.zohari.tech/api/v1/message`,
     LIST_APP_SERVICES: `https://suss-ads.zohari.tech/api/v1/application`,
@@ -39,9 +39,10 @@ export default {
     CREATE_SERVICE: `https://suss-ads.zohari.tech/api/v1/service/create`,
     CREATE_APP: `https://suss-ads.zohari.tech/api/v1/application/create`,
     SEND_SMS: `https://suss-ads.zohari.tech/api/v1/message`,
-    LIST_APPLICATIONS: `https://suss-ads.zohari.tech/api/v1/application/3/list`,
+    LIST_APPLICATIONS: `https://suss-ads.zohari.tech/api/v1/application`,
     LIST_SERVICES: `https://suss-ads.zohari.tech/api/v1/service/3/list`,
     USER_APPS: `https://suss-ads.zohari.tech/api/v1/users/application/list`,
     USER_SEARCH: `https://suss-ads.zohari.tech/api/v1/application`,
+    LIST_USERS: `https://suss-ads.zohari.tech/api/v1/application`,
     SERVICE_SEARCH: `https://suss-ads.zohari.tech/api/v1/service`
 };

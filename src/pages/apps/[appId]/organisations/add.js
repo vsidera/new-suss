@@ -2,21 +2,69 @@ import React, {useState} from 'react';
 import Link from 'next/link';
 import { Card, CardContent, TextField, Button, Stack, Typography } from '@mui/material';
 import MiniDrawer2 from '../../../../components/adminSidebar2/adminSidebar2';
+import { appCreate } from '../../../api/actions/applications/appsActions';
+import SnackbarAlert from '../../../../components/utils/snackbar';
  
  
-const RegisterForm = () => {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [mobile, setMobile] = useState('')
- 
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log(firstName, lastName, email, mobile) 
-    }
+const CreateOrg = () => {
+
+    const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
+    const [eventType, setEventType] = useState('');
+    const [eventMessage, setEventMessage] = useState('');
+    const [eventTitle, setEventTitle] = useState('');
+  
+    const [state, setState] = React.useState({
+      name: '',
+      secret: '',
+      email: '',
+      country_code: ''
+    });
+  
+    const handleChange = (e) => {
+      const value = e.target.value;
+      setState({
+        ...state,
+        [e.target.name]: value,
+      });
+    };
+  
+    const handleSubmit = (e) => {
+      e.preventDefault();
+  
+      const newApp = {
+        name: state.name,
+        secret: state.secret,
+        email: state.email,
+        country_code: state.country_code
+      };
+  
+      const res = appCreate(newApp).then((res) => {
+        if (res.status === 201) {
+          setEventType('success');
+          setEventMessage('Org Successfully Created');
+          setEventTitle('ORG CREATE');
+          setIsSnackBarAlertOpen(true);
+        } else {
+          setEventType('fail');
+          setEventMessage('Org NOT Created');
+          setEventTitle('ORG CREATE');
+          setIsSnackBarAlertOpen(true);
+        }
+      });
+  
+      return res;
+    };
+
  
     return (
         <MiniDrawer2>
+            <SnackbarAlert
+        open={isSnackBarAlertOpen}
+        type={eventType}
+        message={eventMessage}
+        handleClose={() => setIsSnackBarAlertOpen(false)}
+        title={eventTitle}
+      />
         <React.Fragment>
             <div className='m-16'>
             <h2 className='mt-4 text-xl font-semibold'>Add Organisation</h2>
@@ -33,8 +81,9 @@ const RegisterForm = () => {
                         variant='outlined'
                         color='secondary'
                         label="Name"
-                        onChange={e => setFirstName(e.target.value)}
-                        value={firstName}
+                        onChange={handleChange}
+                        name="name"
+                        value={state.name}
                         fullWidth
                         required
                         sx={{mb: 4}}
@@ -44,8 +93,9 @@ const RegisterForm = () => {
                     variant='outlined'
                     color='secondary'
                     label="Email"
-                    onChange={e => setEmail(e.target.value)}
-                    value={email}
+                    name="email"
+                    onChange={handleChange}
+                    value={state.email}
                     fullWidth
                     required
                     sx={{mb: 4}}
@@ -55,8 +105,9 @@ const RegisterForm = () => {
                     variant='outlined'
                     color='secondary'
                     label="Password"
-                    onChange={e => setMobile(e.target.value)}
-                    value={mobile}
+                    name="secret"
+                    onChange={handleChange}
+                    value={state.secret}
                     required
                     fullWidth
                     sx={{mb: 4}}
@@ -66,8 +117,9 @@ const RegisterForm = () => {
                     variant='outlined'
                     color='secondary'
                     label="Country Code"
-                    onChange={e => setMobile(e.target.value)}
-                    value={mobile}
+                    onChange={handleChange}
+                    name="country_code"
+                    value={state.country_code}
                     required
                     fullWidth
                     sx={{mb: 4}}
@@ -86,4 +138,4 @@ const RegisterForm = () => {
     )
 }
  
-export default RegisterForm;
+export default CreateOrg;

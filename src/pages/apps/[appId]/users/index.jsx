@@ -5,6 +5,8 @@ import Table from "../../../../components/table/table"
 import RegisterUserModal from "../../../../components/modals/register_user";
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import MiniDrawer2 from "../../../../components/adminSidebar2/adminSidebar2";
+import { usersAction } from "../../../api/actions/users/usersAction";
+import { useRouter } from "next/router";
 
 const getMuiTheme = () =>
   createTheme({
@@ -66,63 +68,52 @@ const getMuiTheme = () =>
   });
 
 const Users = () => {
-  // const [users, setUsers] = useState([]);
+
+  const router = useRouter();
+  const app_id = router.query.appId;
+
+  const [users, setUsers] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [registerModal, setRegisterModal] = useState(false);
 
-  const closeRegisterModal = (e) => {
-    e.preventDefault();
-    setRegisterModal(false)
-  }
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10);
 
-  const users = [
-    {
-      "name": "John Doe",
-      "email": "john.doe@example.com",
-      "id": 1,
-      "phone": "+1-555-555-5555",
-      "company": "Example Inc."
-    },
-    {
-      "name": "Jane Smith",
-      "email": "jane.smith@example.com",
-      "id": 2,
-      "phone": "+1-555-555-5556",
-      "company": "Example Corp."
-    },
-    {
-      "name": "Bob Johnson",
-      "email": "bob.johnson@example.com",
-      "id": 3,
-      "phone": "+1-555-555-5557",
-      "company": "Example Ltd."
-    },
-    {
-      "name": "Samantha Lee",
-      "email": "samantha.lee@example.com",
-      "id": 4,
-      "phone": "+1-555-555-5558",
-      "company": "Example Co."
-    },
-    {
-      "name": "Michael Chen",
-      "email": "michael.chen@example.com",
-      "id": 5,
-      "phone": "+1-555-555-5559",
-      "company": "Example Group"
-    }
-  ]
-  
+  const getUsers = () => {
+    usersAction({ app_id, limit, page })
+      .then((res) => {
+        if (res.errors) {
+          console.log("AN ERROR HAS OCCURED");
+        } else {
+          setUsers(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getUsers();
+    setIsLoaded(true);
+  }, [ page, limit]);
 
   const columns = [
     {
-     name: "name",
+     name: "firstname",
      label: "NAME",
      options: {
       filter: true,
       sort: false,
      }
     },
+    {
+      name: "lastname",
+      label: "NAME",
+      options: {
+       filter: true,
+       sort: false,
+      }
+     },
     {
      name: "email",
      label: "EMAIL",
@@ -132,16 +123,16 @@ const Users = () => {
      }
     },
     {
-     name: "phone",
-     label: "PHONE",
+     name: "status",
+     label: "Status",
      options: {
       filter: true,
       sort: false,
      }
     },
     {
-     name: "company",
-     label: "COMPANY",
+     name: "type",
+     label: "TYPE",
      options: {
       filter: true,
       sort: false,
@@ -221,15 +212,17 @@ const Users = () => {
 
   return (
     <MiniDrawer2>
-    <RegisterUserModal registerModal={registerModal} closeRegisterModal={closeRegisterModal}/>
-    <h2 className='mt-4 text-xl font-semibold'>All Users</h2>
-    <h4 className="text-md text-gray-800 font-serif">A list of all the users </h4>
+    
+    <div className="m-16">
+    <h2 className='mt-4 text-xl font-semibold'>Users</h2>
+    <h4 className="text-md text-gray-800 font-serif">A list of all users of the system </h4>
 
     <div className="mt-4">
       <ThemeProvider theme={getMuiTheme()}>
 
         <Table columns={columns} options={options} data={users} />
       </ThemeProvider>
+    </div>
     </div>
     </MiniDrawer2>
   );

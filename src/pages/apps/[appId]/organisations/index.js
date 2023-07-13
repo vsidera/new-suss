@@ -10,6 +10,7 @@ import AttachServiceModal from "../../../../components/modals/attach_service";
 import AttachUserModal from "../../../../components/modals/attach_user";
 // import {useParams} from 'react-router-dom';
 import MiniDrawer2 from "../../../../components/adminSidebar2/adminSidebar2";
+import { useRouter } from "next/router";
 
 const getMuiTheme = () =>
   createTheme({
@@ -71,9 +72,8 @@ const getMuiTheme = () =>
   });
 const Organisations = () => {
 
-//   const params = useParams();
-
-  const app_id = 1
+  const router = useRouter();
+  const app_id = router.query.appId;
 
   const [apps, setApps] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -116,8 +116,8 @@ const Organisations = () => {
   }
 
 
-  const getApps = () => {
-    appsAction({page,limit})
+  const getApps = (app) => {
+    appsAction({page,limit,app_id})
       .then((res) => {
         if (res.errors) {
           console.log("AN ERROR HAS OCCURED");
@@ -298,21 +298,24 @@ const Organisations = () => {
   }
 
   return (
-    <MiniDrawer2>
-    <CreateAppModal createAppModal={createAppModal} closeCreateAppModal={closeCreateAppModal}/>
+
+
+<MiniDrawer2>
+<CreateAppModal createAppModal={createAppModal} closeCreateAppModal={closeCreateAppModal}/>
     <AttachServiceModal attachServiceModal={attachServiceModal} closeAttachServiceModal={closeAttachServiceModal} app_id={app_id} appId={appId}/>
     <AttachUserModal attachUserModal={attachUserModal} closeAttachUserModal={closeAttachUserModal} app_id={app_id} appId={appId}/>
-    <h2 className='mt-4 text-xl font-semibold'>All Organisations</h2>
+     
+<div className="m-16">
+<h2 className='mt-4 text-xl font-semibold'>All Organisations</h2>
     <h4 className="text-md text-gray-800 font-serif">A list of all the Organisations </h4>
 
-
-    <div className="mt-4">
-      <ThemeProvider theme={getMuiTheme()}>
-
-        <Table columns={columns} options={options} data={apps} />
-      </ThemeProvider>
-    </div>
-    </MiniDrawer2>
+  <div className="mt-4">
+    <ThemeProvider theme={getMuiTheme()}>
+      <Table columns={columns} options={options} data={apps} />
+    </ThemeProvider>
+  </div>
+</div>
+</MiniDrawer2>
   );
 };
 
