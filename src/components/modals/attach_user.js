@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 import Modal from "@mui/material/Modal";
 import { Box, CardContent, TextField, TextareaAutosize } from "@mui/material";
 import AsyncSelect from "react-select/async";
-import { userSearch, userAttach } from "../../pages/api/actions/login/loginAction";
+import {
+  userSearch,
+  userAttach,
+} from "../../pages/api/actions/login/loginAction";
 import SnackbarAlert from "../utils/snackbar";
 
 const AttachUserModal = ({
@@ -12,7 +15,6 @@ const AttachUserModal = ({
   app_id,
   appId,
 }) => {
-
   const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
   const [eventType, setEventType] = useState("");
   const [eventMessage, setEventMessage] = useState("");
@@ -24,35 +26,35 @@ const AttachUserModal = ({
 
   const [selectedValue, setSelectedValue] = useState(null);
 
-  const loadOptions = (inputValue, callback) => {
-    userSearch({ app_id, search: inputValue })
-      .then((res) => {
-        if (res.errors) {
-          console.log("AN ERROR HAS OCCURED");
-          callback([], new Error("An error occurred"));
-        } else {
-          const options = res.data.map((user) => ({
-            value: user.id,
-            label: user.email,
-          }));
-
-          if (options.length === 0) {
-            callback([], new Error("No results found"));
-          } else if (options.length === 1) {
-            callback(options, null);
-            setSelectedValue(options[0]);
-          } else {
-            // Multiple results found, return the first one as default value
-            callback(options, null);
-            setSelectedValue(options[0]);
-          }
-        }
-      })
-      .catch((err) => {
-        console.log(err);
+  const loadOptions = async (inputValue, callback) => {
+    try {
+      const res = await userSearch({ app_id, search: inputValue });
+      if (res.errors) {
+        console.log("AN ERROR HAS OCCURRED");
         callback([], new Error("An error occurred"));
-      });
+      } else {
+        const options = res.data.map((user) => ({
+          value: user.id,
+          label: user.email,
+        }));
+  
+        if (options.length === 0) {
+          callback([], new Error("No results found"));
+        } else if (options.length === 1) {
+          callback(options, null);
+          setSelectedValue(options[0]);
+        } else {
+          // Multiple results found, return the first one as default value
+          callback(options, null);
+          setSelectedValue(options[0]);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+      callback([], new Error("An error occurred"));
+    }
   };
+  
 
   const handleInputChange = (newValue) => {
     setSearch(newValue);

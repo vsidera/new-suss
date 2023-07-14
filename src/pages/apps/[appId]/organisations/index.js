@@ -10,6 +10,7 @@ import AttachServiceModal from "../../../../components/modals/attach_service";
 import AttachUserModal from "../../../../components/modals/attach_user";
 // import {useParams} from 'react-router-dom';
 import MiniDrawer2 from "../../../../components/adminSidebar2/adminSidebar2";
+import AddLinkIcon from '@mui/icons-material/AddLink';
 import { useRouter } from "next/router";
 
 const getMuiTheme = () =>
@@ -186,7 +187,7 @@ const Organisations = () => {
        customBodyRender: (tableMeta, dataIndex, rowIndex) => {
         return (
           <button onClick={() => handleClick2(dataIndex.rowData[4])}>
-          <PersonAddIcon />
+          <AddLinkIcon />
           </button>
         );
       }
