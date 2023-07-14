@@ -99,7 +99,7 @@ const Groups = () => {
   useEffect(() => {
     getGroups();
     setIsLoaded(true);
-  }, [ page, limit]);
+  }, [ page, limit, app_id]);
 
   const columns = [
     {

@@ -137,7 +137,7 @@ const Contacts = () => {
     getContacts();
     setIsLoaded(true)
 
-  }, [createModal,page,limit]);
+  }, [createModal,page,limit, app_id]);
 
   const columns = [
     {
