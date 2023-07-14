@@ -139,8 +139,8 @@ const AttachServiceModal = ({
           <Box sx={style}>
             <CardContent style={{ width: "60%" }}>
               <div className="text-center content-center w-full">
-                <p className="text-xl content-center items center">
-                  ATTACH SERVICE
+                <p className="text-lg content-center items center">
+                  Attach Sender Id to the Organisation
                 </p>
 
                 <br />
@@ -170,6 +170,17 @@ const AttachServiceModal = ({
                     }}
                   >
                     {isButtonClicked ? "DONE!" : "ATTACH"}
+                  </button>
+
+                  <button
+                    className="bg-red-900 text-white font-normal py-1.5 px-5 rounded text-[14px] w-full"
+                    style={{
+                      marginTop: "2rem",
+                      alignSelf: "center"
+                    }}
+                    onClick={closeAttachServiceModal}
+                  >
+                    CANCEL
                   </button>
                 </div>
               </div>

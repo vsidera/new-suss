@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Table from "../../../../components/table/table";
 import { appservicesAction } from "../../../api/actions/appservices/appservicesAction";
-// import {useParams} from 'react-router-dom';
 import MiniDrawer from "../../../../components/sidebar2/sidebar2";
+import { useRouter } from "next/router";
 
 const getMuiTheme = () =>
   createTheme({
@@ -65,9 +65,8 @@ const getMuiTheme = () =>
   });
 
 const AppServices = () => {
-  // const params = useParams();
-
-  const app_id = 1
+  const router = useRouter();
+  const app_id = router.query.appId;
 
   const [appservices, setAppservices] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -90,7 +89,7 @@ const AppServices = () => {
 
   useEffect(() => {
     getAppServices();
-  }, []);
+  }, [app_id]);
 
   const columns = [
     {

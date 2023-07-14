@@ -143,8 +143,8 @@ const AttachUserModal = ({
           <Box sx={style}>
             <CardContent style={{ width: "60%" }}>
               <div className="text-center content-center w-full">
-                <p className="text-xl content-center items center">
-                  ATTACH USER
+                <p className="text-lg content-center items center">
+                Attach User to the Organisation
                 </p>
 
                 <br />
@@ -174,6 +174,17 @@ const AttachUserModal = ({
                     }}
                   >
                     {isButtonClicked ? "DONE!" : "ATTACH"}
+                  </button>
+
+                  <button
+                    className="bg-red-900 text-white font-normal py-1.5 px-5 rounded text-[14px] w-full"
+                    style={{
+                      marginTop: "2rem",
+                      alignSelf: "center"
+                    }}
+                    onClick={closeAttachUserModal}
+                  >
+                    CANCEL
                   </button>
                 </div>
               </div>

@@ -117,7 +117,7 @@ const Organisations = () => {
   }
 
 
-  const getApps = (app) => {
+  const getApps = () => {
     appsAction({page,limit,app_id})
       .then((res) => {
         if (res.errors) {
@@ -134,7 +134,7 @@ const Organisations = () => {
 
   useEffect(() => {
     getApps();
-  }, [createAppModal,page,limit]);
+  }, [createAppModal,page,limit, app_id]);
 
   const columns = [
    

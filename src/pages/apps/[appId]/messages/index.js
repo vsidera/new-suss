@@ -108,7 +108,7 @@ const Messages = () => {
   useEffect(() => {
 
     getMessages();
-  }, []);
+  }, [app_id]);
 
   const columns = [
     {

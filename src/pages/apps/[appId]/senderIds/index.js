@@ -100,7 +100,7 @@ const AllServices = () => {
 
   useEffect(() => {
     getServices();
-  }, [createServiceModal,page,limit]);
+  }, [createServiceModal,page,limit, app_id]);
 
   const columns = [
     {
