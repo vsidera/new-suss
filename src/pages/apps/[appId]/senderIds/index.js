@@ -5,6 +5,7 @@ import {servicesAction} from "../../../api/actions/services/servicesAction"
 import CreateServiceModal from "../../../../components/modals/create_service";
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import MiniDrawer2 from "../../../../components/adminSidebar2/adminSidebar2";
+import { useRouter } from "next/router";
 
 const getMuiTheme = () =>
   createTheme({
@@ -66,6 +67,10 @@ const getMuiTheme = () =>
   });
 
 const AllServices = () => {
+
+  const router = useRouter();
+  const app_id = router.query.appId;
+  
   const [services, setServices] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [page, setPage] = useState(0);
@@ -79,7 +84,7 @@ const AllServices = () => {
   }
 
   const getServices = () => {
-    servicesAction({page,limit})
+    servicesAction({page,limit, app_id})
       .then((res) => {
         if (res.errors) {
           console.log("AN ERROR HAS OCCURED");
@@ -226,15 +231,16 @@ const AllServices = () => {
 
   return (
     <MiniDrawer2>
-    <CreateServiceModal createServiceModal={createServiceModal} closeCreateServiceModal={closeCreateServiceModal}/>
-    <h2 className='mt-4 text-xl font-semibold'>All Sender Ids</h2>
-    <h4 className="text-md text-gray-800 font-serif">A list of all the Sender Ids </h4>
+    <div className="m-16">
+    <h2 className='mt-4 text-xl font-semibold'>Sender Ids</h2>
+    <h4 className="text-md text-gray-800 font-serif">A list of all Sender Ids in the system</h4>
 
     <div className="mt-4">
       <ThemeProvider theme={getMuiTheme()}>
 
         <Table columns={columns} options={options} data={services} />
       </ThemeProvider>
+    </div>
     </div>
     </MiniDrawer2>
   );

@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import SnackbarAlert from "../../../../components/utils/snackbar";
+import { serviceCreate } from "../../../api/actions/services/servicesAction";
 
 const RegisterForm = () => {
   const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
@@ -89,28 +90,31 @@ const RegisterForm = () => {
                   label="Sender"
                   onChange={handleChange}
                   value={state.sender}
+                  name="sender"
                   fullWidth
                   required
                   sx={{ mb: 4 }}
                 />
                 <TextField
-                  type="email"
+                  type="text"
                   variant="outlined"
                   color="secondary"
                   label="Provider"
                   onChange={handleChange}
                   value={state.provider}
+                  name="provider"
                   fullWidth
                   required
                   sx={{ mb: 4 }}
                 />
                 <TextField
-                  type="number"
+                  type="text"
                   variant="outlined"
                   color="secondary"
                   label="Country Code"
                   onChange={handleChange}
                   value={state.country_code}
+                  name="country_code"
                   required
                   fullWidth
                   sx={{ mb: 4 }}
