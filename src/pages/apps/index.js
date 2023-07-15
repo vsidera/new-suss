@@ -76,39 +76,49 @@ const Applications = () => {
   return (
 <>
   {isLoaded ? (
-    <div className="relative flex items-center justify-center h-screen bg-cover bg-center" style={{ backgroundImage: 'url("/images/main.png")' }}>
-    {/* Content inside the div */}
+    <div className="relative flex items-center justify-center h-screen bg-cover bg-center" style={{ backgroundImage: 'url("/images/appsback.jpg")' }}>
     <Box
-      className="absolute top-1/2 right-0 transform -translate-y-1/2 flex flex-col items-center"
-      style={{ width: '50%', zIndex: 10 }}
-    >
-      {/* <label htmlFor="select-organisation" className="text-black text-lg font-bold mb-2">
-        Select an Organisation:
-      </label> */}
-      <Select
-        id="select-organisation"
-        value={selectedAppCode}
-        onChange={handleAppSelect}
-        displayEmpty
-      >
-        <MenuItem value="" disabled>
-          Select an Organisation
-        </MenuItem>
-        {apps.map((app, index) => (
-          <MenuItem value={app.code} key={index}>
-            {app.name}
-          </MenuItem>
-        ))}
-      </Select>
-      <button
-        className="bg-blue-500 text-white px-20 py-2 mt-2 rounded"
-        onClick={handleApply}
-        disabled={!selectedAppCode}
-      >
-        Apply
-      </button>
-    </Box>
-  </div>  ) : (
+  className="absolute top-1/2 left-0 flex flex-col items-center ml-32"
+  style={{ width: '50%', zIndex: 10 }}
+>
+<Select
+  id="select-organisation"
+  value={selectedAppCode}
+  onChange={handleAppSelect}
+  displayEmpty
+  style={{ width: '30%', color: '#71797E' }}
+  MenuProps={{
+    PaperProps: {
+      sx: {
+        color: 'white',
+        background: '#094C95', // Set the background color to transparent
+        '& .MuiMenuItem-root': {
+          padding: 1,
+        },
+      },
+    },
+  }}
+>
+  <MenuItem value="" disabled>
+    SELECT AN ORGANISATION
+  </MenuItem>
+    {apps.map((app, index) => (
+      <MenuItem value={app.code} key={index}>
+        {app.name}
+      </MenuItem>
+    ))}
+  </Select>
+  <button
+    className="bg-[#094C95] text-white px-20 py-2 mt-8 rounded-full"
+    onClick={handleApply}
+    disabled={!selectedAppCode}
+  >
+    Apply
+  </button>
+</Box>
+
+  </div>
+   ) : (
     <div>
       <h1>LOADING...</h1>
     </div>
