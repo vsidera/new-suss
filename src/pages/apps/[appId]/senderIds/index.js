@@ -6,6 +6,7 @@ import CreateServiceModal from "../../../../components/modals/create_service";
 import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import MiniDrawer2 from "../../../../components/adminSidebar2/adminSidebar2";
 import { useRouter } from "next/router";
+import SkeletonLoader from "../../../../components/utils/skeleton";
 
 const getMuiTheme = () =>
   createTheme({
@@ -109,7 +110,26 @@ const AllServices = () => {
      options: {
       filter: true,
       sort: false,
-      setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: 'white', color: 'black', fontSize: '0.9rem', lineHeight: 2.0} }),
+      setCellHeaderProps: () => ({
+        style: {
+          minWidth: "150px",
+          maxWidth: "150px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
+      setCellProps: () => {
+
+        return {
+          style: {
+            fontWeight: 450, // Add the fontWeight property to make the text bold
+          },
+        };
+
+    },
+     
      }
     },
     {
@@ -118,27 +138,67 @@ const AllServices = () => {
      options: {
       filter: true,
       sort: false,
-      setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: 'white', color: 'black', fontSize: '0.9rem', lineHeight: 2.0} }),
+      setCellHeaderProps: () => ({
+        style: {
+          minWidth: "150px",
+          maxWidth: "150px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
+      
      }
     },
-    {
-     name: "status",
-     label: "STATUS",
-     options: {
-      filter: true,
-      sort: false,
-      setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: 'white', color: 'black', fontSize: '0.9rem', lineHeight: 2.0} }),
-     }
-    },
+
     {
      name: "country_code",
      label: "COUNTRY",
      options: {
       filter: true,
       sort: false,
-      setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: 'white', color: 'black', fontSize: '0.9rem', lineHeight: 2.0} }),
+      setCellHeaderProps: () => ({
+        style: {
+          minWidth: "100px",
+          maxWidth: "100px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
+      
      }
     },
+    {
+      name: "status",
+      label: "STATUS",
+      options: {
+       filter: true,
+       sort: false,
+       setCellHeaderProps: () => ({
+         style: {
+           minWidth: "120px",
+           maxWidth: "120px",
+           backgroundColor: "#094C95",
+           color: "white",
+           fontSize: "0.9rem",
+           lineHeight: 2.0,
+         },
+       }),
+       setCellProps: () => {
+ 
+        return {
+          style: {
+            color: "green", // Add the fontWeight property to make the text bold
+          },
+        };
+
+    },
+       
+      }
+     },
    ];
 
   const options = {
@@ -161,7 +221,7 @@ const AllServices = () => {
     rowsPerPageOptions: [10, 20, 50],
     downloadOptions: {
       separator: ',',
-      filename: 'Customers Summary.csv',
+      filename: 'Sender Ids.csv',
       filterOptions: {
         useDisplayedColumnsOnly: false, // it was true
         useDisplayedRowsOnly: false, // it was true
@@ -192,9 +252,7 @@ const AllServices = () => {
     textLabels: {
       body: {
         noMatch: isLoaded ? "Sorry, no matching records exist in Suss"
-          : <div >
-            ......
-          </div>,
+          : <SkeletonLoader/>,
         toolTip: "Sort",
       },
       pagination: {
@@ -233,7 +291,7 @@ const AllServices = () => {
     <MiniDrawer2>
     <div className="m-16">
     <h2 className='mt-4 text-xl font-semibold'>Sender Ids</h2>
-    <h4 className="text-md text-gray-800 font-serif">A list of all Sender Ids in the system</h4>
+    <h4 className="text-md text-gray-700">A list of all Sender Ids</h4>
 
     <div className="mt-4">
       <ThemeProvider theme={getMuiTheme()}>

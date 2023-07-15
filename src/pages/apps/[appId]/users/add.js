@@ -71,7 +71,7 @@ const RegisterForm = () => {
         <React.Fragment>
             <div className='m-16'>
             <h2 className='mt-4 text-xl font-semibold'>Add User</h2>
-            <p className='mb-24'>Amin can create a user for the system</p>
+            <p className='mb-24 text-gray-700'>Create a user</p>
             <Card>
                 <CardContent>
                 <Typography variant="body1" sx={{ mb: 2 }}>
@@ -128,7 +128,7 @@ const RegisterForm = () => {
                 />
     
                 <Button variant="contained" sx={{ backgroundColor: '#094C95 !important', color: '#FFFFFF !important', '&:hover': { backgroundColor: '#001041 !important' } }} type="submit">
-                Add
+                Create
                 </Button>
             </form>
             </CardContent>

@@ -12,6 +12,7 @@ import AttachUserModal from "../../../../components/modals/attach_user";
 import MiniDrawer2 from "../../../../components/adminSidebar2/adminSidebar2";
 import AddLinkIcon from '@mui/icons-material/AddLink';
 import { useRouter } from "next/router";
+import SkeletonLoader from "../../../../components/utils/skeleton";
 
 const getMuiTheme = () =>
   createTheme({
@@ -144,6 +145,25 @@ const Organisations = () => {
      options: {
       filter: true,
       sort: false,
+      setCellHeaderProps: () => ({
+        style: {
+          minWidth: "180px",
+          maxWidth: "180px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
+      setCellProps: () => {
+
+          return {
+            style: {
+              fontWeight: 450, // Add the fontWeight property to make the text bold
+            },
+          };
+
+      },
      }
     },
     {
@@ -152,22 +172,35 @@ const Organisations = () => {
      options: {
       filter: true,
       sort: false,
+      setCellHeaderProps: () => ({
+        style: {
+          minWidth: "180px",
+          maxWidth: "180px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
      }
     },
-    {
-     name: "status_code",
-     label: "STATUS",
-     options: {
-      filter: true,
-      sort: false,
-     }
-    },
+ 
     {
      name: "country_code",
      label: "COUNTRY",
      options: {
       filter: true,
       sort: false,
+      setCellHeaderProps: () => ({
+        style: {
+          minWidth: "100px",
+          maxWidth: "100px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
      }
     },
     {
@@ -176,6 +209,43 @@ const Organisations = () => {
       options: {
        filter: true,
        sort: false,
+       setCellHeaderProps: () => ({
+        style: {
+          minWidth: "100px",
+          maxWidth: "100px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
+      }
+     },
+     {
+      name: "status_code",
+      label: "STATUS",
+      options: {
+       filter: true,
+       sort: false,
+       setCellHeaderProps: () => ({
+         style: {
+           minWidth: "120px",
+           maxWidth: "120px",
+           backgroundColor: "#094C95",
+           color: "white",
+           fontSize: "0.9rem",
+           lineHeight: 2.0,
+         },
+       }),
+       setCellProps: () => {
+ 
+         return {
+           style: {
+             color: "green", // Add the fontWeight property to make the text bold
+           },
+         };
+ 
+     },
       }
      },
     {
@@ -184,6 +254,16 @@ const Organisations = () => {
       options: {
        filter: true,
        sort: false,
+       setCellHeaderProps: () => ({
+        style: {
+          minWidth: "120px",
+          maxWidth: "120px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
        customBodyRender: (tableMeta, dataIndex, rowIndex) => {
         return (
           <button onClick={() => handleClick2(dataIndex.rowData[4])}>
@@ -199,6 +279,16 @@ const Organisations = () => {
       options: {
        filter: true,
        sort: false,
+       setCellHeaderProps: () => ({
+        style: {
+          minWidth: "120px",
+          maxWidth: "120px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
        customBodyRender: (tableMeta, dataIndex, rowIndex) => {
         
         return (
@@ -230,7 +320,7 @@ const Organisations = () => {
     rowsPerPageOptions: [10, 20, 50],
     downloadOptions: {
       separator: ',',
-      filename: 'Customers Summary.csv',
+      filename: 'Organisations.csv',
       filterOptions: {
         useDisplayedColumnsOnly: false, // it was true
         useDisplayedRowsOnly: false, // it was true
@@ -261,9 +351,7 @@ const Organisations = () => {
     textLabels: {
       body: {
         noMatch: isLoaded ? "Sorry, no matching records exist in Suss"
-          : <div >
-            ......
-          </div>,
+          : <SkeletonLoader/>,
         toolTip: "Sort",
       },
       pagination: {
@@ -308,7 +396,7 @@ const Organisations = () => {
      
 <div className="m-16">
 <h2 className='mt-4 text-xl font-semibold'>All Organisations</h2>
-    <h4 className="text-md text-gray-800 font-serif">A list of all the Organisations </h4>
+    <h4 className="text-gray-700">A list of all the Organisations </h4>
 
   <div className="mt-4">
     <ThemeProvider theme={getMuiTheme()}>

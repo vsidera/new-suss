@@ -10,6 +10,7 @@ import ScheduleSendIcon from '@mui/icons-material/ScheduleSend';
 // import {useParams} from 'react-router-dom';
 import MiniDrawer from "../../../../components/sidebar2/sidebar2";
 import { useRouter } from "next/router";
+import SkeletonLoader from "../../../../components/utils/skeleton";
 
 const getMuiTheme = () =>
   createTheme({
@@ -119,14 +120,23 @@ const Messages = () => {
       sort: false,
       setCellHeaderProps: () => ({
         style: {
-          minWidth: "180px",
-          maxWidth: "180px",
-          backgroundColor: "#233044",
+          minWidth: "120px",
+          maxWidth: "120px",
+          backgroundColor: "#094C95",
           color: "white",
           fontSize: "0.9rem",
           lineHeight: 2.0,
         },
       }),
+      setCellProps: () => {
+
+          return {
+            style: {
+              fontWeight: 450, // Add the fontWeight property to make the text bold
+            },
+          };
+
+      },
      }
     },
     {
@@ -137,9 +147,9 @@ const Messages = () => {
       sort: false,
       setCellHeaderProps: () => ({
         style: {
-          minWidth: "180px",
-          maxWidth: "180px",
-          backgroundColor: "#233044",
+          minWidth: "120px",
+          maxWidth: "120px",
+          backgroundColor: "#094C95",
           color: "white",
           fontSize: "0.9rem",
           lineHeight: 2.0,
@@ -155,9 +165,9 @@ const Messages = () => {
       sort: false,
       setCellHeaderProps: () => ({
         style: {
-          minWidth: "180px",
-          maxWidth: "180px",
-          backgroundColor: "#233044",
+          minWidth: "120px",
+          maxWidth: "120px",
+          backgroundColor: "#094C95",
           color: "white",
           fontSize: "0.9rem",
           lineHeight: 2.0,
@@ -173,9 +183,9 @@ const Messages = () => {
       sort: false,
       setCellHeaderProps: () => ({
         style: {
-          minWidth: "180px",
-          maxWidth: "180px",
-          backgroundColor: "#233044",
+          minWidth: "120px",
+          maxWidth: "120px",
+          backgroundColor: "#094C95",
           color: "white",
           fontSize: "0.9rem",
           lineHeight: 2.0,
@@ -204,7 +214,7 @@ const Messages = () => {
     serverSide: true,
     downloadOptions: {
       separator: ',',
-      filename: 'Customers Summary.csv',
+      filename: 'Messages.csv',
       filterOptions: {
         useDisplayedColumnsOnly: false, // it was true
         useDisplayedRowsOnly: false, // it was true
@@ -219,9 +229,7 @@ const Messages = () => {
     textLabels: {
       body: {
         noMatch: isLoaded ? "Sorry, no matching records exist in Suss"
-          : <div >
-            ......
-          </div>,
+          : <SkeletonLoader/>,
         toolTip: "Sort",
       },
       pagination: {
@@ -261,25 +269,9 @@ const Messages = () => {
       <MiniDrawer>
       <div className="m-16">
       <h2 className='mt-4 text-xl font-semibold'>Messages</h2>
-            <p className='mb-24 text-[#094C95]'>These are the messages that have been sent out to clients</p>
+            <p className='mb-24 text-gray-700'>A list of messages sent to clients</p>
       <div className="flex justify-end">
-        
-      {/* <button
-          type="button"
-          className="text-white w-36 bg-blue-900 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-2 py-2 mt-4 flex items-center mr-2"
-          onClick={() =>setSmsModal(true)}
-        >
-          <SendToMobileIcon />
-          <p className="ml-4">Send</p>
-        </button> */}
-        {/* <button
-          type="button"
-          className="text-white w-36 bg-blue-900 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-2 py-2 mt-4 flex items-center mr-2"
-          onClick={() =>setScheduleModal(true)}
-        >
-          <ScheduleSendIcon />
-          <p className="ml-4">Schedule</p>
-        </button> */}
+
       </div>
       <SendSmsModal smsModal={smsModal} closeSendModal={closeSendModal}/>
       <ScheduleModal scheduleModal={scheduleModal} closeSendModal={closeSendModal}/>

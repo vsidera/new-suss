@@ -71,7 +71,7 @@ const RegisterForm = () => {
       <React.Fragment>
         <div className="m-16">
           <h2 className="mt-4 text-xl font-semibold">Add Sender Id</h2>
-          <p className="mb-24">This will create a sender id</p>
+          <p className="mb-24 text-gray-700">Create a Sender Id</p>
           <Card>
             <CardContent>
               <Typography variant="body1" sx={{ mb: 2 }}>

@@ -22,7 +22,7 @@ const Support = () => {
     <MiniDrawer>
       <div className="m-16">
         <h2 className="mt-4 text-xl font-semibold">Request Sender Ids</h2>
-        <p className="mb-24 text-[#094C95]">
+        <p className="mb-24 text-gray-700">
           Here you can request a sender id
         </p>
 
@@ -43,14 +43,14 @@ const Support = () => {
               <Typography
                 variant="body1"
                 color="text.secondary"
-                className="mb-4"
+                className="mb-8"
               >
                 This product registers a Sender ID with the Safaricom Ltd network.
               </Typography>
               <Typography
                 variant="body1"
                 color="text.secondary"
-                className="mb-4"
+                className="mb-4 font-semibold"
               >
                 Ksh. 6,000.00
               </Typography>
@@ -89,14 +89,14 @@ const Support = () => {
               <Typography
                 variant="body1"
                 color="text.secondary"
-                className="mb-4"
+                className="mb-8"
               >
                 This product registers a Sender ID with the Airtel Ltd network.
               </Typography>
               <Typography
                 variant="body1"
                 color="text.secondary"
-                className="mb-4"
+                className="mb-4 font-semibold"
               >
                 Ksh. 5,800.00
               </Typography>
@@ -135,14 +135,14 @@ const Support = () => {
               <Typography
                 variant="body1"
                 color="text.secondary"
-                className="mb-4"
+                className="mb-8"
               >
                 This product registers a Sender ID with the Telkom Ltd network.
               </Typography>
               <Typography
                 variant="body1"
                 color="text.secondary"
-                className="mb-4"
+                className="mb-4 font-semibold"
               >
                 Ksh. 5,800.00
               </Typography>
