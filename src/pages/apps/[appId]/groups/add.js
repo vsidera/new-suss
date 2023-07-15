@@ -73,7 +73,7 @@ const CreateGroup = () => {
         />
         <div className="m-16">
           <h2 className="mt-4 text-xl font-semibold">Create Group</h2>
-          <p className="mb-24 text-[#094C95]">
+          <p className="mb-24 text-gray-700">
             This will create a group.
           </p>
           <Card>

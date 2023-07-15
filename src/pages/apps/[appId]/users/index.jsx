@@ -7,6 +7,7 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import MiniDrawer2 from "../../../../components/adminSidebar2/adminSidebar2";
 import { usersAction } from "../../../api/actions/users/usersAction";
 import { useRouter } from "next/router";
+import SkeletonLoader from "../../../../components/utils/skeleton";
 
 const getMuiTheme = () =>
   createTheme({
@@ -94,24 +95,65 @@ const Users = () => {
 
   useEffect(() => {
     getUsers();
-    setIsLoaded(true);
-  }, [ page, limit]);
+    setTimeout(() => {
+      setIsLoaded(true)
+    }, 1000)
+
+  }, [ page, limit, app_id]);
 
   const columns = [
     {
      name: "firstname",
-     label: "NAME",
+     label: "FIRST NAME",
      options: {
       filter: true,
       sort: false,
+      setCellHeaderProps: () => ({
+        style: {
+          minWidth: "120px",
+          maxWidth: "120px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
+      setCellProps: () => {
+
+        return {
+          style: {
+            fontWeight: 450, // Add the fontWeight property to make the text bold
+          },
+        };
+
+    },
      }
     },
     {
       name: "lastname",
-      label: "NAME",
+      label: "LAST NAME",
       options: {
        filter: true,
        sort: false,
+       setCellHeaderProps: () => ({
+        style: {
+          minWidth: "120px",
+          maxWidth: "120px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
+       setCellProps: () => {
+
+        return {
+          style: {
+            fontWeight: 450, // Add the fontWeight property to make the text bold
+          },
+        };
+
+    },
       }
      },
     {
@@ -120,14 +162,34 @@ const Users = () => {
      options: {
       filter: true,
       sort: false,
+      setCellHeaderProps: () => ({
+        style: {
+          minWidth: "180px",
+          maxWidth: "180px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
      }
     },
     {
      name: "status",
-     label: "Status",
+     label: "STATUS",
      options: {
       filter: true,
       sort: false,
+      setCellHeaderProps: () => ({
+        style: {
+          minWidth: "120px",
+          maxWidth: "120px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
      }
     },
     {
@@ -136,6 +198,16 @@ const Users = () => {
      options: {
       filter: true,
       sort: false,
+      setCellHeaderProps: () => ({
+        style: {
+          minWidth: "120px",
+          maxWidth: "120px",
+          backgroundColor: "#094C95",
+          color: "white",
+          fontSize: "0.9rem",
+          lineHeight: 2.0,
+        },
+      }),
      }
     },
    ];
@@ -173,9 +245,7 @@ const Users = () => {
     textLabels: {
       body: {
         noMatch: isLoaded ? "Sorry, no matching records exist in Suss"
-          : <div >
-            ......
-          </div>,
+          : <SkeletonLoader/>,
         toolTip: "Sort",
       },
       pagination: {
@@ -215,7 +285,7 @@ const Users = () => {
     
     <div className="m-16">
     <h2 className='mt-4 text-xl font-semibold'>Users</h2>
-    <h4 className="text-md text-gray-800 font-serif">A list of all users of the system </h4>
+    <h4 className="text-md text-gray-700">A list of all users of the system </h4>
 
     <div className="mt-4">
       <ThemeProvider theme={getMuiTheme()}>

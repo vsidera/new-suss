@@ -102,12 +102,21 @@ const AppServices = () => {
           style: {
             minWidth: "180px",
             maxWidth: "180px",
-            backgroundColor: "#233044",
+            backgroundColor: "#094C95",
             color: "white",
             fontSize: "0.9rem",
             lineHeight: 2.0,
           },
         }),
+        setCellProps: () => {
+  
+            return {
+              style: {
+                fontWeight: 450, // Add the fontWeight property to make the text bold
+              },
+            };
+  
+        },
       },
     },
     {
@@ -120,7 +129,7 @@ const AppServices = () => {
           style: {
             minWidth: "180px",
             maxWidth: "180px",
-            backgroundColor: "#233044",
+            backgroundColor: "#094C95",
             color: "white",
             fontSize: "0.9rem",
             lineHeight: 2.0,
@@ -138,7 +147,7 @@ const AppServices = () => {
           style: {
             minWidth: "180px",
             maxWidth: "180px",
-            backgroundColor: "#233044",
+            backgroundColor: "#094C95",
             color: "white",
             fontSize: "0.9rem",
             lineHeight: 2.0,
@@ -156,7 +165,7 @@ const AppServices = () => {
           style: {
             minWidth: "180px",
             maxWidth: "180px",
-            backgroundColor: "#233044",
+            backgroundColor: "#094C95",
             color: "white",
             fontSize: "0.9rem",
             lineHeight: 2.0,
@@ -184,7 +193,7 @@ const AppServices = () => {
     rowsPerPageOptions: [10, 20, 50],
     downloadOptions: {
       separator: ",",
-      filename: "Customers Summary.csv",
+      filename: "Org Sender Ids.csv",
       filterOptions: {
         useDisplayedColumnsOnly: false, // it was true
         useDisplayedRowsOnly: false, // it was true
@@ -244,7 +253,7 @@ const AppServices = () => {
     <MiniDrawer>
       <div className="m-16">
       <h2 className='mt-4 text-xl font-semibold'>Organisation Sender Ids</h2>
-            <p className='mb-24 text-[#094C95]'>These are the sender ids that belong to this organisation</p>
+            <p className='mb-24 text-gray-700'>A list of the organisation's sender Ids</p>
       
       <div className="mt-4">
         <ThemeProvider theme={getMuiTheme()}>

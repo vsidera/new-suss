@@ -68,7 +68,7 @@ const CreateOrg = () => {
         <React.Fragment>
             <div className='m-16'>
             <h2 className='mt-4 text-xl font-semibold'>Add Organisation</h2>
-            <p className='mb-24'>This will create an Organisation</p>
+            <p className='mb-24 text-gray-700'>This will create an Organisation</p>
             <Card>
                 <CardContent>
                 <Typography variant="body1" sx={{ mb: 2 }}>

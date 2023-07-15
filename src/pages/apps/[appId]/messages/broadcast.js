@@ -54,7 +54,7 @@ const SendForm = () => {
         <React.Fragment>
             <div className='m-16'>
             <h2 className='mt-4 text-xl font-semibold'>Broadcast Mesage</h2>
-            <p className='mb-24 text-[#094C95]'>Send message to a group of contacts</p>
+            <p className='mb-24 text-gray-700'>Send message to a group of contacts</p>
             <Card>
             <CardContent>
             <Typography variant="body1" sx={{ mb: 2 }}>

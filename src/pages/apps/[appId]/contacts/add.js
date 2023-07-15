@@ -78,8 +78,8 @@ const RegisterForm = () => {
         />
         <div className="m-16">
           <h2 className="mt-4 text-xl font-semibold">Add Single Contact</h2>
-          <p className="mb-24 text-[#094C95]">
-            Manually add a new contact to a group
+          <p className="mb-24 text-gray-700">
+            Add a contact to a group
           </p>
           <Card>
             <CardContent>

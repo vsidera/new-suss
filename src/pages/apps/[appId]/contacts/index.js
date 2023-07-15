@@ -11,6 +11,7 @@ import BroadcastModal from "../../../../components/modals/broadcast";
 import SendIcon from '@mui/icons-material/Send';
 import MiniDrawer from "../../../../components/sidebar2/sidebar2";
 import { useRouter } from "next/router";
+import SkeletonLoader from "../../../../components/utils/skeleton";
 
 const getMuiTheme = () =>
   createTheme({
@@ -104,7 +105,7 @@ const Contacts = () => {
           console.log("AN ERROR HAS OCCURED");
         } else {
           setContacts(res.data);
-         
+          setIsLoaded(true)
         }
       })
       .catch((err) => {
@@ -135,7 +136,7 @@ const Contacts = () => {
 
   useEffect(() => {
     getContacts();
-    setIsLoaded(true)
+
 
   }, [createModal,page,limit, app_id]);
 
@@ -146,7 +147,25 @@ const Contacts = () => {
       options: {
         filter: true,
         sort: false,
-        setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#233044', color: 'white', fontSize: '0.9rem', lineHeight: 2.0} }),
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "120px",
+            maxWidth: "120px",
+            backgroundColor: "#094C95",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
+        setCellProps: () => {
+  
+            return {
+              style: {
+                fontWeight: 450, // Add the fontWeight property to make the text bold
+              },
+            };
+  
+        },
       },
     },
     {
@@ -155,7 +174,25 @@ const Contacts = () => {
       options: {
         filter: true,
         sort: false,
-        setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#233044', color: 'white', fontSize: '0.9rem', lineHeight: 2.0} }),
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "120px",
+            maxWidth: "120px",
+            backgroundColor: "#094C95",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
+        setCellProps: () => {
+  
+            return {
+              style: {
+                fontWeight: 450, // Add the fontWeight property to make the text bold
+              },
+            };
+  
+        },
       },
     },
 
@@ -165,7 +202,16 @@ const Contacts = () => {
       options: {
         filter: true,
         sort: false,
-        setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#233044', color: 'white', fontSize: '0.9rem', lineHeight: 2.0} }),
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "150px",
+            maxWidth: "150px",
+            backgroundColor: "#094C95",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
       },
     },
     {
@@ -174,7 +220,25 @@ const Contacts = () => {
       options: {
         filter: true,
         sort: false,
-        setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#233044', color: 'white', fontSize: '0.9rem', lineHeight: 2.0} }),
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "120px",
+            maxWidth: "120px",
+            backgroundColor: "#094C95",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
+        setCellProps: () => {
+ 
+          return {
+            style: {
+              color: "green", // Add the fontWeight property to make the text bold
+            },
+          };
+  
+      },
       },
       
     },
@@ -184,7 +248,16 @@ const Contacts = () => {
       options: {
         filter: true,
         sort: false,
-        setCellHeaderProps: () => ({ style: { minWidth: "180px", maxWidth: "180px", backgroundColor: '#233044', color: 'white', fontSize: '0.9rem', lineHeight: 2.0 } }),
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "120px",
+            maxWidth: "120px",
+            backgroundColor: "#094C95",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
       },
       
     },
@@ -209,7 +282,7 @@ const Contacts = () => {
     serverSide: true,
     downloadOptions: {
       separator: ',',
-      filename: 'Customers Summary.csv',
+      filename: 'Contacts.csv',
       filterOptions: {
         useDisplayedColumnsOnly: false, // it was true
         useDisplayedRowsOnly: false, // it was true
@@ -224,9 +297,7 @@ const Contacts = () => {
     textLabels: {
       body: {
         noMatch: isLoaded ? "Sorry, no matching records exist in Suss"
-          : <div >
-            ......
-          </div>,
+          : <SkeletonLoader/>,
         toolTip: "Sort",
       },
       pagination: {
@@ -268,36 +339,8 @@ const Contacts = () => {
       <CreateModal createModal={createModal} closeCreateModal={closeCreateModal} app_id={app_id}/>
       <div className="m-16">
       <h2 className='mt-4 text-xl font-semibold'>Contacts</h2>
-            <p className='mb-24 text-[#094C95]'>These are all the contacts for this organisation</p>
-      {/* <div className="flex justify-end">
-        <button
-          type="button"
-          className="text-white text-md text-thin font-light w-40 bg-blue-900 focus:ring-4 focus:outline-none rounded-lg px-2 py-2 mt-4 flex items-center mr-2"
-          onClick={() =>setCreateModal(true)}
-        >
-          <AddIcon />
-          <p className="ml-4">Add Contact</p>
-        </button>
-        <button
-          type="button"
-          className="text-white w-42 bg-blue-900 focus:ring-4 focus:outline-none font-light text-thin text-md rounded-lg px-2 py-2 mt-4 flex items-center"
-          onClick={() =>setUpload(true)}
-        >
-          <UploadIcon />
-          <p className="ml-4">Upload Contact</p>
-        </button>
-        <button
-          type="button"
-          className="text-white w-42 bg-blue-900 focus:ring-4 focus:outline-none font-light text-thin rounded-lg text-md px-2 py-2 mt-4 flex items-center ml-2"
-          onClick={handleBroadcast}
-        >
-          <SendIcon />
-          <p className="ml-4" >Broadcast</p>
-        </button>
-      </div>
-      {upload ? <div>
-      <FileUpload closeUpload={closeUpload} app_id={app_id}/>
-      </div> : <div></div>} */}
+            <p className='mb-24 text-gray-700'>A list of all contacts</p>
+      
       
       <div className="mt-4">
         <ThemeProvider theme={getMuiTheme()}>

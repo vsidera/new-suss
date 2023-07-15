@@ -33,7 +33,7 @@ const Support = () => {
                   <Faq />
                 </div>
                 <div style={{ flex: 1, marginLeft: "16px" }}>
-                <p className='mb-2'>Didn't find any to match your issue ? Talk to us</p>
+                <p className='mb-2 text-red-500'>Didn't find any to match your issue ? Talk to us</p>
                 <TextField
                     type="email"
                     variant='outlined'

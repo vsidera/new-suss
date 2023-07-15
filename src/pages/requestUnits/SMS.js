@@ -23,15 +23,15 @@ const RequestSMS = () => {
     let calculatedUnits = "";
 
     if (inputAmount >= 1 && inputAmount <= 99000) {
-      calculatedUnits = (inputAmount * 0.45).toFixed(2) + " KES";
+      calculatedUnits = "KES " + (inputAmount * 0.45).toFixed(2);
     } else if (inputAmount >= 100000 && inputAmount <= 499999) {
-      calculatedUnits = (inputAmount * 0.4).toFixed(2) + " KES";
+      calculatedUnits = "KES " + (inputAmount * 0.4).toFixed(2);
     } else if (inputAmount >= 500000 && inputAmount <= 999999) {
-      calculatedUnits = (inputAmount * 0.35).toFixed(2) + " KES";
+      calculatedUnits = "KES " + (inputAmount * 0.35).toFixed(2);
     } else if (inputAmount >= 1000000 && inputAmount <= 2500000) {
-      calculatedUnits = (inputAmount * 0.25).toFixed(2) + " KES";
+      calculatedUnits = "KES " + (inputAmount * 0.25).toFixed(2);
     } else if (inputAmount >= 2500000) {
-      calculatedUnits = (inputAmount * 0.25).toFixed(2) + " KES";
+      calculatedUnits = "KES " + (inputAmount * 0.25).toFixed(2);
     } else {
       calculatedUnits = "";
     }
@@ -49,7 +49,7 @@ const RequestSMS = () => {
     <MiniDrawer>
       <div className="m-16">
         <h2 className="mt-4 text-xl font-semibold">Request SMS Units</h2>
-        <p className="mb-4 text-[#094C95]">
+        <p className="mb-4 text-gray-700">
           View the Rate Card and Request Units
         </p>
 

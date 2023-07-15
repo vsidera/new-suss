@@ -12,6 +12,7 @@ import SendIcon from "@mui/icons-material/Send";
 import MiniDrawer from "../../../../components/sidebar2/sidebar2";
 import { groupsAction } from "../../../api/actions/groups/groupsActions";
 import { useRouter } from "next/router";
+import SkeletonLoader from "../../../../components/utils/skeleton";
 
 const getMuiTheme = () =>
   createTheme({
@@ -89,6 +90,7 @@ const Groups = () => {
           console.log("AN ERROR HAS OCCURED");
         } else {
           setGroups(res.data);
+          setIsLoaded(true);
         }
       })
       .catch((err) => {
@@ -98,7 +100,7 @@ const Groups = () => {
 
   useEffect(() => {
     getGroups();
-    setIsLoaded(true);
+    
   }, [ page, limit, app_id]);
 
   const columns = [
@@ -110,9 +112,9 @@ const Groups = () => {
         sort: false,
         setCellHeaderProps: () => ({
           style: {
-            minWidth: "180px",
-            maxWidth: "180px",
-            backgroundColor: "#233044",
+            minWidth: "100px",
+            maxWidth: "100px",
+            backgroundColor: "#094C95",
             color: "white",
             fontSize: "0.9rem",
             lineHeight: 2.0,
@@ -128,14 +130,23 @@ const Groups = () => {
         sort: false,
         setCellHeaderProps: () => ({
           style: {
-            minWidth: "180px",
-            maxWidth: "180px",
-            backgroundColor: "#233044",
+            minWidth: "120px",
+            maxWidth: "120px",
+            backgroundColor: "#094C95",
             color: "white",
             fontSize: "0.9rem",
             lineHeight: 2.0,
           },
         }),
+        setCellProps: () => {
+  
+            return {
+              style: {
+                fontWeight: 450, // Add the fontWeight property to make the text bold
+              },
+            };
+  
+        },
       },
     },
 
@@ -149,7 +160,7 @@ const Groups = () => {
           style: {
             minWidth: "180px",
             maxWidth: "180px",
-            backgroundColor: "#233044",
+            backgroundColor: "#094C95",
             color: "white",
             fontSize: "0.9rem",
             lineHeight: 2.0,
@@ -165,9 +176,9 @@ const Groups = () => {
         sort: false,
         setCellHeaderProps: () => ({
           style: {
-            minWidth: "180px",
-            maxWidth: "180px",
-            backgroundColor: "#233044",
+            minWidth: "120px",
+            maxWidth: "120px",
+            backgroundColor: "#094C95",
             color: "white",
             fontSize: "0.9rem",
             lineHeight: 2.0,
@@ -183,9 +194,9 @@ const Groups = () => {
         sort: false,
         setCellHeaderProps: () => ({
           style: {
-            minWidth: "180px",
-            maxWidth: "180px",
-            backgroundColor: "#233044",
+            minWidth: "120px",
+            maxWidth: "120px",
+            backgroundColor: "#094C95",
             color: "white",
             fontSize: "0.9rem",
             lineHeight: 2.0,
@@ -214,7 +225,7 @@ const Groups = () => {
     serverSide: true,
     downloadOptions: {
       separator: ",",
-      filename: "Customers Summary.csv",
+      filename: "Groups.csv",
       filterOptions: {
         useDisplayedColumnsOnly: false, // it was true
         useDisplayedRowsOnly: false, // it was true
@@ -234,7 +245,7 @@ const Groups = () => {
         noMatch: isLoaded ? (
           "Sorry, no matching records exist in Suss"
         ) : (
-          <div>......</div>
+          <SkeletonLoader/>
         ),
         toolTip: "Sort",
       },
@@ -275,7 +286,7 @@ const Groups = () => {
      
       <div className="m-16">
         <h2 className="mt-4 text-xl font-semibold">Groups</h2>
-        <p className="mb-24 text-[#094C95]">
+        <p className="mb-24 text-gray-700">
           These are all the groups for this organisation
         </p>
 
