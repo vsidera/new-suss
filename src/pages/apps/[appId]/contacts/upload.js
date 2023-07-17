@@ -71,11 +71,13 @@ const UploadForm = () => {
       console.log('Please select a file and a group');
       return;
     }
+
+    console.log("SELECTED FILE IS!!!!!!", selectedFile)
   
     const formValues = {
       app_id: app_id,
       selectedGroup: selectedGroup,
-      formData: selectedFile,
+      contacts: selectedFile,
     };
   
     const res = contactsUpload(formValues)

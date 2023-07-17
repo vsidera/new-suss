@@ -70,35 +70,28 @@ export function contactCreate(formValues) {
 
   export function contactsUpload(formValues) {
     const uploadContactsUrl = `${apiUrl.UPLOAD_CONTACTS}/${formValues.app_id}/bulk/upload/contact/${formValues.selectedGroup}`;
-    const selectedFile = formValues.formData;
+    const selectedFile = formValues.contacts;
   
     const headers = {
-      "Content-Type": selectedFile.type,
       ...authHeaders().headers, // Extract the headers from authHeaders() object
     };
+
+    const formData = new FormData();
+    formData.append("contacts", selectedFile); // Use the correct key name 'contacts' (as used in the curl request)
+
   
-    const config = {
-      method: "post",
-      url: uploadContactsUrl,
-      headers: headers,
-      data: selectedFile,
-    };
-  
-    return axios(config)
+    return axios.post(uploadContactsUrl, formData, {
+      headers: {
+        ...headers,
+        "Content-Type": "multipart/form-data", // Set the correct content type for file upload
+      },
+    })
       .then((res) => {
-        if (res.data && res.status === 200) {
-          console.log("THE RESPONSE IS !!!!!!!", res);
-        }
+        console.log("Response:", res.data);
         return res;
       })
       .catch((error) => {
-        if (error.response) {
-          return {
-            errors: {
-              _error: "The contacts could not be returned.",
-            },
-          };
-        }
+        console.log("Error:", error);
         return {
           errors: {
             _error: "Network error. Please try again.",
@@ -106,7 +99,6 @@ export function contactCreate(formValues) {
         };
       });
   }
-  
   
   
   
