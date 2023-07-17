@@ -272,7 +272,7 @@ export default function MiniDrawer({ children }) {
                   </ListItemIcon>
                   <ListItemText>
                     <Typography variant="body2" style={{ fontSize: 15 }}>
-                      Create Contact
+                      Add Contact
                     </Typography>
                   </ListItemText>
                 </ListItemButton>
@@ -288,7 +288,7 @@ export default function MiniDrawer({ children }) {
                   </ListItemIcon>
                   <ListItemText>
                     <Typography variant="body2" style={{ fontSize: 15 }}>
-                      Create Bulk Contacts
+                      Add Bulk Contacts
                     </Typography>
                   </ListItemText>
                 </ListItemButton>
