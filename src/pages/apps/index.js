@@ -6,13 +6,15 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { Grid, Paper, Container, Box, Select, MenuItem } from '@mui/material';
 import Image from 'next/image';
-
+import CircularIndeterminate from "../../components/utils/spinner";
 
 const Applications = () => {
   const [apps, setApps] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [selectedAppCode, setSelectedAppCode] = useState('');
+
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const router = useRouter();
   const backUrl = `/images/back.jpg`;
@@ -48,6 +50,7 @@ const Applications = () => {
       } else {
         router.push(`/apps/${appId}/home`);
       }
+      
     }
   };
 
@@ -110,17 +113,21 @@ const Applications = () => {
   </Select>
   <button
     className="bg-[#094C95] text-white px-20 py-2 mt-8 rounded-full"
-    onClick={handleApply}
+    // onClick={handleApply}
+    onClick={() => {
+      setIsButtonClicked(true);
+      handleApply()
+    }}
     disabled={!selectedAppCode}
   >
-    Apply
+    {isButtonClicked ? "applying..." : "Apply"}
   </button>
 </Box>
 
   </div>
    ) : (
-    <div>
-      <h1>LOADING...</h1>
+    <div className="flex justify-center items-center min-h-screen">
+      <CircularIndeterminate/>
     </div>
   )}
 </>

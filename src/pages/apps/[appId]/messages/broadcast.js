@@ -4,6 +4,7 @@ import MiniDrawer from '../../../../components/sidebar2/sidebar2';
 import { Card, CardContent, Select, Button, Input, MenuItem, InputLabel, Typography, TextField, TextareaAutosize } from '@mui/material';
 import { groupsAction } from '../../../api/actions/groups/groupsActions';
 import { useRouter } from "next/router";
+import { appservicesAction } from '../../../api/actions/appservices/appservicesAction';
  
  
 const SendForm = () => {
@@ -19,6 +20,9 @@ const SendForm = () => {
 
     const [groups, setGroups] = useState([]);
     const [selectedGroup, setSelectedGroup] = useState("");
+
+    const [appservices, setAppservices] = useState([]);
+    const [selectedSenderId, setSelectedSenderId] = useState("");
 
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
@@ -38,11 +42,31 @@ const SendForm = () => {
           console.log(err);
         });
     };
+
+    const getAppServices = () => {
+      
+      appservicesAction(app_id)
+        .then((res) => {
+          if (res.errors) {
+            console.log("AN ERROR HAS OCCURED");
+          } else {
+            setAppservices(res.data);
+            setSelectedSenderId(res.data[0]?.appid || "");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
   
     useEffect(() => {
       getGroups();
-    //   setIsLoaded(true);
-    }, [page, limit]);
+
+    }, [page, limit, app_id]);
+
+    useEffect(() => {
+      getAppServices();
+    }, [app_id]);
  
     function handleSubmit(event) {
         event.preventDefault();
@@ -85,16 +109,19 @@ const SendForm = () => {
                 <InputLabel htmlFor="select-option"><span style={{ color: 'red' }}>*</span>Select Sender Id</InputLabel>
                 <Select
                     id="select-option"
-                    // value={selectedOption}
-                    // onChange={handleSelectChange}
+                    value={selectedSenderId}
+                    onChange={(event) => setSelectedSenderId(event.target.value)}
                     variant='outlined'
                     color='secondary'
                     fullWidth
                     required
                     sx={{ mb: 4 }}
                 >
-                    <MenuItem value="option1">Sender ID 1</MenuItem>
-                    <MenuItem value="option2">Sender ID 2</MenuItem>
+                    {appservices.map((appservice) => (
+                    <MenuItem key={appservice.appid} value={appservice.appid}>
+                      {appservice.appname}
+                    </MenuItem>
+                  ))}
                 </Select>
      
                 <InputLabel htmlFor="file-upload"><span style={{ color: 'red' }}>*</span>Type your message here</InputLabel>

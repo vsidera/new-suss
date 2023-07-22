@@ -69,7 +69,7 @@ export function servicesAction(formValues) {
   export function appServicesAction(formValues) {
     const appServicesUrl = apiUrl.APP_SERVICES;
     const config = authHeaders();
-  
+    console.log("GETS HERE NOW!!!!!!!!!")
     return axios
       .get(appServicesUrl, config, formValues)
       .then((res) => {
