@@ -130,7 +130,7 @@ const Home = () => {
             <Grid container spacing={4}>
               <Grid item xs={12}>
                 {/* Middle card 1 */}
-                <div className="bg-white h-full p-4 flex shadow-sm">
+                <div className="bg-[#F7F7F7] h-full p-4 flex shadow-sm">
                   <div className="w-1/3">
                     {/* Add your image */}
                     <Image
@@ -156,7 +156,7 @@ const Home = () => {
               </Grid>
               <Grid item xs={12}>
                 {/* Middle card 2 */}
-                <div className="bg-white h-full p-4 flex shadow-sm">
+                <div className="bg-[#F7F7F7] h-full p-4 flex shadow-sm">
                   <div className="w-1/3">
                     {/* Add your image */}
                     <Image
@@ -188,7 +188,7 @@ const Home = () => {
             <Grid container spacing={4}>
               <Grid item xs={12}>
                 {/* Right card 1 */}
-                <div className="bg-white h-full p-4 shadow-sm mb-6">
+                <div className="bg-[#F7F7F7] h-full p-4 shadow-sm mb-6">
                   <h3 className="text-md font-medium mt-4">Units Spent</h3>
                   <p className="text-lg mt-1">50,000</p>
                   <p className="mt-1 text-green-500">+15.55%</p>
@@ -197,7 +197,7 @@ const Home = () => {
               </Grid>
               <Grid item xs={12}>
                 {/* Right card 2 */}
-                <div className="bg-white h-full p-4 shadow-sm mb-6">
+                <div className="bg-[#F7F7F7] h-full p-4 shadow-sm mb-6">
                   <h3 className="text-md font-medium mt-4">Balance</h3>
                   <p className="text-lg mt-1">20,000</p>
                   {/* <p className="mt-1 text-green-500">+15.55%</p> */}

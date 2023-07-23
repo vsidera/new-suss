@@ -11,6 +11,8 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { faker } from '@faker-js/faker';
 import { useState, useEffect, useRef } from "react";
+import { unitsExpenditure } from '../../pages/api/actions/analytics/analyticsAction';
+import { useRouter } from 'next/router';
 
 ChartJS.register(
     CategoryScale,
@@ -22,10 +24,41 @@ ChartJS.register(
 );
 
 function UnitsSpent() {
+
+    const router = useRouter();
+    const app_id = router.query.appId;
     const [isLoaded, setIsLoaded] = useState(false);
+
+    const [unitsData, setUnitsData] = useState([]);
+
     setTimeout(() => {
         setIsLoaded(true)
     }, 1000)
+
+    
+
+    const getUnitsExpenditure = () => {
+
+        unitsExpenditure({app_id})
+          .then((res) => {
+            if (res.errors) {
+              console.log("AN ERROR HAS OCCURED");
+            } else {
+              setUnitsData(res.data);
+              setIsLoaded(true)
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+    
+      useEffect(() => {
+        getUnitsExpenditure();
+    
+    
+      }, [app_id]);
+
     const options = {
         responsive: true,
         maintainAspectRatio: true,
@@ -97,21 +130,37 @@ function UnitsSpent() {
         gradient.addColorStop(0, 'rgb(235, 248, 255)')
         gradient.addColorStop(1, '#094C95')
     }
-    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: 'Units Data',
-                data: labels.map(() => faker.datatype.number({ min: 0, max: 200 })),
-                backgroundColor: gradient,
-                borderRadius: 7.5,
-                barPercentage: 0.9,
-                categoryPercentage: 0.9
-            },
+    // Create an array with all the months (from January to December)
+    const allMonths = Array.from({ length: 12 }, (_, index) => (index + 1).toString().padStart(2, '0'));
 
+    // Create an object to hold counts for each month, initialized with zeros
+    const countsByMonth = Object.fromEntries(allMonths.map(month => [month, 0]));
+
+    // Update counts for the months that exist in the unitsData
+    unitsData && unitsData.forEach(item => {
+        const month = item.YearMonth.split('-')[1];
+        countsByMonth[month] = item.Count;
+    });
+
+    const shortMonthNames = [
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+      ];
+    
+      // Extract the counts and labels for the chart with short month names
+      const data = {
+        labels: allMonths.map(month => shortMonthNames[Number(month) - 1]),
+        datasets: [
+          {
+            label: 'Units Data',
+            data: allMonths.map(month => countsByMonth[month]),
+            backgroundColor: gradient,
+            borderRadius: 7.5,
+            barPercentage: 0.9,
+            categoryPercentage: 0.9
+          }
         ],
-    };
+      };
    
     return(
         <div className='flex flex-col w-full h-full'>

@@ -68,7 +68,7 @@ const Login = () => {
             }, 1000);
 
           }
-          
+          setIsButtonClicked(false)
         }
         // Schedule a logout function to run after one hour
         const logoutTimer = setTimeout(function () {
@@ -87,6 +87,7 @@ const Login = () => {
         // }
       })
       .catch((err) => {
+        setIsButtonClicked(false)
         // setIsError(true);
         // setErrorMsg('Network error');
       });
@@ -200,7 +201,7 @@ const Login = () => {
                   setIsButtonClicked(true);
                 }}       
               >
-                {isButtonClicked ? "Done!" : "Sign In"}
+                {isButtonClicked ? "authenticating..." : "Sign In"}
               </button>
               <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                 Don’t have an account yet?{" "}
