@@ -45,5 +45,6 @@ export default {
     USER_SEARCH: `https://suss-ads.zohari.tech/api/v1/application`,
     LIST_USERS: `https://suss-ads.zohari.tech/api/v1/application`,
     SERVICE_SEARCH: `https://suss-ads.zohari.tech/api/v1/service`,
-    UNITS_EXPENDITURE: `https://suss-ads.zohari.tech/api/v1/analytics/annualsms`
+    UNITS_EXPENDITURE: `https://suss-ads.zohari.tech/api/v1/analytics/annualsms`,
+    DELIVERY_METER: `https://suss-ads.zohari.tech/api/v1/analytics/smsstats`
 };
