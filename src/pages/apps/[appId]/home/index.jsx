@@ -9,7 +9,9 @@ import DatePickerValue from "../../../../components/utils/datePicker";
 import { authHeaders } from "../../../api/utils/headers/headers";
 
 const Home = () => {
+
   const router = useRouter();
+  const app_id = router.query.appId;
 
   const config = authHeaders();
 
@@ -26,7 +28,7 @@ const Home = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://suss-ads.zohari.tech/api/v1/analytics/weekcompare/1",
+          `https://suss-ads.zohari.tech/api/v1/analytics/weekcompare/${app_id}`,
           config
         );
         // const analyticsData = response.data;
@@ -38,7 +40,7 @@ const Home = () => {
               "LastWeekCount": 50
           },
           {
-            "Description": "Message sent",
+            "Description": "Message accepted successfully",
             "ThisWeekCount": 2000,
             "LastWeekCount": 500
         }
@@ -51,7 +53,7 @@ const Home = () => {
         let failedCountLastWeek = 0;
 
         analyticsData.forEach((item) => {
-          if (item.Description === "Message sent") {
+          if (item.Description === "Message accepted successfully") {
             sentCount += item.ThisWeekCount;
             sentCountLastWeek += item.LastWeekCount;
           } else if (item.Description === "Message failed") {

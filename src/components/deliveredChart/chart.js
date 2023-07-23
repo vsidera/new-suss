@@ -1,6 +1,9 @@
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement } from "chart.js";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { unitsExpenditure } from "../../pages/api/actions/analytics/analyticsAction";
+
 ChartJS.register(ArcElement);
 
 function SuccessSummary() {
@@ -8,17 +11,55 @@ function SuccessSummary() {
     datasets: [],
   });
 
-  const delivered = 300000;
-  const failed = 100000;
+  const router = useRouter();
+  const app_id = router.query.appId;
+
+  const [deliveryData, setDeliveryData] = useState([]);
+
+    const getDeliveryData = () => {
+
+        unitsExpenditure({app_id})
+          .then((res) => {
+            if (res.errors) {
+              console.log("AN ERROR HAS OCCURED");
+            } else {
+              setDeliveryData(res.data);
+              setIsLoaded(true)
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+    
+      useEffect(() => {
+        getDeliveryData();
+    
+    
+      }, [app_id]);
+
+  // Sample data with new values
+  const newData = [
+    {
+      "Description": "Message delivered",
+      "Count": 5
+    },
+    {
+      "Description": "Message failed",
+      "Count": 2
+    }
+  ];
+
+  const sentCount = newData.reduce((acc, item) => acc + item.Count, 0);
 
   useEffect(() => {
     setChartData({
-      labels: ["Delivered", "Failed"],
+      labels: newData.map(item => item.Description),
       datasets: [
         //@ts-ignore
         {
-          data: [delivered, failed],
-          backgroundColor: ["#3AA52D", "#C12210"],
+          data: newData.map(item => item.Count),
+          backgroundColor: ["#3AA52D", "#C12210"], // You can customize the colors here
           border: 1,
           display: true,
         },
@@ -70,10 +111,9 @@ function SuccessSummary() {
           }}
         />
         <div className="text-md flex justify-center m-16">
-        <p>SENT <span className="text-blue-500">400k</span></p>
-
-          <p>DELIVERED <span className="text-red-500">300k</span></p>
-          <p>FAILED <span className="text-green-500">100k</span></p>
+        <p className="mr-4">SENT <br/> <span className="text-blue-500">{sentCount}</span></p>
+          <p className="mr-4">DELIVERED <br/><span className="text-green-500">{newData[0].Count}</span></p>
+          <p>FAILED <br/> <span className="text-red-500">{newData[1].Count}</span></p>
         </div>
       </div>
     </div>
