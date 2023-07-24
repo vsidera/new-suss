@@ -1,22 +1,97 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Link from 'next/link';
 import MiniDrawer from '../../../../components/sidebar2/sidebar2';
 import { Card, CardContent, Select, Button, Input, MenuItem, InputLabel, Typography, TextField, TextareaAutosize } from '@mui/material';
- 
+import { appservicesAction } from '../../../api/actions/appservices/appservicesAction';
+import { useRouter } from 'next/router';
+import { sendSms } from '../../../api/actions/messages/messagesAction';
+import { v4 as uuidv4 } from "uuid";
+import SnackbarAlert from '../../../../components/utils/snackbar';
  
 const SendForm = () => {
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [mobile, setMobile] = useState('')
- 
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log(firstName, lastName, email, mobile) 
-    }
+
+    const router = useRouter();
+    const app_id = router.query.appId;
+
+    const randomUuid = uuidv4();
+
+    const [appservices, setAppservices] = useState([]);
+    const [selectedSenderId, setSelectedSenderId] = useState("");
+
+    const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
+    const [eventType, setEventType] = useState("");
+    const [eventMessage, setEventMessage] = useState("");
+    const [eventTitle, setEventTitle] = useState("");
+
+    const [state, setState] = React.useState({
+        destination: "",
+        content: "",
+      });
+    
+      const handleChange = (e) => {
+        const value = e.target.value;
+        setState({
+          ...state,
+          [e.target.name]: value,
+        });
+      };
+    
+      const handleSubmit = (e) => {
+        e.preventDefault();
+    
+        const newSms = {
+          destination: state.destination,
+          content: state.content,
+          requestid: randomUuid,
+          scheduled: "2023-03-22T06:31:05",
+        };
+    
+        const res = sendSms({selectedSenderId,newSms}).then((res) => {
+          if (res.status === 202) {
+            setEventType("success");
+            setEventMessage("Message Sent Successfully");
+            setEventTitle("MESSAGE SEND");
+            setIsSnackBarAlertOpen(true);
+          } else {
+            setEventType("fail");
+            setEventMessage("FAILED to send message!");
+            setEventTitle("MESSAGE SEND");
+            setIsSnackBarAlertOpen(true);
+          }
+        });
+    
+        return res;
+      };
+
+    const getAppServices = () => {
+      
+        appservicesAction(app_id)
+          .then((res) => {
+            if (res.errors) {
+              console.log("AN ERROR HAS OCCURED");
+            } else {
+              setAppservices(res.data);
+              setSelectedSenderId(res.data[0]?.appid || "");
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+
+      useEffect(() => {
+        getAppServices();
+      }, [app_id]);  
  
     return (
         <MiniDrawer>
+          <SnackbarAlert
+          open={isSnackBarAlertOpen}
+          type={eventType}
+          message={eventMessage}
+          handleClose={() => setIsSnackBarAlertOpen(false)}
+          title={eventTitle}
+        />
         <React.Fragment>
             <div className='m-16'>
             <h2 className='mt-4 text-xl font-semibold'>Send Message</h2>
@@ -31,26 +106,31 @@ const SendForm = () => {
                 <InputLabel htmlFor="select-option"><span style={{ color: 'red' }}>*</span>Select Sender Id</InputLabel>
                 <Select
                     id="select-option"
-                    // value={selectedOption}
-                    // onChange={handleSelectChange}
+                    value={selectedSenderId}
+                    onChange={(event) => setSelectedSenderId(event.target.value)}
                     variant='outlined'
                     color='secondary'
                     fullWidth
                     required
                     sx={{ mb: 4 }}
                 >
-                    <MenuItem value="option1">Sender ID 1</MenuItem>
-                    <MenuItem value="option2">Sender ID 2</MenuItem>
+                    {appservices.map((appservice) => (
+                    <MenuItem key={appservice.appid} value={appservice.appid}>
+                      {appservice.appname}
+                    </MenuItem>
+                  ))}
                 </Select>
                 <InputLabel htmlFor="file-upload"><span style={{ color: 'red' }}>*</span>Enter Mobile Number</InputLabel>
                 <TextField
+                    id="destination"
+                    name="destination"
                     type="number"
                     variant='outlined'
                     color='secondary'
                     label="Mobile"
-                    placeholder='0711438911'
-                    onChange={e => setMobile(e.target.value)}
-                    value={mobile}
+                    placeholder='254711438911'
+                    onChange={handleChange}
+                    value={state.destination}
                     required
                     fullWidth
                     sx={{mb: 4}}
@@ -61,8 +141,8 @@ const SendForm = () => {
                       name="content"
                       aria-label="empty textarea"
                       placeholder="This allows a maximum of 140 characters"
-                    //   value={state.content}
-                    //   onChange={handleChange}
+                      value={state.content}
+                      onChange={handleChange}
                       minRows={3}
                       style={{
                         width: "100%",

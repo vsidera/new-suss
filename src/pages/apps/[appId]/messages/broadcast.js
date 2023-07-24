@@ -5,6 +5,9 @@ import { Card, CardContent, Select, Button, Input, MenuItem, InputLabel, Typogra
 import { groupsAction } from '../../../api/actions/groups/groupsActions';
 import { useRouter } from "next/router";
 import { appservicesAction } from '../../../api/actions/appservices/appservicesAction';
+import { broadcastMessages } from '../../../api/actions/messages/messagesAction';
+import { v4 as uuidv4 } from "uuid";
+import SnackbarAlert from '../../../../components/utils/snackbar';
  
  
 const SendForm = () => {
@@ -13,10 +16,7 @@ const SendForm = () => {
     const router = useRouter();
     const app_id = router.query.appId;
 
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [mobile, setMobile] = useState('')
+    const randomUuid = uuidv4();
 
     const [groups, setGroups] = useState([]);
     const [selectedGroup, setSelectedGroup] = useState("");
@@ -26,6 +26,53 @@ const SendForm = () => {
 
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
+
+    const [state, setState] = React.useState({
+      content: "",
+    });
+
+    const handleChange = (e) => {
+      const value = e.target.value;
+      setState({
+        ...state,
+        [e.target.name]: value,
+      });
+    };
+
+    const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
+    const [eventType, setEventType] = useState("");
+    const [eventMessage, setEventMessage] = useState("");
+    const [eventTitle, setEventTitle] = useState("");
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+  
+      const newSms = {
+        name: "FirstCampaign",
+        group_id: selectedGroup,
+        description: "Campaign desc",
+        service_id: selectedSenderId,
+        requestid: randomUuid,
+        content: state.content,
+        scheduled:"2023-07-24T06:06:42.821Z"
+    };
+  
+      const res = broadcastMessages({selectedSenderId,newSms}).then((res) => {
+        if (res.status === 200) {
+          setEventType("success");
+          setEventMessage("Bulk SMS Sent");
+          setEventTitle("BROADCAST");
+          setIsSnackBarAlertOpen(true);
+        } else {
+          setEventType("fail");
+          setEventMessage("FAILED to send message!");
+          setEventTitle("MESSAGE SEND");
+          setIsSnackBarAlertOpen(true);
+        }
+      });
+  
+      return res;
+    };
 
   
     const getGroups = () => {
@@ -68,13 +115,15 @@ const SendForm = () => {
       getAppServices();
     }, [app_id]);
  
-    function handleSubmit(event) {
-        event.preventDefault();
-        console.log(firstName, lastName, email, mobile) 
-    }
- 
     return (
         <MiniDrawer>
+          <SnackbarAlert
+          open={isSnackBarAlertOpen}
+          type={eventType}
+          message={eventMessage}
+          handleClose={() => setIsSnackBarAlertOpen(false)}
+          title={eventTitle}
+        />
         <React.Fragment>
             <div className='m-16'>
             <h2 className='mt-4 text-xl font-semibold'>Broadcast Mesage</h2>
@@ -130,8 +179,8 @@ const SendForm = () => {
                       name="content"
                       aria-label="empty textarea"
                       placeholder="This allows a maximum of 140 characters"
-                    //   value={state.content}
-                    //   onChange={handleChange}
+                      value={state.content}
+                      onChange={handleChange}
                       minRows={3}
                       style={{
                         width: "100%",

@@ -64,7 +64,8 @@ const Login = () => {
           }else{
             setTimeout(() => {
               localStorage.setItem('appId', 1);
-              router.push("/apps/1/admin");
+              router.push("/apps");
+              // router.push("/apps/1/admin");
             }, 1000);
 
           }

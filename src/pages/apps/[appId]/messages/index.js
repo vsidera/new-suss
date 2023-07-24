@@ -82,11 +82,13 @@ const Messages = () => {
 
   const [scheduleModal, setScheduleModal] = useState(false)
   
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(10)
 
 
   const getMessages = () => {
 
-    messagesAction(app_id)
+    messagesAction({app_id,page,limit})
       .then((res) => {
         if (res.errors) {
           console.log("AN ERROR HAS OCCURED")
@@ -109,12 +111,12 @@ const Messages = () => {
   useEffect(() => {
 
     getMessages();
-  }, [app_id]);
+  }, [app_id,page, limit]);
 
   const columns = [
     {
-     name: "id",
-     label: "NAME",
+     name: "source",
+     label: "SOURCE",
      options: {
       filter: true,
       sort: false,
@@ -140,8 +142,8 @@ const Messages = () => {
      }
     },
     {
-     name: "source",
-     label: "COMPANY",
+     name: "direction",
+     label: "DIRECTION",
      options: {
       filter: true,
       sort: false,
@@ -158,8 +160,8 @@ const Messages = () => {
      }
     },
     {
-     name: "direction",
-     label: "CITY",
+     name: "destination",
+     label: "DESTINATION",
      options: {
       filter: true,
       sort: false,
@@ -177,7 +179,7 @@ const Messages = () => {
     },
     {
      name: "status_desc",
-     label: "STATE",
+     label: "STATUS",
      options: {
       filter: true,
       sort: false,
@@ -193,6 +195,24 @@ const Messages = () => {
       }),
      }
     },
+    {
+      name: "createdat",
+      label: "DATE",
+      options: {
+       filter: true,
+       sort: false,
+       setCellHeaderProps: () => ({
+         style: {
+           minWidth: "120px",
+           maxWidth: "120px",
+           backgroundColor: "#094C95",
+           color: "white",
+           fontSize: "0.9rem",
+           lineHeight: 2.0,
+         },
+       }),
+      }
+     },
    ];
 
   const options = {

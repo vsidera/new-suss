@@ -31,7 +31,7 @@ export default {
     LIST_GROUPS: `https://suss-ads.zohari.tech/api/v1/group`,
     CREATE_GROUP: `https://suss-ads.zohari.tech/api/v1/group`,
     CREATE_USER: `https://suss-ads.zohari.tech/api/v1/user`,
-    BROADCAST_MESSAGE: `https://suss-ads.zohari.techapi/v1/message`,
+    BROADCAST_MESSAGE: `https://suss-ads.zohari.tech/api/v1/message`,
     LIST_MESSAGES: `https://suss-ads.zohari.tech/api/v1/message`,
     LIST_APP_SERVICES: `https://suss-ads.zohari.tech/api/v1/application`,
     USER_ATTACH: `https://suss-ads.zohari.tech/api/v1/application`,
