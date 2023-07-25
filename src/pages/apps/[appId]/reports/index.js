@@ -6,6 +6,8 @@ import DatePickerValue from "../../../../components/utils/datePicker";
 
 const Reports = () => {
  
+  const [startDate, setStartDate] = (null);
+  const [endDate, setEndDate] = (null);
 
   return (
     <MiniDrawer2>

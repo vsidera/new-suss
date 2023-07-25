@@ -2,29 +2,53 @@ import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement } from "chart.js";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { unitsExpenditure } from "../../pages/api/actions/analytics/analyticsAction";
+import { deliveryMeter } from "../../pages/api/actions/analytics/analyticsAction";
+import dayjs from "dayjs";
+import CircularIndeterminate from "../utils/spinner";
 
 ChartJS.register(ArcElement);
 
-function SuccessSummary() {
+function SuccessSummary({ fromDate, toDate }) {
   const [chartData, setChartData] = useState({
     datasets: [],
   });
 
+  const [isLoaded, setIsLoaded] = useState(false)
+  const fromObject = dayjs(fromDate);
+  const toObject = dayjs(toDate);
+
+  const fromUnix = fromObject.unix();
+  const toUnix = toObject.unix();
+
+  console.log("DATE IS-!!!!!!!!!!", fromUnix,toUnix)
+
   const router = useRouter();
   const app_id = router.query.appId;
 
-  const [deliveryData, setDeliveryData] = useState([]);
+  const [newData, setDeliveryData] = useState([
+    {
+        "Count": 1,
+        "Description": "Message accepted successfully"
+    },
+    {
+        "Count": 2,
+        "Description": "Message delivered successfully"
+    }
+]);
+
 
     const getDeliveryData = () => {
 
-        unitsExpenditure({app_id})
+        deliveryMeter({app_id, fromUnix, toUnix})
           .then((res) => {
             if (res.errors) {
               console.log("AN ERROR HAS OCCURED");
             } else {
               setDeliveryData(res.data);
-              setIsLoaded(true)
+              setTimeout(() => {
+                setIsLoaded(true)
+              }, 1000);
+              
             }
           })
           .catch((err) => {
@@ -36,38 +60,34 @@ function SuccessSummary() {
         getDeliveryData();
     
     
-      }, [app_id]);
+      }, [app_id, fromUnix,toUnix]);
 
-  // Sample data with new values
-  const newData = [
-    {
-      "Description": "Message delivered",
-      "Count": 5
-    },
-    {
-      "Description": "Message failed",
-      "Count": 2
-    }
-  ];
-
-  const sentCount = newData.reduce((acc, item) => acc + item.Count, 0);
+  // const sentCount = newData && newData.reduce((acc, item) => acc + item.Count, 0);
 
   useEffect(() => {
     setChartData({
-      labels: newData.map(item => item.Description),
+      labels: newData && newData.map(item => item.Description),
       datasets: [
         //@ts-ignore
         {
-          data: newData.map(item => item.Count),
+          data: newData && newData.map(item => item.Count),
           backgroundColor: ["#3AA52D", "#C12210"], // You can customize the colors here
           border: 1,
           display: true,
         },
       ],
     });
-  }, []);
+  }, [newData]);
 
+  if (!isLoaded) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <CircularIndeterminate />
+      </div>
+    );
+  }
   return (
+    
     <div className="grid grid-cols-4 h-full w-full m-4">
       <div className="h-full flex-col w-full col-span-3 ml-2">
         <Doughnut
@@ -111,9 +131,9 @@ function SuccessSummary() {
           }}
         />
         <div className="text-md flex justify-center m-16">
-        <p className="mr-4">SENT <br/> <span className="text-blue-500">{sentCount}</span></p>
-          <p className="mr-4">DELIVERED <br/><span className="text-green-500">{newData[0].Count}</span></p>
-          <p>FAILED <br/> <span className="text-red-500">{newData[1].Count}</span></p>
+        {/* <p className="mr-4">SENT <br/> <span className="text-blue-500">{sentCount}</span></p> */}
+          <p className="mr-4">ACCEPTED <br/><span className="text-green-500">{newData && newData[0] && newData[0].Count}</span></p>
+          <p>DELIVERED <br/> <span className="text-red-500">{newData && newData[1] && newData[1].Count}</span></p>
         </div>
       </div>
     </div>
