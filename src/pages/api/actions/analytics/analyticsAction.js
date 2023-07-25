@@ -35,7 +35,7 @@ export function unitsExpenditure(formValues) {
   }
 
   export function deliveryMeter(formValues) {
-    const appsUrl = `${apiUrl.DELIVERY_METER}/${formValues.app_id}`;
+    const appsUrl = `${apiUrl.DELIVERY_METER}/${formValues.app_id}?start=${formValues.fromUnix}&end=${formValues.toUnix}`;
     const config = authHeaders();
   
     return axios

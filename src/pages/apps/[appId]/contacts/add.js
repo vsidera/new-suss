@@ -17,8 +17,6 @@ const RegisterForm = () => {
   const router = useRouter();
   const app_id = router.query.appId;
 
-  console.log("APP id!!!!!!!", app_id)
-
   const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
   const [eventType, setEventType] = useState("");
   const [eventMessage, setEventMessage] = useState("");

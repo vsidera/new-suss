@@ -60,24 +60,6 @@ const Home = () => {
         );
         const analyticsData = response.data;
 
-      //   const analyticsData = 
-      //   [
-      //     {
-      //         "Description": "Message accepted successfully",
-      //         "ThisWeekCount": 0,
-      //         "LastWeekCount": 9
-      //     },
-      //     {
-      //         "Description": "Message delivered successfully",
-      //         "ThisWeekCount": 11,
-      //         "LastWeekCount": 3
-      //     },
-      //     {
-      //         "Description": "Message failed",
-      //         "ThisWeekCount": 0,
-      //         "LastWeekCount": 0
-      //     }
-      // ]
         // Calculate the total counts for 'sent' and 'failed' for this week and last week
         let sentCount = 0;
         let failedCount = 0;
