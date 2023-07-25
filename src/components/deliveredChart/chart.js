@@ -27,11 +27,11 @@ function SuccessSummary({ fromDate, toDate }) {
 
   const [newData, setDeliveryData] = useState([
     {
-        "Count": 1,
+        "Count": 4,
         "Description": "Message accepted successfully"
     },
     {
-        "Count": 2,
+        "Count": 4,
         "Description": "Message delivered successfully"
     }
 ]);
