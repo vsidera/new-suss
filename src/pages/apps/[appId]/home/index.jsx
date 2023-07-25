@@ -15,13 +15,40 @@ const Home = () => {
 
   const config = authHeaders();
 
-  const [sent, setSent] = useState(1000);
+  const [sent, setSent] = useState(0);
   const [failed, setFailed] = useState(0);
+  const [delivered, setDelivered] = useState(0);
   const [sentLastWeek, setSentLastWeek] = useState(0);
   const [failedLastWeek, setFailedLastWeek] = useState(0);
+  const [deliveredLastWeek, setDeliveredLastWeek] = useState(0);
   const [sentPercentageChange, setSentPercentageChange] = useState(0);
   const [failedPercentageChange, setFailedPercentageChange] = useState(0);
+  const [deliveredPercentageChange, setDeliveredPercentageChange] = useState(0);
 
+  const [unitsBalance, setUnitsBalance] = useState(0)
+
+  console.log("APP ID!!!!!!!!!!", unitsBalance)
+
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      try {
+        const response = await axios.get(
+          `https://suss-ads.zohari.tech/api/v1/application/${app_id}/balance`,
+          config
+        );
+
+        
+        setUnitsBalance(response.data.balance)
+       
+       
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchBalance();
+  }, []);
 
 
   useEffect(() => {
@@ -31,26 +58,33 @@ const Home = () => {
           `https://suss-ads.zohari.tech/api/v1/analytics/weekcompare/${app_id}`,
           config
         );
-        // const analyticsData = response.data;
+        const analyticsData = response.data;
 
-        const analyticsData = [
-          {
-              "Description": "Message failed",
-              "ThisWeekCount": 100,
-              "LastWeekCount": 50
-          },
-          {
-            "Description": "Message accepted successfully",
-            "ThisWeekCount": 2000,
-            "LastWeekCount": 500
-        }
-      ]
-
+      //   const analyticsData = 
+      //   [
+      //     {
+      //         "Description": "Message accepted successfully",
+      //         "ThisWeekCount": 0,
+      //         "LastWeekCount": 9
+      //     },
+      //     {
+      //         "Description": "Message delivered successfully",
+      //         "ThisWeekCount": 11,
+      //         "LastWeekCount": 3
+      //     },
+      //     {
+      //         "Description": "Message failed",
+      //         "ThisWeekCount": 0,
+      //         "LastWeekCount": 0
+      //     }
+      // ]
         // Calculate the total counts for 'sent' and 'failed' for this week and last week
         let sentCount = 0;
         let failedCount = 0;
+        let deliveredCount = 0;
         let sentCountLastWeek = 0;
         let failedCountLastWeek = 0;
+        let deliveredCountLastWeek = 0;
 
         analyticsData.forEach((item) => {
           if (item.Description === "Message accepted successfully") {
@@ -59,6 +93,9 @@ const Home = () => {
           } else if (item.Description === "Message failed") {
             failedCount += item.ThisWeekCount;
             failedCountLastWeek += item.LastWeekCount;
+          } else if (item.Description === "Message delivered successfully"){
+            deliveredCount += item.ThisWeekCount;
+            deliveredCountLastWeek += item.LastWeekCount
           }
         });
 
@@ -66,17 +103,22 @@ const Home = () => {
         setFailed(failedCount);
         setSentLastWeek(sentCountLastWeek);
         setFailedLastWeek(failedCountLastWeek);
+        setDelivered(deliveredCount);
+        setDeliveredLastWeek(deliveredCountLastWeek);
 
         // Calculate the percentage change for 'sent' and 'failed'
         const sentChange = sentCount - sentCountLastWeek;
         const failedChange = failedCount - failedCountLastWeek;
+        const deliveredChange = deliveredCount - deliveredCountLastWeek
 
         const sentPercentageChange = (sentChange / sentCountLastWeek) * 100;
-        const failedPercentageChange =
-          (failedChange / failedCountLastWeek) * 100;
+        const failedPercentageChange = (failedChange / failedCountLastWeek) * 100;
+        const deliveredPercentageChange = (deliveredChange / deliveredCountLastWeek) * 100;
+
 
         setSentPercentageChange(sentPercentageChange);
         setFailedPercentageChange(failedPercentageChange);
+        setDeliveredPercentageChange(deliveredPercentageChange)
       } catch (error) {
         console.error(error);
       }
@@ -191,9 +233,11 @@ const Home = () => {
               <Grid item xs={12}>
                 {/* Right card 1 */}
                 <div className="bg-[#F7F7F7] h-full p-4 shadow-sm mb-6">
-                  <h3 className="text-md font-medium mt-4">Units Spent</h3>
-                  <p className="text-lg mt-1">50,000</p>
-                  <p className="mt-1 text-green-500">+15.55%</p>
+                  <h3 className="text-md font-medium mt-4">Messages Delivered</h3>
+                  <p className="text-lg mt-1">{delivered}</p>
+                  <p className={deliveredPercentageChange >= 0 ? "mt-1 text-green-500" : "mt-1 text-red-500"}>
+                      {deliveredPercentageChange.toFixed(1)}%
+                    </p>
                   <p className="mt-1 text-xs text-gray-500">Since last week</p>
                 </div>
               </Grid>
@@ -201,7 +245,7 @@ const Home = () => {
                 {/* Right card 2 */}
                 <div className="bg-[#F7F7F7] h-full p-4 shadow-sm mb-6">
                   <h3 className="text-md font-medium mt-4">Balance</h3>
-                  <p className="text-lg mt-1">20,000</p>
+                  <p className="text-lg mt-1">{unitsBalance}</p>
                   {/* <p className="mt-1 text-green-500">+15.55%</p> */}
                   <p
                     className="mt-1 text-xs text-blue-500 cursor-pointer underline hover:text-blue-700"
