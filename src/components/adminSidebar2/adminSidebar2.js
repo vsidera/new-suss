@@ -50,6 +50,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import BusinessIcon from '@mui/icons-material/Business';
 import SendToMobileIcon from '@mui/icons-material/SendToMobile';
+import Button from '@mui/material/Button';
 
 const drawerWidth = 240;
 
@@ -132,7 +133,9 @@ export default function MiniDrawer2({ children }) {
   if (typeof window !== 'undefined') {
      appId = localStorage.getItem('appId');
   }
-
+  const handleSwitch = () => {
+    router.push('/apps');
+  };
   
 
   const handleDrawerOpen = () => {
@@ -208,11 +211,19 @@ export default function MiniDrawer2({ children }) {
           }}
           component="nav"
           aria-labelledby="nested-list-subheader"
-          // subheader={
-          //   <ListSubheader component="div" id="nested-list-subheader">
-          //     Nested List Items
-          //   </ListSubheader>
-          // }
+          subheader={
+            <ListSubheader component="div" id="nested-list-subheader">
+              <Button variant='contained'
+              sx={{
+                backgroundColor: "#094C95 !important",
+                color: "#FFFFFF !important",
+                "&:hover": { backgroundColor: "#001041 !important" },
+              }}
+              onClick={handleSwitch}>
+                SWITCH APPLICATION
+              </Button>
+            </ListSubheader>
+          }
         >
           <NextLink href={`/apps/${appId}/admin`} passHref>
             <ListItemButton>
