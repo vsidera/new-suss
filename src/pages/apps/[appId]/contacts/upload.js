@@ -14,6 +14,7 @@ import {
 import { saveAs } from "file-saver";
 import { groupsAction } from "../../../api/actions/groups/groupsActions";
 import { contactsUpload } from "../../../api/actions/contacts/contactsAction";
+import SnackbarAlert from "../../../../components/utils/snackbar";
 import { useRouter } from "next/router";
 
 const UploadForm = () => {
@@ -107,16 +108,15 @@ const UploadForm = () => {
     // Create the template data in the desired format (e.g., JSON)
     const templateData = [
       {
+        mobile: "254711223344",
         firstName: "John",
-        lastName: "Doe",
-        email: "john@example.com",
-        mobile: "0711223344",
+        lastName: "Doe"
+       
       },
       {
+        mobile: "254722334455",
         firstName: "Jane",
-        lastName: "Smith",
-        email: "jane@example.com",
-        mobile: "0722334455",
+        lastName: "Smith"
       },
       // Add more sample data as needed
     ];
@@ -148,6 +148,13 @@ const UploadForm = () => {
 
   return (
     <MiniDrawer>
+      <SnackbarAlert
+          open={isSnackBarAlertOpen}
+          type={eventType}
+          message={eventMessage}
+          handleClose={() => setIsSnackBarAlertOpen(false)}
+          title={eventTitle}
+        />
       <React.Fragment>
         <div className="m-16">
           <h2 className="mt-4 text-xl font-semibold">Add Bulk Contacts</h2>

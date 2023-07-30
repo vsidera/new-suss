@@ -83,7 +83,7 @@ const Contacts = () => {
   const [upload, setUpload] = useState(false);
   const [broadcastModal, setBroadcastModal] = useState(false)
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(10)
 
   const [selectedIndices, setSelectedIndices] = useState([])
@@ -280,6 +280,20 @@ const Contacts = () => {
     count: 30,
     rowsPerPageOptions: [10, 20, 50],
     serverSide: true,
+    onTableChange: (action, tableState) => {
+      if (action === "changePage") {
+
+          setIsLoaded(false);
+          setPage(tableState.page + 1);
+          
+      } else if(action === "changeRowsPerPage") {
+          setIsLoaded(false);
+          setLimit(tableState.rowsPerPage);
+      }
+      else {
+          console.log("action not handled.");
+      }
+  },
     downloadOptions: {
       separator: ',',
       filename: 'Contacts.csv',
