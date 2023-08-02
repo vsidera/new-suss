@@ -265,8 +265,9 @@ const Organisations = () => {
         },
       }),
        customBodyRender: (tableMeta, dataIndex, rowIndex) => {
+        console.log("DATA INDEX IS!!!!!",dataIndex.rowData)
         return (
-          <button onClick={() => handleClick2(dataIndex.rowData[4])}>
+          <button onClick={() => handleClick2(dataIndex.rowData[3])}>
           <AddLinkIcon />
           </button>
         );
