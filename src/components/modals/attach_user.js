@@ -51,7 +51,7 @@ const AttachUserModal = ({
       }
     } catch (err) {
       console.log(err);
-      callback([], new Error("An error occurred"));
+      // callback([], new Error("An error occurred"));
     }
   };
   

@@ -36,24 +36,24 @@ const AttachServiceModal = ({
             value: service.ID,
             label: service.sender,
           }));
-
+  
           if (options.length === 0) {
             callback([], new Error("No results found"));
           } else if (options.length === 1) {
-            callback(options, null);
-            setSelectedValue(options[0]);
+            setSelectedValue(options[0]); // Set the selected value directly
+            callback(options); // Pass the options without the error parameter
           } else {
-            // Multiple results found, return the first one as default value
-            callback(options, null);
-            setSelectedValue(options[0]);
+            setSelectedValue(options[0]); // Set the selected value directly
+            callback(options); // Pass the options without the error parameter
           }
         }
       })
       .catch((err) => {
         console.log(err);
-        callback([], new Error("An error occurred"));
+        // callback([], new Error("An error occurred"));
       });
   };
+  
 
   const handleInputChange = (newValue) => {
     setSearch(newValue);
