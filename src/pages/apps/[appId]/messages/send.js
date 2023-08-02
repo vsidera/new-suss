@@ -71,7 +71,7 @@ const SendForm = () => {
               console.log("AN ERROR HAS OCCURED");
             } else {
               setAppservices(res.data);
-              setSelectedSenderId(res.data[0]?.appid || "");
+              setSelectedSenderId(res.data[0]?.service_id || "");
             }
           })
           .catch((err) => {
@@ -115,7 +115,7 @@ const SendForm = () => {
                     sx={{ mb: 4 }}
                 >
                     {appservices.map((appservice) => (
-                    <MenuItem key={appservice.appid} value={appservice.appid}>
+                    <MenuItem key={appservice.service_id} value={appservice.service_id}>
                       {appservice.sendername}
                     </MenuItem>
                   ))}

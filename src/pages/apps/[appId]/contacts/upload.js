@@ -83,7 +83,7 @@ const UploadForm = () => {
   
     const res = contactsUpload(formValues)
       .then((res) => {
-        if (res.status === 201) {
+        if (res.status === 200) {
           setEventType("success");
           setEventMessage("Bulk Contacts Successfully Created");
           setEventTitle("Bulk Contacts CREATE");
