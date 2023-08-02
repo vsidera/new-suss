@@ -168,7 +168,7 @@ const SendForm = () => {
                 >
                     {appservices.map((appservice) => (
                     <MenuItem key={appservice.appid} value={appservice.appid}>
-                      {appservice.appname}
+                      {appservice.sendername}
                     </MenuItem>
                   ))}
                 </Select>
