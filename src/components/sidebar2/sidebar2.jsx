@@ -591,6 +591,15 @@ export default function MiniDrawer({ children }) {
               Privacy Policy |
             </Typography>
           </NextLink>
+          <NextLink href="https://www.suss.co.ke/suss-sms-terms-and-conditions/" passHref>
+            <Typography
+              variant="caption"
+              color="textPrimary"
+              sx={{ ml: 1, cursor: "pointer", color: "#094C95" }}
+            >
+              Terms & Conditions |
+            </Typography>
+          </NextLink>
           {/* Add more social media site names and links as needed */}
         </Toolbar>
       </AppBar>
