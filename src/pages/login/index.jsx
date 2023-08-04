@@ -5,13 +5,22 @@ import { loginAction } from "../../pages/api/actions/login/loginAction";
 // import { useNavigate } from "react-router-dom";
 import SnackbarAlert from "../../components/utils/snackbar";
 import {useRouter} from "next/router";
+import SessionExpiryModal from "../../components/modals/session_expiry";
 // import 'styles/global.css'
 
 const Login = () => {
   // const navigate = useNavigate();
-  // Init cookies
-  const cookies = new Cookies();
   const router = useRouter();
+
+  const [expiryModal, setExpiryModal] = useState(false);
+
+  const openExpiryModal = () => {
+    setExpiryModal(true);
+  };
+  const closeModal = () => {
+    setExpiryModal(false);
+  };
+
 
   const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
   const [eventType, setEventType] = useState('');
@@ -20,15 +29,8 @@ const Login = () => {
   
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
-  // Init user state
-  const [user, setUser] = useState(null);
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-
-  const logout = () => {
-    setUser(null);
-    cookies.remove("jwt_authorization");
-  };
 
   const greenButton = {
     backgroundColor: "green",
@@ -72,43 +74,20 @@ const Login = () => {
           setIsButtonClicked(false)
         }
         // Schedule a logout function to run after one hour
-        const logoutTimer = setTimeout(function () {
-          // Remove the token and redirect the user to the login page
-          localStorage.removeItem("token");
-          localStorage.removeItem("loginTime");
-          window.location.href = "/login";
+        setTimeout(function () {
+          openExpiryModal()
         }, 60 * 60 * 1000); // one hour in milliseconds
-
-        // Clear the logout timer if the user logs out manually
-        // function logout() {
-        //   clearTimeout(logoutTimer);
-        //   localStorage.removeItem("key");
-        //   localStorage.removeItem("loginTime");
-        //   window.location.href = "/login";
-        // }
       })
       .catch((err) => {
         setIsButtonClicked(false)
-        // setIsError(true);
-        // setErrorMsg('Network error');
       });
-  };
-
-  const login = (jwt_token) => {
-    // Decode Token
-    const decoded = jwt(jwt_token);
-
-    // Set user state
-    cookies.set("jwt_authorization", jwt_token, {
-      expires: new Date(decoded.exp * 1000),
-    });
   };
 
   const logoUrl = `/images/logo.jpg`;
 
-
   return (
     <>
+    <SessionExpiryModal expiryModal={expiryModal} closeModal={closeModal}/>
      <SnackbarAlert
         open={isSnackBarAlertOpen}
         type={eventType}
