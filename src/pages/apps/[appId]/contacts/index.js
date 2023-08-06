@@ -43,7 +43,7 @@ const getMuiTheme = () =>
       MUIDataTableSelectCell: {
         styleOverrides: {
           headerCell: {
-            backgroundColor: "#5f6062",
+            backgroundColor: "#094C95",
             color: "wh",
           },
         },

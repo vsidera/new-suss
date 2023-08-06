@@ -67,7 +67,7 @@ const AttachContactsGroupModal = ({
         setIsSnackBarAlertOpen(true);
       } else {
         setEventType("fail");
-        setEventMessage("Contacts NOT Attached");
+        setEventMessage("Contacts Already Attached");
         setEventTitle("CONTACTS ATTACH");
         setIsSnackBarAlertOpen(true);
       }
@@ -123,7 +123,11 @@ const AttachContactsGroupModal = ({
         <div>
           <Box sx={style}>
             <CardContent style={{ width: "60%" }}>
+            
             <form className="m-4" onSubmit={handleSubmit}>
+            <p className="text-md content-center items center mb-4">
+                  Pick a group below to attach the selected contacts to it
+                </p>
                 <InputLabel htmlFor="select-option">
                   <span style={{ color: "red" }}>*</span>Select Group
                 </InputLabel>
