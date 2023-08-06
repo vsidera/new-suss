@@ -7,8 +7,8 @@ import UploadIcon from '@mui/icons-material/Upload';
 import CreateModal from "../../../../components/modals/create_contact";
 import FileUpload from "../../../../components/file_upload/file_upload";
 // import {useParams} from 'react-router-dom';
-import BroadcastModal from "../../../../components/modals/broadcast";
-import SendIcon from '@mui/icons-material/Send';
+import AttachContactsGroupModal from "../../../../components/modals/attach_contacts_group";
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import MiniDrawer from "../../../../components/sidebar2/sidebar2";
 import { useRouter } from "next/router";
 import SkeletonLoader from "../../../../components/utils/skeleton";
@@ -43,7 +43,7 @@ const getMuiTheme = () =>
       MUIDataTableSelectCell: {
         styleOverrides: {
           headerCell: {
-            backgroundColor: "#5f6062",
+            backgroundColor: "#094C95",
             color: "wh",
           },
         },
@@ -81,21 +81,21 @@ const Contacts = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [createModal, setCreateModal] = useState(false);
   const [upload, setUpload] = useState(false);
-  const [broadcastModal, setBroadcastModal] = useState(false)
+  const [attachContactsGroupModal, steAttachContactsGroupModal] = useState(false)
 
   const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(10)
 
   const [selectedIndices, setSelectedIndices] = useState([])
-  const [selectedPhoneNumbers, setSelectedPhoneNumbers] = useState([]);
+  const [selectedContactIds, setSelectedContactIds] = useState([]);
 
 
-  const handleBroadcast =() =>{
-    setBroadcastModal(true)
+  const handleAttach =() =>{
+    steAttachContactsGroupModal(true)
     console.log("BROADCASTS")
   }
 
-  console.log("SELECTED PHONES!!!!!!",selectedPhoneNumbers)
+  console.log("SELECTED CONTACT IDS!!!!!!",selectedContactIds)
   
   const getContacts = () => {
 
@@ -118,9 +118,9 @@ const Contacts = () => {
     setCreateModal(false)
   }
 
-  const closeBroadcastModal = (e) => {
+  const closeAttachContactsGroupModal = (e) => {
     e.preventDefault();
-    setBroadcastModal(false)
+    steAttachContactsGroupModal(false)
   }
 
   const closeUpload = (e) => {
@@ -129,8 +129,8 @@ const Contacts = () => {
   }
 
   useEffect(() => {
-    const phoneNumbers = selectedIndices.map((index) => contacts[index].mobile_no);
-    setSelectedPhoneNumbers(phoneNumbers);
+    const contactIds = selectedIndices.map((index) => contacts[index].id);
+    setSelectedContactIds(contactIds);
   }, [selectedIndices, contacts]);
 
 
@@ -272,7 +272,8 @@ const Contacts = () => {
     fixedHeader: true,
     fontFamily: 'Ubuntu',
     viewColumns: false,
-    selectableRows: "none",
+    selectableRowsHeader: true,
+    selectableRows: "multiple",
     fixedSelectColumn: true,
     tableBodyHeight: 'auto',
     enableNestedDataAccess: '.',
@@ -307,6 +308,11 @@ const Contacts = () => {
       let val = `${buildHead(columns)}${buildBody(data)}`.replace(/[^\x00-\x7F]/g, "").toString().trim();
       return val;
     },
+    onRowSelectionChange : (curRowSelected, allRowsSelected,rowMeta) => {
+
+      setSelectedIndices(rowMeta)
+      
+      },
    
     textLabels: {
       body: {
@@ -349,14 +355,22 @@ const Contacts = () => {
 
   return (
     <MiniDrawer>
-      <BroadcastModal broadcastModal={broadcastModal} closeBroadcastModal={closeBroadcastModal} selectedPhoneNumbers={selectedPhoneNumbers}/>
+      <AttachContactsGroupModal attachContactsGroupModal={attachContactsGroupModal} closeAttachContactsGroupModal={closeAttachContactsGroupModal} selectedContactIds={selectedContactIds} app_id={app_id}/>
       <CreateModal createModal={createModal} closeCreateModal={closeCreateModal} app_id={app_id}/>
       <div className="m-16">
-      <h2 className='mt-4 text-xl font-semibold'>Contacts</h2>
-            <p className='mb-24 text-gray-700'>A list of all contacts</p>
-      
-      
-      <div className="mt-4">
+      <h2 className='mt-2 text-xl font-semibold'>Contacts</h2>
+            <p className='mb-1 text-gray-700'>A list of all contacts</p>
+      <div className="flex justify-end">
+            <button
+          type="button"
+          className="text-white w-42 bg-blue-900 focus:ring-4 focus:outline-none font-light text-thin rounded-lg text-md px-2 py-2 mt-1 flex items-center ml-2"
+          onClick={handleAttach}
+        >
+          <AddCircleIcon />
+          <p className="ml-4" >Attach Contacts</p>
+        </button>
+        </div>
+      <div className="mt-1">
         <ThemeProvider theme={getMuiTheme()}>
           <Table columns={columns} options={options} data={contacts} />
         </ThemeProvider>
