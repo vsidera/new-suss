@@ -134,7 +134,7 @@ const RegisterForm = () => {
                   variant="outlined"
                   color="secondary"
                   label="Mobile"
-                  placeholder="0711223344"
+                  placeholder="254711223344"
                   value={state.mobile_no}
                   onChange={handleChange}
                   required
