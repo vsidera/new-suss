@@ -52,7 +52,7 @@ closeModal
           <img src={logoUrl} alt="Logo" />
             </div>
 
-                <span className="text-[#5F6062] text-[22px] font-medium text-center">
+                <span className="text-red-800 text-2xl font-medium text-center">
                   Your Token has Expired. Login Again to continue using the platform
                 </span>
             
