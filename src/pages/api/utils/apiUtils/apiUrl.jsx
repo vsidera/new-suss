@@ -36,6 +36,7 @@ export default {
     LIST_APP_SERVICES: `https://suss-ads.zohari.tech/api/v1/application`,
     USER_ATTACH: `https://suss-ads.zohari.tech/api/v1/application`,
     SERVICE_ATTACH: `https://suss-ads.zohari.tech/api/v1/application`,
+    CONTACTS_ATTACH: `https://suss-ads.zohari.tech/api/v1/group`,
     CREATE_SERVICE: `https://suss-ads.zohari.tech/api/v1/service/create`,
     CREATE_APP: `https://suss-ads.zohari.tech/api/v1/application/create`,
     SEND_SMS: `https://suss-ads.zohari.tech/api/v1/message`,

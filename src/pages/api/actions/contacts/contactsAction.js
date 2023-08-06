@@ -99,6 +99,38 @@ export function contactCreate(formValues) {
         };
       });
   }
+
+  export function contactsAttach(formValues) {
+    const attachUrl = `${apiUrl.CONTACTS_ATTACH}/${formValues.app_id}/attach/contact`;
+    const config = authHeaders();
+  
+    return axios
+      .post(attachUrl, formValues.data, config)
+      .then((res) => {
+      
+        if (res.data && res.status === 200) {
+
+            console.log("THE RESPONSE IS !!!!!!!",res)
+          
+        }
+        return res;
+      })
+      .catch((error) => {
+        if (error.response) {
+        
+          return {
+            errors: {
+              _error: 'The user could not be created.',
+            },
+          };
+        }   
+        return {
+          errors: {
+            _error: 'Network error. Please try again.',
+          },
+        };
+      });
+  }  
   
   
   
