@@ -8,19 +8,9 @@ import {useRouter} from "next/router";
 import SessionExpiryModal from "../../components/modals/session_expiry";
 // import 'styles/global.css'
 
-const Login = () => {
+const Login = ({openExpiryModal}) => {
   // const navigate = useNavigate();
   const router = useRouter();
-
-  const [expiryModal, setExpiryModal] = useState(false);
-
-  const openExpiryModal = () => {
-    setExpiryModal(true);
-  };
-  const closeModal = () => {
-    setExpiryModal(false);
-  };
-
 
   const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
   const [eventType, setEventType] = useState('');
@@ -71,12 +61,15 @@ const Login = () => {
             }, 1000);
 
           }
+
           setIsButtonClicked(false)
-        }
-        // Schedule a logout function to run after one hour
+
         setTimeout(function () {
+ 
           openExpiryModal()
-        }, 60 * 60 * 1000); // one hour in milliseconds
+        }, 60 * 60 * 1000); 
+        }
+
       })
       .catch((err) => {
         setIsButtonClicked(false)
@@ -87,7 +80,7 @@ const Login = () => {
 
   return (
     <>
-    <SessionExpiryModal expiryModal={expiryModal} closeModal={closeModal}/>
+   
      <SnackbarAlert
         open={isSnackBarAlertOpen}
         type={eventType}
