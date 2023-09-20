@@ -19,6 +19,7 @@ const SendForm = () => {
     const [selectedSenderId, setSelectedSenderId] = useState("");
 
     const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
+    const [isButtonClicked, setIsButtonClicked] = useState(false);
     const [eventType, setEventType] = useState("");
     const [eventMessage, setEventMessage] = useState("");
     const [eventTitle, setEventTitle] = useState("");
@@ -58,6 +59,7 @@ const SendForm = () => {
             setEventTitle("MESSAGE SEND");
             setIsSnackBarAlertOpen(true);
           }
+          setIsButtonClicked(false);
         });
     
         return res;
@@ -152,9 +154,16 @@ const SendForm = () => {
                       }}
                     />
                
-               <Button variant="contained" sx={{ backgroundColor: '#094C95 !important', color: '#FFFFFF !important', '&:hover': { backgroundColor: '#001041 !important' } }} type="submit">
-                Send
-                </Button>
+               <button
+                    className="bg-blue-900 text-white font-normal py-1.5 px-5 rounded text-[14px]"
+                 
+                    onClick={(e) => {
+                      handleSubmit(e);
+                      setIsButtonClicked(true);
+                    }}
+                  >
+                    {isButtonClicked ? "SENDING..." : "SEND"}
+                  </button>
                 </form>
             </CardContent>
             </Card>
