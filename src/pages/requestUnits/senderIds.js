@@ -82,7 +82,7 @@ const Support = () => {
                   sx={{ marginRight: "8px" }}
                 />
                 <Typography variant="h5" component="div">
-                  Aitel Sender ID(Coming Soon)
+                  Airtel Sender ID(Coming Soon)
                 </Typography>
               </div>
               <hr className="mb-2" /> {/* Divider below the header */}

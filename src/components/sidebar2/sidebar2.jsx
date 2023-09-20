@@ -582,6 +582,18 @@ export default function MiniDrawer({ children }) {
               LinkedIn |
             </Typography>
           </NextLink>
+          <NextLink
+            href="https://www.instagram.com/sussads/"
+            passHref
+          >
+            <Typography
+              variant="caption"
+              color="textPrimary"
+              sx={{ ml: 1, cursor: "pointer", color: "#094C95" }}
+            >
+              Instagram |
+            </Typography>
+          </NextLink>
           <NextLink href="https://suss.co.ke/privacy-policy/" passHref>
             <Typography
               variant="caption"
