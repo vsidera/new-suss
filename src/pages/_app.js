@@ -2,6 +2,7 @@ import React from 'react';
 import '../styles/global.css'
 import { useState } from "react";
 import SessionExpiryModal from '../components/modals/session_expiry';
+import Head from 'next/head';
 
 
 function MyApp({ Component, pageProps }) {
@@ -18,6 +19,9 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <div>
+      <Head>
+  <link rel="icon" href="/favicon.svg" />
+</Head>
        <SessionExpiryModal expiryModal={expiryModal} closeModal={closeModal} />
       
        <Component openExpiryModal={openExpiryModal} {...pageProps} />
