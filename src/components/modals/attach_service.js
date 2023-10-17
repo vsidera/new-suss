@@ -80,11 +80,13 @@ const AttachServiceModal = ({
         setEventMessage("Service Successfully Attached");
         setEventTitle("SERVICE ATTACH");
         setIsSnackBarAlertOpen(true);
+        setIsButtonClicked(false)
       } else {
         setEventType("fail");
         setEventMessage("Service NOT Attached");
         setEventTitle("SERVICE ATTACH");
         setIsSnackBarAlertOpen(true);
+        setIsButtonClicked(false)
       }
     });
 

@@ -84,11 +84,13 @@ const AttachUserModal = ({
         setEventMessage("User Successfully Attached");
         setEventTitle("USER ATTACH");
         setIsSnackBarAlertOpen(true);
+        setIsButtonClicked(false)
       } else {
         setEventType("fail");
         setEventMessage("User NOT Attached");
         setEventTitle("USER ATTACH");
         setIsSnackBarAlertOpen(true);
+        setIsButtonClicked(false)
       }
     });
 
