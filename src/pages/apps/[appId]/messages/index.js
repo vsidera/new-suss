@@ -178,23 +178,53 @@ const Messages = () => {
      }
     },
     {
-     name: "status_desc",
-     label: "STATUS",
-     options: {
-      filter: true,
-      sort: false,
-      setCellHeaderProps: () => ({
-        style: {
-          minWidth: "120px",
-          maxWidth: "120px",
-          backgroundColor: "#094C95",
-          color: "white",
-          fontSize: "0.9rem",
-          lineHeight: 2.0,
+      name: "content",
+      label: "CONTENT",
+      options: {
+       filter: true,
+       sort: false,
+       setCellHeaderProps: () => ({
+         style: {
+           minWidth: "120px",
+           maxWidth: "120px",
+           backgroundColor: "#094C95",
+           color: "white",
+           fontSize: "0.9rem",
+           lineHeight: 2.0,
+         },
+       }),
+      }
+     },
+     {
+      name: "status_desc",
+      label: "STATUS",
+      options: {
+        filter: true,
+        sort: false,
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "120px",
+            maxWidth: "120px",
+            backgroundColor: "#094C95",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
+        setCellProps: (value) => {
+          if (value === 'SUCCESS') {
+            return { value: 'SUCCESS', style: { color: '#36970E' } };
+          } else if (value === 'Failed to send sms to provider') {
+            return { value: 'FAILED', style: { color: '#970E21' } };
+          } else if (value === 'Accepted for processing') {
+            return { value: 'PROCESSING', style: { color: '#250E97' } };
+          } else {
+            return { value: 'FAILED AUTHENTICATION'};
+          }
         },
-      }),
-     }
+      },
     },
+    
     {
       name: "createdat",
       label: "DATE",
@@ -211,6 +241,9 @@ const Messages = () => {
            lineHeight: 2.0,
          },
        }),
+       customBodyRender: (value) =>
+                 
+                    (new Date(value).toLocaleString('en-US', { timeZone: 'UTC' }, { hour: 'numeric', hour12: true }))
       }
      },
    ];
