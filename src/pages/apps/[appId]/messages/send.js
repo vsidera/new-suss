@@ -11,6 +11,7 @@ import MaterialUIPickers from '../../../../components/utils/timePicker';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import dayjs from 'dayjs';
  
 const SendForm = () => {
 
@@ -30,14 +31,25 @@ const SendForm = () => {
 
     const [schedule, setSchedule] = useState(false)
 
+    const currentDateTime = dayjs();
+
+    const [value, setValue] = useState(currentDateTime);
+    console.log("NEW VALUE!!!!!!!!", value)
+    const handleDateTimeChange = (newValue) => {
+      
+      setValue(newValue);
+    };
+
     const handleSwitchChange = (event) => {
       setSchedule(event.target.checked);
     };
     const [state, setState] = React.useState({
         destination: "",
         content: "",
+        scheduled: value
       });
     
+      
       const handleChange = (e) => {
         const value = e.target.value;
         setState({
@@ -53,7 +65,7 @@ const SendForm = () => {
           destination: state.destination,
           content: state.content,
           requestid: randomUuid,
-          scheduled: "2023-03-22T06:31:05",
+          scheduled: value,
         };
     
         const res = sendSms({selectedSenderId,newSms}).then((res) => {
@@ -167,7 +179,9 @@ const SendForm = () => {
                   <FormControlLabel control={<Switch checked={schedule} onChange={handleSwitchChange} />} label="*Turn on to send scheduled SMS*" />
                 </FormGroup>
                 {schedule ? <div className="my-4">
-                    <MaterialUIPickers/>
+                    <MaterialUIPickers
+                    value={value} onChange={handleDateTimeChange}
+                    />
                   </div>   : <></> 
                }
                 
