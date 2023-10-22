@@ -65,9 +65,6 @@ const ScheduleForm = () => {
                         borderRadius: "4px",
                       }}
                     />
-                <div className="my-2">
-                    <MaterialUIPickers/>
-                  </div>    
                
                <Button variant="contained" sx={{ backgroundColor: '#094C95 !important', color: '#FFFFFF !important', '&:hover': { backgroundColor: '#001041 !important' } }} type="submit">
                 Add
