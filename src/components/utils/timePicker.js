@@ -3,15 +3,17 @@ import { useState } from "react";
 import dayjs from 'dayjs';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-// import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-// import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-// import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 
 export default function MaterialUIPickers() {
-  const [value, setValue] = useState(
-    dayjs('2014-08-18T21:11:54'),
-  );
+  
+
+  const currentDateTime = dayjs();
+
+  const [value, setValue] = useState(currentDateTime);
 
   const handleChange = (newValue) => {
     setValue(newValue);
