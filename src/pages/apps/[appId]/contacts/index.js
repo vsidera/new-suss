@@ -239,6 +239,8 @@ const Contacts = () => {
           };
   
       },
+      customBodyRender: (value) =>
+          "ACTIVE"
       },
       
     },

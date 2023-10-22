@@ -291,9 +291,11 @@ const Organisations = () => {
         },
       }),
        customBodyRender: (tableMeta, dataIndex, rowIndex) => {
+
+        console.log("DATA INDEX IS!!!!!!!!!", dataIndex)
         
         return (
-          <button onClick={() => handleClick1(dataIndex.rowData[4])}>
+          <button onClick={() => handleClick1(dataIndex.rowData[3])}>
           <PersonAddIcon />
           </button>
         );
