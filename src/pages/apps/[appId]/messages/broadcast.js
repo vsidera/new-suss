@@ -1,13 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import Link from 'next/link';
 import MiniDrawer from '../../../../components/sidebar2/sidebar2';
-import { Card, CardContent, Select, Button, Input, MenuItem, InputLabel, Typography, TextField, TextareaAutosize } from '@mui/material';
+import { Card, CardContent, Select, Button, Stack, MenuItem, InputLabel, Typography, TextField, TextareaAutosize } from '@mui/material';
 import { groupsAction } from '../../../api/actions/groups/groupsActions';
 import { useRouter } from "next/router";
 import { appservicesAction } from '../../../api/actions/appservices/appservicesAction';
 import { broadcastMessages } from '../../../api/actions/messages/messagesAction';
 import { v4 as uuidv4 } from "uuid";
 import SnackbarAlert from '../../../../components/utils/snackbar';
+import MaterialUIPickers from '../../../../components/utils/timePicker';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
+import dayjs from 'dayjs';
  
  
 const SendForm = () => {
@@ -27,8 +32,26 @@ const SendForm = () => {
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
 
+    const [schedule, setSchedule] = useState(false)
+
+    const currentDateTime = dayjs();
+
+    const [value, setValue] = useState(currentDateTime);
+    console.log("NEW VALUE!!!!!!!!", value)
+    const handleDateTimeChange = (newValue) => {
+      
+      setValue(newValue);
+    };
+
+    const handleSwitchChange = (event) => {
+      setSchedule(event.target.checked);
+    };
+
     const [state, setState] = React.useState({
       content: "",
+      name: "",
+      description: "",
+      scheduled: ""
     });
 
     const handleChange = (e) => {
@@ -48,13 +71,13 @@ const SendForm = () => {
       e.preventDefault();
   
       const newSms = {
-        name: "FirstCampaign",
+        name: state.name,
         group_id: selectedGroup,
-        description: "Campaign desc",
+        description: state.description,
         service_id: selectedSenderId,
         requestid: randomUuid,
         content: state.content,
-        scheduled:"2023-07-24T06:06:42.821Z"
+        scheduled: value
     };
   
       const res = broadcastMessages({selectedSenderId,newSms}).then((res) => {
@@ -135,6 +158,33 @@ const SendForm = () => {
             </Typography>
                 <form className="m-4" onSubmit={handleSubmit}>
 
+                <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
+                  <TextField
+                    type="text"
+                    name="name"
+                    variant="outlined"
+                    color="secondary"
+                    label="Campaign Name"
+                    placeholder="Campaign 1"
+                    value={state.name}
+                    onChange={handleChange}
+                    fullWidth
+                    required
+                  />
+                  <TextField
+                    type="text"
+                    name="description"
+                    variant="outlined"
+                    color="secondary"
+                    label="Campaign Description"
+                    placeholder="This is the first campaign"
+                    value={state.description}
+                    onChange={handleChange}
+                    fullWidth
+                    required
+                  />
+                </Stack>
+
                 <InputLabel htmlFor="select-option">
                   <span style={{ color: "red" }}>*</span>Select Group
                 </InputLabel>
@@ -189,10 +239,20 @@ const SendForm = () => {
                         borderRadius: "4px",
                       }}
                     />
-               
+                   <FormGroup>
+                  <FormControlLabel control={<Switch checked={schedule} onChange={handleSwitchChange} />} label="*Turn on to send scheduled SMS*" />
+                </FormGroup>
+                {schedule ? <div className="my-4">
+                    <MaterialUIPickers
+                    value={value} onChange={handleDateTimeChange}
+                    />
+                  </div>   : <></> 
+               }     
+               <div className='mt-4'> 
                <Button variant="contained" sx={{ backgroundColor: '#094C95 !important', color: '#FFFFFF !important', '&:hover': { backgroundColor: '#001041 !important' } }} type="submit">
                 Send
                 </Button>
+                </div>
                 </form>
             </CardContent>
             </Card>
