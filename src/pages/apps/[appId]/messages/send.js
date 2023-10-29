@@ -12,6 +12,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import dayjs from 'dayjs';
+import styled from 'styled-components';
  
 const SendForm = () => {
 
@@ -32,6 +33,15 @@ const SendForm = () => {
     const [schedule, setSchedule] = useState(false)
 
     const currentDateTime = dayjs();
+
+    const ImportantText = styled.span`
+    font-size: 0.8em; /* Adjust the font size as needed */
+    background-color: yellow; /* You can change the background color to highlight the text */
+    padding: 2px 4px; /* Add padding for better visual appearance */
+    border: 1px solid #000; /* Add a border for better visibility */
+  
+    /* Additional styles can be added as needed */
+  `;
 
     const [value, setValue] = useState(currentDateTime);
     console.log("NEW VALUE!!!!!!!!", value)
@@ -161,12 +171,12 @@ const SendForm = () => {
                     fullWidth
                     sx={{mb: 4}}
                 />
-                <InputLabel htmlFor="file-upload"><span style={{ color: 'red' }}>*</span>Type your message here</InputLabel>
+                <InputLabel htmlFor="file-upload"><span style={{ color: 'red' }}>*</span>Type your message here(max 140 characters)</InputLabel>
                  <TextareaAutosize
                       id="content"
                       name="content"
                       aria-label="empty textarea"
-                      placeholder="This allows a maximum of 140 characters"
+                      placeholder="Hello ^FIRSTNAME^ ^LASTNAME^ from the county of ^COUNTY^. Receieve this sms to your mobile number - ^PHONENUMBER^."
                       value={state.content}
                       onChange={handleChange}
                       minRows={3}
@@ -177,7 +187,16 @@ const SendForm = () => {
                         borderRadius: "4px",
                       }}
                     />
-           
+                <ImportantText>
+                     To send an sms with dynamic attributes, first identify the attributes the contacts have available in the system. 
+                     These attributes will be the column names in the csv that was used to upload contacts. 
+                     <br/>
+                </ImportantText>
+                     
+                <ImportantText>
+                Paste your message in the message field. Each dynamic attribute in the message should be CAPITALISED and enclosed by the Caret/Hat symbol(^).
+                     For example , if my contacts have a firstname attribute, this will be put in the message as- ^FIRSTNAME^ 
+      </ImportantText>
                   <FormGroup>
                   <FormControlLabel control={<Switch checked={schedule} onChange={handleSwitchChange} />} label="*Turn on to send scheduled SMS*" />
                 </FormGroup>
