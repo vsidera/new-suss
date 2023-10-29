@@ -80,7 +80,7 @@ const Groups = () => {
   const [groups, setGroups] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const [limit, setLimit] = useState(10);
 
   const getGroups = () => {
@@ -168,24 +168,7 @@ const Groups = () => {
         }),
       },
     },
-    {
-      name: "application_id",
-      label: "APP ID",
-      options: {
-        filter: true,
-        sort: false,
-        setCellHeaderProps: () => ({
-          style: {
-            minWidth: "120px",
-            maxWidth: "120px",
-            backgroundColor: "#094C95",
-            color: "white",
-            fontSize: "0.9rem",
-            lineHeight: 2.0,
-          },
-        }),
-      },
-    },
+    
     {
       name: "contacts",
       label: "CONTACTS",
@@ -202,6 +185,27 @@ const Groups = () => {
             lineHeight: 2.0,
           },
         }),
+      },
+    },
+    {
+      name: "createdat",
+      label: "CREATED AT",
+      options: {
+        filter: true,
+        sort: false,
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "120px",
+            maxWidth: "120px",
+            backgroundColor: "#094C95",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
+        customBodyRender: (value) =>
+                 
+                    (new Date(value).toLocaleString('en-US', { timeZone: 'EAT' }, { hour: 'numeric', hour12: true }))
       },
     },
   ];
@@ -239,7 +243,20 @@ const Groups = () => {
         .trim();
       return val;
     },
+    onTableChange: (action, tableState) => {
+      if (action === "changePage") {
 
+          setIsLoaded(false);
+          setPage(tableState.page + 1);
+          
+      } else if(action === "changeRowsPerPage") {
+          setIsLoaded(false);
+          setLimit(tableState.rowsPerPage);
+      }
+      else {
+          console.log("action not handled.");
+      }
+  },
     textLabels: {
       body: {
         noMatch: isLoaded ? (

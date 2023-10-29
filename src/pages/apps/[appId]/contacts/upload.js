@@ -16,6 +16,7 @@ import { groupsAction } from "../../../api/actions/groups/groupsActions";
 import { contactsUpload } from "../../../api/actions/contacts/contactsAction";
 import SnackbarAlert from "../../../../components/utils/snackbar";
 import { useRouter } from "next/router";
+import styled from 'styled-components';
 
 const UploadForm = () => {
 
@@ -37,7 +38,14 @@ const UploadForm = () => {
     setSelectedFile(event.target.files[0]);
   };
   
+  const ImportantText = styled.span`
+  font-size: 0.8em; /* Adjust the font size as needed */
+  background-color: yellow; /* You can change the background color to highlight the text */
+  padding: 2px 4px; /* Add padding for better visual appearance */
+  border: 1px solid #000; /* Add a border for better visibility */
 
+  /* Additional styles can be added as needed */
+`;
 
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(10);
@@ -90,7 +98,7 @@ const UploadForm = () => {
           setIsSnackBarAlertOpen(true);
         } else {
           setEventType("fail");
-          setEventMessage("Bulk Contacts NOT Created");
+          setEventMessage("Failed. Check for Duplicates");
           setEventTitle("Bulk Contacts CREATE");
           setIsSnackBarAlertOpen(true);
         }
@@ -207,11 +215,12 @@ const UploadForm = () => {
                     </MenuItem>
                   ))}
                 </Select>
-
                 <InputLabel htmlFor="file-upload">
-                  <span style={{ color: "red" }}>*</span>Upload CSV Group File
-                  to Upload
+                  Click on 'Choose file' below to select a csv file.<br/>
+
                 </InputLabel>
+
+                
                 <Input
                   id="file-upload"
                   type="file"
@@ -220,12 +229,29 @@ const UploadForm = () => {
                   onChange={handleFileSelect} 
                   fullWidth
                   required
-                  sx={{ mb: 4 }}
+                  sx={{ mb: 1 }}
                 />
+                <ImportantText>
+                The phone numbers should all start with 254.<br/>
+                </ImportantText>
+                <ImportantText>
+        There should not be any duplicates within the CSV file. To check for duplicates, you can{" "}
+        <a
+          href="https://www.anyjson.in/csv-remove-duplicates"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "blue", textDecoration: "underline", cursor: "pointer" }}
+        >
+          Upload your file to this online formatter
+        </a>
+        , click on 'Remove Duplicates', & download the resulting file.
+        <br />
+      </ImportantText>
 
                 <Button
                   variant="contained"
                   sx={{
+                    mt: 2,
                     backgroundColor: "#094C95 !important",
                     color: "#FFFFFF !important",
                     "&:hover": { backgroundColor: "#001041 !important" },

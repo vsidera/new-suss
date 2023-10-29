@@ -47,12 +47,14 @@ const SendForm = () => {
       setSchedule(event.target.checked);
     };
 
-    const [state, setState] = React.useState({
+    const initialState = {
       content: "",
       name: "",
       description: "",
       scheduled: ""
-    });
+    };
+    
+    const [state, setState] = React.useState(initialState);
 
     const handleChange = (e) => {
       const value = e.target.value;
@@ -67,9 +69,11 @@ const SendForm = () => {
     const [eventMessage, setEventMessage] = useState("");
     const [eventTitle, setEventTitle] = useState("");
 
+    const [isButtonClicked, setIsButtonClicked] = useState(false);
+
     const handleSubmit = (e) => {
       e.preventDefault();
-  
+      setIsButtonClicked(true);
       const newSms = {
         name: state.name,
         group_id: selectedGroup,
@@ -81,6 +85,7 @@ const SendForm = () => {
     };
   
       const res = broadcastMessages({selectedSenderId,newSms}).then((res) => {
+        setIsButtonClicked(false);
         if (res.status === 200) {
           setEventType("success");
           setEventMessage("Bulk SMS Sent");
@@ -92,6 +97,7 @@ const SendForm = () => {
           setEventTitle("MESSAGE SEND");
           setIsSnackBarAlertOpen(true);
         }
+        setState(initialState);
       });
   
       return res;
@@ -250,7 +256,7 @@ const SendForm = () => {
                }     
                <div className='mt-4'> 
                <Button variant="contained" sx={{ backgroundColor: '#094C95 !important', color: '#FFFFFF !important', '&:hover': { backgroundColor: '#001041 !important' } }} type="submit">
-                Send
+               {isButtonClicked ? "SENDING..." : "SEND"}
                 </Button>
                 </div>
                 </form>

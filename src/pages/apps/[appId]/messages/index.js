@@ -141,24 +141,24 @@ const Messages = () => {
       },
      }
     },
-    {
-     name: "direction",
-     label: "DIRECTION",
-     options: {
-      filter: true,
-      sort: false,
-      setCellHeaderProps: () => ({
-        style: {
-          minWidth: "120px",
-          maxWidth: "120px",
-          backgroundColor: "#094C95",
-          color: "white",
-          fontSize: "0.9rem",
-          lineHeight: 2.0,
-        },
-      }),
-     }
-    },
+    // {
+    //  name: "direction",
+    //  label: "DIRECTION",
+    //  options: {
+    //   filter: true,
+    //   sort: false,
+    //   setCellHeaderProps: () => ({
+    //     style: {
+    //       minWidth: "120px",
+    //       maxWidth: "120px",
+    //       backgroundColor: "#094C95",
+    //       color: "white",
+    //       fontSize: "0.9rem",
+    //       lineHeight: 2.0,
+    //     },
+    //   }),
+    //  }
+    // },
     {
      name: "destination",
      label: "DESTINATION",
@@ -233,8 +233,8 @@ const Messages = () => {
        sort: false,
        setCellHeaderProps: () => ({
          style: {
-           minWidth: "120px",
-           maxWidth: "120px",
+           minWidth: "130px",
+           maxWidth: "130px",
            backgroundColor: "#094C95",
            color: "white",
            fontSize: "0.9rem",
@@ -243,7 +243,7 @@ const Messages = () => {
        }),
        customBodyRender: (value) =>
                  
-                    (new Date(value).toLocaleString('en-US', { timeZone: 'UTC' }, { hour: 'numeric', hour12: true }))
+                    (new Date(value).toLocaleString('en-US', { timeZone: 'EAT' }, { hour: 'numeric', hour12: true }))
       }
      },
    ];
@@ -262,7 +262,7 @@ const Messages = () => {
     tableBodyHeight: 'auto',
     enableNestedDataAccess: '.',
     elevation: 0,
-    count: 1000,
+    count: 10000,
     rowsPerPageOptions: [10, 20, 50],
     serverSide: true,
     downloadOptions: {

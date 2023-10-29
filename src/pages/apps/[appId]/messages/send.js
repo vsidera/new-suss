@@ -43,11 +43,14 @@ const SendForm = () => {
     const handleSwitchChange = (event) => {
       setSchedule(event.target.checked);
     };
-    const [state, setState] = React.useState({
-        destination: "",
-        content: "",
-        scheduled: value
-      });
+
+    const initialState = {
+      destination: "",
+      content: "",
+      scheduled: value
+    };
+
+    const [state, setState] = React.useState(initialState);
     
       
       const handleChange = (e) => {
@@ -82,7 +85,7 @@ const SendForm = () => {
           }
           setIsButtonClicked(false);
         });
-    
+        setState(initialState);
         return res;
       };
 

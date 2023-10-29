@@ -42,6 +42,7 @@ const Login = ({openExpiryModal}) => {
           setEventMessage('Login Failed');
           setEventTitle('LOGIN');
           setIsSnackBarAlertOpen(true);
+          setIsButtonClicked(false)
         } else {
           console.log("ADMIN OR CLIENT!!!!!!!", res)
           setEventType('success');
