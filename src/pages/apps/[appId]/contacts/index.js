@@ -94,15 +94,6 @@ const Contacts = () => {
     steAttachContactsGroupModal(true)
     console.log("BROADCASTS")
   }
-
-  const ImportantText = styled.span`
-  font-size: 0.8em; /* Adjust the font size as needed */
-  background-color: yellow; /* You can change the background color to highlight the text */
-  padding: 2px 4px; /* Add padding for better visual appearance */
-  border: 1px solid #000; /* Add a border for better visibility */
-
-  /* Additional styles can be added as needed */
-`;
   
   const getContacts = () => {
 
