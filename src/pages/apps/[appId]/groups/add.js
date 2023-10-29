@@ -93,13 +93,14 @@ const CreateGroup = () => {
                   name="name"
                   variant="outlined"
                   color="secondary"
-                  label="Name"
-                  placeholder="Group Name"
+                  label="Group Name"
+                  placeholder="Length should be less than 20 characters"
                   value={state.name}
                   onChange={handleChange}
                   fullWidth
                   required
                   sx={{ mb: 4 }}
+                  inputProps={{ maxLength: 20 }}
                 />
                 <TextField
                   type="text"

@@ -94,8 +94,6 @@ const Contacts = () => {
     steAttachContactsGroupModal(true)
     console.log("BROADCASTS")
   }
-
-  console.log("SELECTED CONTACT IDS!!!!!!",selectedContactIds)
   
   const getContacts = () => {
 
@@ -260,6 +258,9 @@ const Contacts = () => {
             lineHeight: 2.0,
           },
         }),
+        customBodyRender: (value) =>
+                 
+                    (new Date(value).toLocaleString('en-US', { timeZone: 'EAT' }, { hour: 'numeric', hour12: true }))
       },
       
     },
@@ -280,7 +281,7 @@ const Contacts = () => {
     tableBodyHeight: 'auto',
     enableNestedDataAccess: '.',
     elevation: 0,
-    count: 1000,
+    count: 10000,
     rowsPerPageOptions: [10, 20, 50],
     serverSide: true,
     onTableChange: (action, tableState) => {
