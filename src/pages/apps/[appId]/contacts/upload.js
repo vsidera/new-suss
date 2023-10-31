@@ -40,7 +40,7 @@ const UploadForm = () => {
   
   const ImportantText = styled.span`
   font-size: 0.8em; /* Adjust the font size as needed */
-  background-color: yellow; /* You can change the background color to highlight the text */
+  // background-color: yellow; /* You can change the background color to highlight the text */
   padding: 2px 4px; /* Add padding for better visual appearance */
   border: 1px solid #000; /* Add a border for better visibility */
 
@@ -232,13 +232,13 @@ const UploadForm = () => {
                   sx={{ mb: 1 }}
                 />
                 <ImportantText>
-                The first column in the csv should be the phone number.The phone numbers should all start with 254. You can add any other columns after.<br/>
+                **The first column in the csv should be the phone number.The phone numbers should all start with 254. You can add any other columns after.**<br/>
                 </ImportantText>
                 <ImportantText>
-                The column names will be the ATTRIBUTES that you can later use to send dynamic messages to the contacts.Any attribute that you will later need when sending SMSs should be a column in this csv.<br/>
+                **The column names will be the ATTRIBUTES that you can later use to send dynamic messages to the contacts.Any attribute that you will later need when sending SMSs should be a column in this csv.**<br/>
                 </ImportantText>
                 <ImportantText>
-        There should not be NO DUPLICATE phone numbers within the CSV file. To check for duplicates, you can{" "}
+        **There should not be NO DUPLICATE phone numbers within the CSV file. To check for duplicates, you can{" "}**
         <a
           href="https://www.anyjson.in/csv-remove-duplicates"
           target="_blank"
