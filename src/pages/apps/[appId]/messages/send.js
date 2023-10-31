@@ -73,10 +73,13 @@ const SendForm = () => {
     
       const handleSubmit = (e) => {
         e.preventDefault();
+
+        const originalContent = state.content
+        const formattedContent = originalContent.replace(/\n/g, '\\n');
     
         const newSms = {
           destination: state.destination,
-          content: state.content,
+          content: formattedContent,
           requestid: randomUuid,
           scheduled: value,
         };

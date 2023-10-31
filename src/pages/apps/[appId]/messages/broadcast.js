@@ -83,13 +83,17 @@ const SendForm = () => {
     const handleSubmit = (e) => {
       e.preventDefault();
       setIsButtonClicked(true);
+
+      const originalContent = state.content
+      const formattedContent = originalContent.replace(/\n/g, '\\n');
+
       const newSms = {
         name: state.name,
         group_id: selectedGroup,
         description: state.description,
         service_id: selectedSenderId,
         requestid: randomUuid,
-        content: state.content,
+        content: formattedContent,
         scheduled: value
     };
   
