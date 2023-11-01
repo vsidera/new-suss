@@ -5,6 +5,7 @@ import { contactsAction } from "../../../api/actions/contacts/contactsAction";
 import AddIcon from "@mui/icons-material/Add";
 import UploadIcon from '@mui/icons-material/Upload';
 import CreateModal from "../../../../components/modals/create_contact";
+import MoreModal from "../../../../components/modals/show_more";
 import FileUpload from "../../../../components/file_upload/file_upload";
 // import {useParams} from 'react-router-dom';
 import AttachContactsGroupModal from "../../../../components/modals/attach_contacts_group";
@@ -12,6 +13,7 @@ import AddCircleIcon from '@mui/icons-material/AddCircle';
 import MiniDrawer from "../../../../components/sidebar2/sidebar2";
 import { useRouter } from "next/router";
 import SkeletonLoader from "../../../../components/utils/skeleton";
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 const getMuiTheme = () =>
   createTheme({
@@ -80,6 +82,7 @@ const Contacts = () => {
   const [contacts, setContacts] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   const [createModal, setCreateModal] = useState(false);
+  const [moreModal, setMoreModal] = useState(false);
   const [upload, setUpload] = useState(false);
   const [attachContactsGroupModal, steAttachContactsGroupModal] = useState(false)
 
@@ -89,10 +92,17 @@ const Contacts = () => {
   const [selectedIndices, setSelectedIndices] = useState([])
   const [selectedContactIds, setSelectedContactIds] = useState([]);
 
+  const [contactDetails, setContactDetails] = useState(null);
 
   const handleAttach =() =>{
     steAttachContactsGroupModal(true)
-    console.log("BROADCASTS")
+  }
+
+  const handleMore =(tableMeta) =>{
+    const rowIndex = tableMeta.rowIndex;
+    setContactDetails(contacts[rowIndex]);
+    setMoreModal(true)
+
   }
   
   const getContacts = () => {
@@ -114,6 +124,12 @@ const Contacts = () => {
   const closeCreateModal = (e) => {
     e.preventDefault();
     setCreateModal(false)
+  }
+
+  const closeMoreModal = (e) => {
+    e.preventDefault();
+    setMoreModal(false)
+    setContactDetails(null);
   }
 
   const closeAttachContactsGroupModal = (e) => {
@@ -264,6 +280,32 @@ const Contacts = () => {
       },
       
     },
+    {
+      name: "",
+      label: "More",
+      options: {
+        filter: true,
+        sort: false,
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "150px",
+            maxWidth: "150px",
+            backgroundColor: "#094C95",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
+        customBodyRender: (value, tableMeta) => {
+          return (
+            <div onClick={() => handleMore(tableMeta)}>
+              <MoreVertIcon/>
+            </div>
+             
+          )
+          }
+      },
+    },
   ];
 
   const options = {
@@ -360,6 +402,7 @@ const Contacts = () => {
     <MiniDrawer>
       <AttachContactsGroupModal attachContactsGroupModal={attachContactsGroupModal} closeAttachContactsGroupModal={closeAttachContactsGroupModal} selectedContactIds={selectedContactIds} app_id={app_id}/>
       <CreateModal createModal={createModal} closeCreateModal={closeCreateModal} app_id={app_id}/>
+      <MoreModal moreModal={moreModal} closeMoreModal={closeMoreModal} contactDetails = {contactDetails}/>
       <div className="m-16">
       <h2 className='mt-2 text-xl font-semibold'>Contacts</h2>
             <p className='mb-1 text-gray-700'>A list of all contacts</p>
