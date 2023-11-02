@@ -218,13 +218,13 @@ const Messages = () => {
           } else if (value == 'FAILED') {
             return { value: 'FAILED', style: { color: '#970E21' } };
           } else if (value == 'Accepted for processing') {
-            return { value: 'PROCESSING', style: { color: '#250E97' } };
+            return { value: 'PROCESSING', style: { color: '#0E1D97' } };
           } else {
             return { value: 'FAILED AUTHENTICATION'};
           }
         },
         customBodyRender: (value) =>
-        (value =='SUCCESS' ? 'SUCCESS' : 'FAILED' )
+        (value =='SUCCESS' ? 'SUCCESS' : value == 'Failed to send sms to provider' ? 'FAILED': value == 'Accepted for processing' ? 'PROCESSING' : 'FAILED AUTHENTICATION')
        
       },
     },
