@@ -9,57 +9,12 @@ import {
   Button,
   MenuItem,
 } from "@mui/material";
-import AsyncSelect from "react-select/async";
-import { groupsAction } from "../../pages/api/actions/groups/groupsActions";
-import { contactsAttach } from "../../pages/api/actions/contacts/contactsAction";
-import {
-  serviceAttach,
-  serviceSearch,
-} from "../../pages/api/actions/services/servicesAction";
-import SnackbarAlert from "../utils/snackbar";
 
 const MoreModal = ({
-  selectedContactIds,
   moreModal,
   closeMoreModal,
   contactDetails,
 }) => {
-  const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
-  const [eventType, setEventType] = useState("");
-  const [eventMessage, setEventMessage] = useState("");
-  const [eventTitle, setEventTitle] = useState("");
-
-  console.log("CONTACT DETAILS IS!!!!!!!", contactDetails);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const data = {
-      group_id: selectedGroup,
-      contact_ids: selectedContactIds,
-    };
-
-    const res = contactsAttach({ app_id, data }).then((res) => {
-      if (res.status === 200) {
-        setEventType("success");
-        setEventMessage("Contacts Successfully Attached");
-        setEventTitle("CONTACTS ATTACH");
-        setIsSnackBarAlertOpen(true);
-      } else {
-        setEventType("fail");
-        setEventMessage("Contacts Already Attached");
-        setEventTitle("CONTACTS ATTACH");
-        setIsSnackBarAlertOpen(true);
-      }
-    });
-
-    return res;
-  };
-
-  const greenButton = {
-    backgroundColor: "green",
-    color: "white",
-  };
 
   const tableStyle = {
     fontFamily: "arial, sans-serif",
@@ -95,26 +50,16 @@ const MoreModal = ({
     borderRadius: 3,
   };
 
-  const customStyles = {
-    control: (provided) => ({
-      ...provided,
-      width: "100%",
-    }),
-  };
-
   if (!contactDetails || typeof contactDetails !== "object") {
-    return <div>No valid data to display</div>;
+    return <div>
+
+
+    </div>;
   }
 
   return (
     <>
-      <SnackbarAlert
-        open={isSnackBarAlertOpen}
-        type={eventType}
-        message={eventMessage}
-        handleClose={() => setIsSnackBarAlertOpen(false)}
-        title={eventTitle}
-      />
+  
       <Modal
         open={moreModal}
         sx={{ border: "none", boxShadow: "none" }}

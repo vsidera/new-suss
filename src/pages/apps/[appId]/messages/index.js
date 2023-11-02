@@ -212,16 +212,20 @@ const Messages = () => {
           },
         }),
         setCellProps: (value) => {
-          if (value === 'SUCCESS') {
+          console.log("VALUE OF STATUS IS!!!!!!", value)
+          if (value == 'SUCCESS') {
             return { value: 'SUCCESS', style: { color: '#36970E' } };
-          } else if (value === 'Failed to send sms to provider') {
+          } else if (value == 'FAILED') {
             return { value: 'FAILED', style: { color: '#970E21' } };
-          } else if (value === 'Accepted for processing') {
+          } else if (value == 'Accepted for processing') {
             return { value: 'PROCESSING', style: { color: '#250E97' } };
           } else {
             return { value: 'FAILED AUTHENTICATION'};
           }
         },
+        customBodyRender: (value) =>
+        (value =='SUCCESS' ? 'SUCCESS' : 'FAILED' )
+       
       },
     },
     
