@@ -1,7 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import Modal from "@mui/material/Modal";
-import { Box, CardContent, InputLabel, Select, Button, MenuItem } from "@mui/material";
+import {
+  Box,
+  CardContent,
+  InputLabel,
+  Select,
+  Button,
+  MenuItem,
+} from "@mui/material";
 import AsyncSelect from "react-select/async";
 import { groupsAction } from "../../pages/api/actions/groups/groupsActions";
 import { contactsAttach } from "../../pages/api/actions/contacts/contactsAction";
@@ -15,27 +22,24 @@ const MoreModal = ({
   selectedContactIds,
   moreModal,
   closeMoreModal,
-  contactDetails
+  contactDetails,
 }) => {
   const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
   const [eventType, setEventType] = useState("");
   const [eventMessage, setEventMessage] = useState("");
   const [eventTitle, setEventTitle] = useState("");
 
-  const [groups, setGroups] = useState([]);
-  const [selectedGroup, setSelectedGroup] = useState("");
-
-  console.log("CONTACT DETAILS IS!!!!!!!",contactDetails)
+  console.log("CONTACT DETAILS IS!!!!!!!", contactDetails);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const data = {
-      "group_id": selectedGroup,
-      "contact_ids": selectedContactIds
-    }
+      group_id: selectedGroup,
+      contact_ids: selectedContactIds,
+    };
 
-    const res = contactsAttach({ app_id, data}).then((res) => {
+    const res = contactsAttach({ app_id, data }).then((res) => {
       if (res.status === 200) {
         setEventType("success");
         setEventMessage("Contacts Successfully Attached");
@@ -55,6 +59,22 @@ const MoreModal = ({
   const greenButton = {
     backgroundColor: "green",
     color: "white",
+  };
+
+  const tableStyle = {
+    fontFamily: "arial, sans-serif",
+    borderCollapse: "collapse",
+    width: "100%",
+  };
+
+  const cellStyle = {
+    border: "1px solid #dddddd",
+    textAlign: "left",
+    padding: "8px",
+  };
+
+  const evenRowStyle = {
+    backgroundColor: "#dddddd",
   };
 
   const style = {
@@ -82,6 +102,10 @@ const MoreModal = ({
     }),
   };
 
+  if (!contactDetails || typeof contactDetails !== "object") {
+    return <div>No valid data to display</div>;
+  }
+
   return (
     <>
       <SnackbarAlert
@@ -96,49 +120,24 @@ const MoreModal = ({
         sx={{ border: "none", boxShadow: "none" }}
         onClose={closeMoreModal}
       >
-        <div>
-          <Box sx={style}>
-            <CardContent style={{ width: "60%" }}>
-            
-            <form className="m-4" onSubmit={handleSubmit}>
-            <p className="text-md content-center items center mb-4">
-                  Pick a group below to attach the selected contacts to it
-                </p>
-                <InputLabel htmlFor="select-option">
-                  <span style={{ color: "red" }}>*</span>Select Group
-                </InputLabel>
-                <Select
-                  id="select-option"
-                  value={selectedGroup}
-                  onChange={(event) => setSelectedGroup(event.target.value)}
-                  variant="outlined"
-                  color="secondary"
-                  fullWidth
-                  required
-                  sx={{ mb: 4 }}
-                >
-                  {groups.map((group) => (
-                    <MenuItem key={group.group_id} value={group.group_id}>
-                      {group.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-
-                <Button
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "#094C95 !important",
-                    color: "#FFFFFF !important",
-                    "&:hover": { backgroundColor: "#001041 !important" },
-                  }}
-                  type="submit"
-                >
-                  Add to Group
-                </Button>
-              </form>
-            </CardContent>
-          </Box>
-        </div>
+       <div>
+      <Box sx={style}>
+        <CardContent style={{ width: "80%" }}>
+          <table style={tableStyle}>
+            <tr>
+              <th style={cellStyle}>Attribute</th>
+              <th style={cellStyle}>Value</th>
+            </tr>
+            {Object.entries(contactDetails).map(([key, value], index) => (
+              <tr key={key} style={index % 2 === 0 ? evenRowStyle : {}}>
+                <td style={cellStyle}>{key}</td>
+                <td style={cellStyle}>{value}</td>
+              </tr>
+            ))}
+          </table>
+        </CardContent>
+      </Box>
+    </div>
       </Modal>
     </>
   );

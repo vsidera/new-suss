@@ -100,7 +100,7 @@ const Contacts = () => {
 
   const handleMore =(tableMeta) =>{
     const rowIndex = tableMeta.rowIndex;
-    setContactDetails(contacts[rowIndex]);
+    setContactDetails(contacts[rowIndex].attributes);
     setMoreModal(true)
 
   }
