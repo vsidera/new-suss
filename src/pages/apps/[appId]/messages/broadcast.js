@@ -260,8 +260,7 @@ const SendForm = () => {
                       inputProps={{ maxLength: 20 }}
                     />
                     <ImportantText>
-                     **To send an sms with dynamic attributes, first identify the attributes the contacts have available in the system. 
-                     These attributes will be the column names in the csv that was used to upload contacts.** 
+                     **To send an sms with dynamic attributes, first identify the attributes the contacts have available(You can find them on the contact list under 'More'). These will be the column names in the csv that was used to upload contacts.** 
                      <br/>
                 </ImportantText>
                      
