@@ -1,7 +1,7 @@
 import Cookies from "universal-cookie";
 import jwt from "jwt-decode";
 import { useState } from "react";
-import { loginAction } from "../../pages/api/actions/login/loginAction";
+import { loginAction } from "../api/actions/login/loginAction";
 // import { useNavigate } from "react-router-dom";
 import SnackbarAlert from "../../components/utils/snackbar";
 import {useRouter} from "next/router";
@@ -186,6 +186,7 @@ const Login = ({openExpiryModal}) => {
                   Sign up
                 </a>
               </p>
+              
             </form>
           </div>
         </div>
