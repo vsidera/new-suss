@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import { Grid, Paper, Container, Box, Select, MenuItem } from '@mui/material';
 import Image from 'next/image';
 import CircularIndeterminate from "../../components/utils/spinner";
+import { getSession } from 'next-auth/react';
 
 const Applications = () => {
   const [apps, setApps] = useState([]);
@@ -15,6 +16,23 @@ const Applications = () => {
   const [selectedAppCode, setSelectedAppCode] = useState('');
 
   const [isButtonClicked, setIsButtonClicked] = useState(false);
+
+  const session = getSession();
+
+  if (!session) {
+    console.log("YOU ARE NOT AUTHENTICATED!!!!!!")
+    return res.status(401).json({ error: 'You are not authenticated' });
+  }
+
+  getSession() // Example of an asynchronous function returning a session Promise
+  .then(session => {
+    const token = session.accessToken;
+    console.log('Token from session:', token);
+  })
+  .catch(error => {
+    console.error('Error fetching session:', error);
+  });
+
 
   const router = useRouter();
   const backUrl = `/images/back.jpg`;
