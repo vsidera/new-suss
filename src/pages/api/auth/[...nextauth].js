@@ -52,7 +52,8 @@ export default NextAuth({
       if (profile?.account?.access_token) { // Check if the token exists in the account object
         // console.log('ACCESS TOKEN!!!!!!!:', profile.account.access_token); // Log the token to the console
         console.log('ENVIRONMENTS!!!!!!!:', process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID)
-        return '/apps';
+        // return '/apps';
+        return true;
       }
       return true;
     },
