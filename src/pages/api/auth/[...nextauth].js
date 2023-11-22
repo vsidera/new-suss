@@ -4,10 +4,10 @@ import Auth0Provider from 'next-auth/providers/auth0';
 export default NextAuth({
   providers: [
     Auth0Provider({
-      clientId: 'pFvRyEA7aeEI1MpMoWFxkhkz6W8M9sfH',
-      clientSecret: 'MhZhwuphszIWYVwJsozU7GJ7NTWwxY9aWgN6nT2rpX-lzgW5LxigxGCt0LK_vAbQ',
-      issuer: 'https://dev-xceoh666kp4gr8u8.us.auth0.com',
-      redirectUri: `http://localhost:3000/api/auth/callback/auth0`,
+      clientId: process.env.AUTH0_CLIENT_ID,
+      clientSecret: process.env.AUTH0_CLIENT_SECRET,
+      issuer: process.env.AUTH0_ISSUER_BASE_URL,
+      redirectUri: process.env.AUTH0_REDIRECT_URI,
       idToken: true,
       token: {
         params: {
@@ -21,7 +21,7 @@ export default NextAuth({
       }
     }),
   ],
-  secret: '3064e3c73fd940fb24bf86e0199928ed953aa489539e107cf48ce45bc3bd2024',
+  secret: process.env.AUTH0_SECRET,
   session: {
     strategy: 'jwt',
     secret: process.env.NEXTAUTH_SECRET
@@ -37,9 +37,9 @@ export default NextAuth({
     },
     async redirect(url) {
       if (typeof url === 'string') {
-        return url.startsWith('http://localhost:3000') ? url : 'http://localhost:3000';
+        return url.startsWith(process.env.AUTH0_BASE_URL) ? url : process.env.AUTH0_BASE_URL;
       } else {
-        return 'http://localhost:3000';
+        return process.env.AUTH0_BASE_URL;
       }
     },
     async jwt({ token, account }) {
