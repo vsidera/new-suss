@@ -4,27 +4,27 @@ import Auth0Provider from 'next-auth/providers/auth0';
 export default NextAuth({
   providers: [
     Auth0Provider({
-      clientId: 'ojwD0fy1h9KkTwFcpy5GozidovRNSPyX',
-      clientSecret: 'CNNd4W_6e_VewDQr9CdnIx_jUA0-sz3rwOISRh0n7a9VBnjytAPxxxXt1jpDedhq',
-      issuer: 'https://suss.us.auth0.com',
-      redirectUri: 'https://new-suss-staging.vercel.app/api/auth/callback/auth0',
+      clientId: process.env.AUTH0_CLIENT_ID,
+      clientSecret: process.env.AUTH0_CLIENT_SECRET,
+      issuer: process.env.AUTH0_ISSUER_BASE_URL,
+      redirectUri: process.env.AUTH0_REDIRECT_URI,
       idToken: true,
       token: {
         params: {
-          audience: 'https://suss.us.auth0.com/api/v2/'
+          audience: process.env.AUTH0_AUDIENCE
         }
       },
       authorization: {
         params: {
-          audience: encodeURI('https://suss.us.auth0.com/api/v2/')
+          audience: encodeURI(process.env.AUTH0_AUDIENCE)
         }
       }
     }),
   ],
-  secret: '3064e3c73fd940fb24bf86e0199928ed953aa489539e107cf48ce45bc3bd2024',
+  secret: process.env.AUTH0_SECRET,
   session: {
     strategy: 'jwt',
-    secret: '3064e3c73fd940fb24bf86e0199928ed953aa489539e107cf48ce45bc3bd2024'
+    secret: process.env.NEXTAUTH_SECRET
   },
   jwt: {},
   callbacks: {
@@ -37,9 +37,9 @@ export default NextAuth({
     },
     async redirect(url) {
       if (typeof url === 'string') {
-        return url.startsWith('https://new-suss-staging.vercel.app') ? url : 'https://new-suss-staging.vercel.app';
+        return url.startsWith(process.env.AUTH0_BASE_URL) ? url : process.env.AUTH0_BASE_URL;
       } else {
-        return 'https://new-suss-staging.vercel.app';
+        return process.env.AUTH0_BASE_URL;
       }
     },
     async jwt({ token, account }) {
