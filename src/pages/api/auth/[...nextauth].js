@@ -11,12 +11,12 @@ export default NextAuth({
       idToken: true,
       token: {
         params: {
-          audience: 'https://dev-xceoh666kp4gr8u8.us.auth0.com/api/v2/'
+          audience: process.env.AUTH0_AUDIENCE
         }
       },
       authorization: {
         params: {
-          audience: encodeURI('https://dev-xceoh666kp4gr8u8.us.auth0.com/api/v2/')
+          audience: encodeURI(process.env.AUTH0_AUDIENCE)
         }
       }
     }),
@@ -32,7 +32,7 @@ export default NextAuth({
       
       session.user.id = token.id;
       session.accessToken = token.accessToken;
-      // console.log('SESSION!!!!!!!:', session);
+      
       return session;
     },
     async redirect(url) {
@@ -51,6 +51,7 @@ export default NextAuth({
     async signIn( profile) {
       if (profile?.account?.access_token) { // Check if the token exists in the account object
         // console.log('ACCESS TOKEN!!!!!!!:', profile.account.access_token); // Log the token to the console
+        console.log('ENVIRONMENTS!!!!!!!:', process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID)
         return '/apps';
       }
       return true;
