@@ -1,24 +1,24 @@
 import NextAuth from 'next-auth';
 import Auth0Provider from 'next-auth/providers/auth0';
 import { useRouter } from 'next/router';
-
+import {signIn, useSession} from "next-auth/react";
 
 export default NextAuth({
   providers: [
     Auth0Provider({
-      clientId: process.env.MY_AUTH0_CLIENT_ID,
-      clientSecret: process.env.MY_AUTH0_CLIENT_SECRET,
-      issuer: process.env.MY_AUTH0_ISSUER_BASE_URL,
-      redirectUri: process.env.MY_AUTH0_REDIRECT_URI,
+      clientId: process.env.AUTH0_CLIENT_ID,
+      clientSecret: process.env.AUTH0_CLIENT_SECRET,
+      issuer: process.env.AUTH0_ISSUER_BASE_URL,
+      redirectUri: process.env.AUTH0_REDIRECT_URI,
       idToken: true,
       token: {
         params: {
-          audience: process.env.MY_AUTH0_AUDIENCE
+          audience: process.env.AUTH0_AUDIENCE
         }
       },
       authorization: {
         params: {
-          audience: encodeURI(process.env.MY_AUTH0_AUDIENCE)
+          audience: encodeURI(process.env.AUTH0_AUDIENCE)
         }
       }
     }),
@@ -39,9 +39,9 @@ export default NextAuth({
     },
     async redirect(url) {
       if (typeof url === 'string') {
-        return url.startsWith(process.env.MY_AUTH0_BASE_URL) ? url : process.env.MY_AUTH0_BASE_URL;
+        return url.startsWith(process.env.AUTH0_BASE_URL) ? url : process.env.AUTH0_BASE_URL;
       } else {
-        return process.env.MY_AUTH0_BASE_URL;
+        return process.env.AUTH0_BASE_URL;
       }
     },
     async jwt({ token, account }) {
