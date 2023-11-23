@@ -1,22 +1,24 @@
 import NextAuth from 'next-auth';
 import Auth0Provider from 'next-auth/providers/auth0';
+import { useRouter } from 'next/router';
+
 
 export default NextAuth({
   providers: [
     Auth0Provider({
-      clientId: process.env.AUTH0_CLIENT_ID,
-      clientSecret: process.env.AUTH0_CLIENT_SECRET,
-      issuer: process.env.AUTH0_ISSUER_BASE_URL,
-      redirectUri: process.env.AUTH0_REDIRECT_URI,
+      clientId: process.env.MY_AUTH0_CLIENT_ID,
+      clientSecret: process.env.MY_AUTH0_CLIENT_SECRET,
+      issuer: process.env.MY_AUTH0_ISSUER_BASE_URL,
+      redirectUri: process.env.MY_AUTH0_REDIRECT_URI,
       idToken: true,
       token: {
         params: {
-          audience: process.env.AUTH0_AUDIENCE
+          audience: process.env.MY_AUTH0_AUDIENCE
         }
       },
       authorization: {
         params: {
-          audience: encodeURI(process.env.AUTH0_AUDIENCE)
+          audience: encodeURI(process.env.MY_AUTH0_AUDIENCE)
         }
       }
     }),
@@ -24,7 +26,7 @@ export default NextAuth({
   secret: process.env.AUTH0_SECRET,
   session: {
     strategy: 'jwt',
-    secret: process.env.NEXTAUTH_SECRET
+    secret: process.env.AUTH0_SECRET
   },
   jwt: {},
   callbacks: {
@@ -37,9 +39,9 @@ export default NextAuth({
     },
     async redirect(url) {
       if (typeof url === 'string') {
-        return url.startsWith(process.env.AUTH0_BASE_URL) ? url : process.env.AUTH0_BASE_URL;
+        return url.startsWith(process.env.MY_AUTH0_BASE_URL) ? url : process.env.MY_AUTH0_BASE_URL;
       } else {
-        return process.env.AUTH0_BASE_URL;
+        return process.env.MY_AUTH0_BASE_URL;
       }
     },
     async jwt({ token, account }) {
@@ -49,13 +51,13 @@ export default NextAuth({
       return token;
     },
     async signIn( profile) {
-      if (profile?.account?.access_token) { // Check if the token exists in the account object
-        console.log('ACCESS TOKEN!!!!!!!:', profile.account.access_token); // Log the token to the console
-        // console.log('ENVIRONMENTS!!!!!!!:', process.env.AUTH0_CLIENT_ID)
-        return '/apps';
-        // return true;
+      if (profile?.account?.access_token) {
+        console.log('ACCESS TOKEN!!!!!!!:', profile.account.access_token);
+        // const router = useRouter();
+        // router.push('/apps');
+        return true;
       }
-      return true;
+      return false;
     },
 
   },

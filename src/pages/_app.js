@@ -4,6 +4,8 @@ import { useState } from "react";
 import SessionExpiryModal from "../components/modals/session_expiry";
 import Head from "next/head";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
+import { SessionProvider } from "next-auth/react"
+// import { Provider as NextAuthProvider } from 'next-auth/providers';
 
 function MyApp({ Component, pageProps }) {
   const [expiryModal, setExpiryModal] = useState(false);
@@ -17,6 +19,7 @@ function MyApp({ Component, pageProps }) {
   };
 
   return (
+    <SessionProvider session={pageProps.session} refetchInterval={0}>
     <UserProvider>
     <div>
      
@@ -29,6 +32,7 @@ function MyApp({ Component, pageProps }) {
      
     </div>
     </UserProvider>
+   </SessionProvider>
   );
 }
 

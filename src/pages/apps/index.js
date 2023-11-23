@@ -2,37 +2,23 @@ import { useEffect, useState } from "react";
 // import { Link } from "react-router-dom";
 import { userApps } from "../../pages/api/actions/applications/appsActions";
 import AppsCard from "../../components/appsCard/appsCard";
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { Grid, Paper, Container, Box, Select, MenuItem } from '@mui/material';
-import Image from 'next/image';
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { Grid, Paper, Container, Box, Select, MenuItem } from "@mui/material";
+import Image from "next/image";
 import CircularIndeterminate from "../../components/utils/spinner";
-import { getSession } from 'next-auth/react';
+import { getSession, signIn, signOut } from "next-auth/react";
 
-const Applications = () => {
+export default function Applications({ session }) {
+
+  console.log("THIS IS THE SESSION in APLICATIONS!!!!!!", session);
+
   const [apps, setApps] = useState([]);
-  const [isLoaded, setIsLoaded] = useState(false);
 
-  const [selectedAppCode, setSelectedAppCode] = useState('');
+  const [selectedAppCode, setSelectedAppCode] = useState("");
 
   const [isButtonClicked, setIsButtonClicked] = useState(false);
-
-  const session = getSession();
-
-  if (!session) {
-    console.log("YOU ARE NOT AUTHENTICATED!!!!!!")
-    return res.status(401).json({ error: 'You are not authenticated' });
-  }
-
-  getSession() // Example of an asynchronous function returning a session Promise
-  .then(session => {
-    const token = session.accessToken;
-    console.log('Token from session:', token);
-  })
-  .catch(error => {
-    console.error('Error fetching session:', error);
-  });
-
+  const [isLoaded, setIsLoaded] = useState(true);
 
   const router = useRouter();
   const backUrl = `/images/back.jpg`;
@@ -94,62 +80,86 @@ const Applications = () => {
     getApps();
   }, []);
 
+  
+  
+
   return (
-<>
-  {isLoaded ? (
-    <div className="relative flex items-center justify-center h-screen bg-cover bg-center" style={{ backgroundImage: 'url("/images/appsback.jpg")' }}>
-    <Box
-  className="absolute top-1/2 left-0 flex flex-col items-center ml-32"
-  style={{ width: '50%', zIndex: 10 }}
->
-<Select
-  id="select-organisation"
-  value={selectedAppCode}
-  onChange={handleAppSelect}
-  displayEmpty
-  style={{ width: '30%', color: '#71797E' }}
-  MenuProps={{
-    PaperProps: {
-      sx: {
-        color: 'white',
-        background: '#094C95', // Set the background color to transparent
-        '& .MuiMenuItem-root': {
-          padding: 1,
-        },
-      },
-    },
-  }}
->
-  <MenuItem value="" disabled>
-    SELECT AN ORGANISATION
-  </MenuItem>
-    {apps.map((app, index) => (
-      <MenuItem value={app.code} key={index}>
-        {app.name}
-      </MenuItem>
-    ))}
-  </Select>
-  <button
-    className="bg-[#094C95] text-white px-20 py-2 mt-8 rounded-full"
-    // onClick={handleApply}
-    onClick={() => {
-      setIsButtonClicked(true);
-      handleApply()
-    }}
-    disabled={!selectedAppCode}
-  >
-    {isButtonClicked ? "applying..." : "Apply"}
-  </button>
-</Box>
-
-  </div>
-   ) : (
-    <div className="flex justify-center items-center min-h-screen">
-      <CircularIndeterminate/>
+    <div>
+      {isLoaded ? (
+        <div
+          className="relative flex items-center justify-center h-screen bg-cover bg-center"
+          style={{ backgroundImage: 'url("/images/appsback.jpg")' }}
+        >
+          <Box
+            className="absolute top-1/2 left-0 flex flex-col items-center ml-32"
+            style={{ width: "50%", zIndex: 10 }}
+          >
+            <Select
+              id="select-organisation"
+              value={selectedAppCode}
+              onChange={handleAppSelect}
+              displayEmpty
+              style={{ width: "30%", color: "#71797E" }}
+              MenuProps={{
+                PaperProps: {
+                  sx: {
+                    color: "white",
+                    background: "#094C95", // Set the background color to transparent
+                    "& .MuiMenuItem-root": {
+                      padding: 1,
+                    },
+                  },
+                },
+              }}
+            >
+              <MenuItem value="" disabled>
+                SELECT AN ORGANISATION
+              </MenuItem>
+              {apps.map((app, index) => (
+                <MenuItem value={app.code} key={index}>
+                  {app.name}
+                </MenuItem>
+              ))}
+            </Select>
+            <button
+              className="bg-[#094C95] text-white px-20 py-2 mt-8 rounded-full"
+              // onClick={handleApply}
+              onClick={() => {
+                setIsButtonClicked(true);
+                handleApply();
+              }}
+              disabled={!selectedAppCode}
+            >
+              {isButtonClicked ? "applying..." : "Apply"}
+            </button>
+          </Box>
+        </div>
+      ) : (
+        <div className="flex justify-center items-center min-h-screen">
+          <CircularIndeterminate />
+        </div>
+      )}
+      {session ? (
+        <button onClick={() => signOut()}>Sign out</button>
+      ) : (
+        <button onClick={() => signIn()}>Sign in</button>
+      )}
+      {session && (
+        <div>
+          <p>Signed in as {session.user.email}</p>
+          <p>Name {session.user.name}</p>
+        </div>
+      )}
     </div>
-  )}
-</>
   );
-};
+}
 
-export default Applications;
+export const getServerSideProps = async (context) => {
+  const session = await getSession(context);  
+  console.log("THIS IS THE SESSION APPS!!!!!!",session)
+  return {
+    props: {
+      session
+    },
+  };
+};
