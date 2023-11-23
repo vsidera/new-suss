@@ -2,10 +2,11 @@ import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 
-export default function Login({ session }) {
+export default function Login() {
   const router = useRouter();
 
   const { status } = useSession();
+  console.log("THE STATUS IS!!!!!!!!!!!!",status)
   useEffect(() => {
     if (status === "authenticated") {
       void router.push("/apps");
@@ -39,14 +40,14 @@ export default function Login({ session }) {
   );
 }
 
-export const getServerSideProps = async (context) => {
-  const session = await getSession(context);
+// export const getServerSideProps = async (context) => {
+//   const session = await getSession(context);
 
-  console.log("THIS IS THE SESSION LOGIN!!!!!!", session);
+//   console.log("THIS IS THE SESSION LOGIN!!!!!!", session);
 
-  return {
-    props: {
-      session,
-    },
-  };
-};
+//   return {
+//     props: {
+//       session,
+//     },
+//   };
+// };
