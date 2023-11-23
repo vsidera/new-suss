@@ -1,7 +1,5 @@
 import NextAuth from 'next-auth';
 import Auth0Provider from 'next-auth/providers/auth0';
-import { useRouter } from 'next/router';
-import {signIn, useSession} from "next-auth/react";
 
 export default NextAuth({
   providers: [
