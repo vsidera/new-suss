@@ -7,9 +7,11 @@ import { useRouter } from "next/router";
 import { Grid, Paper, Container, Box, Select, MenuItem } from "@mui/material";
 import Image from "next/image";
 import CircularIndeterminate from "../../components/utils/spinner";
-import { getSession, signIn, signOut } from "next-auth/react";
+import { getSession, signIn, signOut, useSession } from "next-auth/react";
 
-export default function Applications({ session }) {
+export default function Applications() {
+
+  const { data: session, status } = useSession({ required: true });
 
   console.log("THIS IS THE SESSION in APLICATIONS!!!!!!", session);
 
@@ -154,12 +156,12 @@ export default function Applications({ session }) {
   );
 }
 
-export const getServerSideProps = async (context) => {
-  const session = await getSession(context);  
-  console.log("THIS IS THE SESSION APPS!!!!!!",session)
-  return {
-    props: {
-      session
-    },
-  };
-};
+// export const getServerSideProps = async (context) => {
+//   const session = await getSession(context);  
+//   console.log("THIS IS THE SESSION APPS!!!!!!",session)
+//   return {
+//     props: {
+//       session
+//     },
+//   };
+// };
