@@ -1,4 +1,4 @@
-export const { NEXT_PUBLIC_SUSS_URL } = process.env;
+// export const { NEXT_PUBLIC_SUSS_URL } = process.env;
 
 // export default {
 //     LOGIN_URL: `https://suss-ads.zohari.tech/public/user/token`,
@@ -23,29 +23,29 @@ export const { NEXT_PUBLIC_SUSS_URL } = process.env;
 // };
 
 export default {
-    LOGIN_URL: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/public/user/token`,
-    // LOGIN_URL: `${NEXT_PUBLIC_SUSS_URL}/public/user/token`,
-    LIST_CONTACTS: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/contact`,
-    CREATE_CONTACT: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/contact`,
-    UPLOAD_CONTACTS: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/group`,
-    LIST_GROUPS: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/group`,
-    CREATE_GROUP: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/group`,
-    CREATE_USER: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/user`,
-    BROADCAST_MESSAGE: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/message`,
-    LIST_MESSAGES: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/message`,
-    LIST_APP_SERVICES: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/application`,
-    USER_ATTACH: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/application`,
-    SERVICE_ATTACH: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/application`,
-    CONTACTS_ATTACH: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/group`,
-    CREATE_SERVICE: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/service/create`,
-    CREATE_APP: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/application/create`,
-    SEND_SMS: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/message`,
-    LIST_APPLICATIONS: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/application`,
-    LIST_SERVICES: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/service`,
-    USER_APPS: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/users/application/list`,
-    USER_SEARCH: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/application`,
-    LIST_USERS: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/application`,
-    SERVICE_SEARCH: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/service`,
-    UNITS_EXPENDITURE: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/analytics/annualsms`,
-    DELIVERY_METER: `https://suss-sms-prod-container-app.icyfield-21b81b9a.eastus.azurecontainerapps.io/api/v1/analytics/smsstats`
+    LOGIN_URL: `${process.env.NEXT_PUBLIC_SUSS_URL}/public/user/token`,
+    LOGIN_URL: `${process.env.NEXT_PUBLIC_SUSS_URL}/public/user/token`,
+    LIST_CONTACTS: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/contact`,
+    CREATE_CONTACT: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/contact`,
+    UPLOAD_CONTACTS: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/group`,
+    LIST_GROUPS: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/group`,
+    CREATE_GROUP: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/group`,
+    CREATE_USER: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/user`,
+    BROADCAST_MESSAGE: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/message`,
+    LIST_MESSAGES: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/message`,
+    LIST_APP_SERVICES: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/application`,
+    USER_ATTACH: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/application`,
+    SERVICE_ATTACH: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/application`,
+    CONTACTS_ATTACH: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/group`,
+    CREATE_SERVICE: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/service/create`,
+    CREATE_APP: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/application/create`,
+    SEND_SMS: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/message`,
+    LIST_APPLICATIONS: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/application`,
+    LIST_SERVICES: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/service`,
+    USER_APPS: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/users/application/list`,
+    USER_SEARCH: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/application`,
+    LIST_USERS: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/application`,
+    SERVICE_SEARCH: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/service`,
+    UNITS_EXPENDITURE: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/analytics/annualsms`,
+    DELIVERY_METER: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/analytics/smsstats`
 };
