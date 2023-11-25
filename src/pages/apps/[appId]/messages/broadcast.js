@@ -25,6 +25,7 @@ const SendForm = () => {
 
     const [groups, setGroups] = useState([]);
     const [selectedGroup, setSelectedGroup] = useState("");
+    const [selectedChannel, setSelectedChannel] = useState("");
 
     const [appservices, setAppservices] = useState([]);
     const [selectedSenderId, setSelectedSenderId] = useState("");
@@ -33,6 +34,8 @@ const SendForm = () => {
     const [limit, setLimit] = useState(10);
 
     const [schedule, setSchedule] = useState(false)
+
+    const channels = ["WHATSAPP", "SHORTCODE", "SENDERNAME"];
 
     const currentDateTime = dayjs();
 
@@ -60,7 +63,8 @@ const SendForm = () => {
       content: "",
       name: "",
       description: "",
-      scheduled: ""
+      scheduled: "",
+      channel: ""
     };
     
     const [state, setState] = React.useState(initialState);
@@ -94,7 +98,8 @@ const SendForm = () => {
         service_id: selectedSenderId,
         requestid: randomUuid,
         content: formattedContent,
-        scheduled: value
+        scheduled: value,
+        channel: selectedChannel
     };
   
       const res = broadcastMessages({selectedSenderId,newSms}).then((res) => {
@@ -223,6 +228,26 @@ const SendForm = () => {
                     </MenuItem>
                   ))}
                 </Select>
+                <InputLabel htmlFor="select-channel">
+                      <span style={{ color: "red" }}>*</span>Select Channel
+                    </InputLabel>
+                    <Select
+                      id="select-channel"
+                      value={selectedChannel}
+                      onChange={(event) =>
+                        setSelectedChannel(event.target.value)
+                      }
+                      variant="outlined"
+                      color="secondary"
+                      fullWidth
+                      required
+                    >
+                      {channels.map((channel) => (
+                        <MenuItem key={channel} value={channel}>
+                          {channel}
+                        </MenuItem>
+                      ))}
+                    </Select>
 
                 <InputLabel htmlFor="select-option"><span style={{ color: 'red' }}>*</span>Select Sender Id</InputLabel>
                 <Select
