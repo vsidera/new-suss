@@ -21,7 +21,7 @@ export function loginAction(formValues) {
         
           return {
             errors: {
-              _error: 'The credentials you have entered are not correct.',
+              _error: 'The contacts could not be returned.',
             },
           };
         }   
@@ -33,9 +33,10 @@ export function loginAction(formValues) {
       });
   }
 
-  export function userCreate(formValues) {
+  export async function userCreate(formValues) {
     const userCreateUrl = `${apiUrl.CREATE_USER}/${formValues.app_id}/registration`;
-    const config = authHeaders();
+    try {
+    const config =await authHeaders();
   
     return axios
       .post(userCreateUrl, formValues.newUser, config)
@@ -48,27 +49,27 @@ export function loginAction(formValues) {
         }
         return res;
       })
-      .catch((error) => {
-        if (error.response) {
-        
-          return {
-            errors: {
-              _error: 'The user could not be created.',
-            },
-          };
-        }   
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: 'Network error. Please try again.',
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
-  }  
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
+  }
 
-  export function userAttach(formValues) {
+  export async function userAttach(formValues) {
     console.log("FORMVALUES ARE!!!!!!", formValues)
     const attachUrl = `${apiUrl.USER_ATTACH}/${formValues.app_id}/user/add`;
-    const config = authHeaders();
+    try {
+    const config = await authHeaders();
   
     return axios
       .put(attachUrl, formValues.data, config)
@@ -81,26 +82,26 @@ export function loginAction(formValues) {
         }
         return res;
       })
-      .catch((error) => {
-        if (error.response) {
-        
-          return {
-            errors: {
-              _error: 'The user could not be created.',
-            },
-          };
-        }   
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: 'Network error. Please try again.',
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
-  }  
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
+  }
 
-  export function userSearch(formValues) {
+  export async function userSearch(formValues) {
     const searchUrl = `${apiUrl.USER_SEARCH}/${formValues.app_id}/user/search?email=${formValues.search}`;
-    const config = authHeaders();
+    try {
+    const config = await authHeaders();
   
     return axios
       .get(searchUrl, config)
@@ -113,21 +114,20 @@ export function loginAction(formValues) {
         }
         return res;
       })
-      .catch((error) => {
-        if (error.response) {
-        
-          return {
-            errors: {
-              _error: 'The user could not be created.',
-            },
-          };
-        }   
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: 'Network error. Please try again.',
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
-  }  
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
+  }
 
 

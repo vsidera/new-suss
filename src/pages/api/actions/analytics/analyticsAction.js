@@ -2,9 +2,11 @@ import axios from 'axios';
 import apiUrl from "../../utils/apiUtils/apiUrl";
 import { authHeaders } from '../../../api/utils/headers/headers';
 
-export function unitsExpenditure(formValues) {
+export async function unitsExpenditure(formValues) {
     const appsUrl = `${apiUrl.UNITS_EXPENDITURE}/${formValues.app_id}`;
-    const config = authHeaders();
+
+    try {
+    const config = await authHeaders();
   
     return axios
       .get(appsUrl, config)
@@ -17,26 +19,27 @@ export function unitsExpenditure(formValues) {
         }
         return res;
       })
-      .catch((error) => {
-        if (error.response) {
-        
-          return {
-            errors: {
-              _error: 'The contacts could not be returned.',
-            },
-          };
-        }   
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: 'Network error. Please try again.',
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
   }
 
-  export function deliveryMeter(formValues) {
+  export async function deliveryMeter(formValues) {
     const appsUrl = `${apiUrl.DELIVERY_METER}/${formValues.app_id}?start=${formValues.fromUnix}&end=${formValues.toUnix}`;
-    const config = authHeaders();
+
+    try {
+    const config = await authHeaders();
   
     return axios
       .get(appsUrl, config)
@@ -49,19 +52,18 @@ export function unitsExpenditure(formValues) {
         }
         return res;
       })
-      .catch((error) => {
-        if (error.response) {
-        
-          return {
-            errors: {
-              _error: 'The contacts could not be returned.',
-            },
-          };
-        }   
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: 'Network error. Please try again.',
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
   }
