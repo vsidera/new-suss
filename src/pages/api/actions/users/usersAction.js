@@ -2,10 +2,11 @@ import axios from 'axios';
 import apiUrl from "../../utils/apiUtils/apiUrl";
 import { authHeaders } from '../../utils/headers/headers';
 
-export function usersAction(formValues) {
+export async function usersAction(formValues) {
 
     const usersUrl = `${apiUrl.LIST_USERS}/${formValues.app_id}/user/search?email=a`;
-    const config = authHeaders();
+    try{
+    const config = await authHeaders();
   
     return axios
       .get(usersUrl, config)
@@ -18,19 +19,18 @@ export function usersAction(formValues) {
         }
         return res;
       })
-      .catch((error) => {
-        if (error.response) {
-        
-          return {
-            errors: {
-              _error: 'The groups could not be returned.',
-            },
-          };
-        }   
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: 'Network error. Please try again.',
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
   }

@@ -2,9 +2,11 @@ import axios from 'axios';
 import apiUrl from "../../utils/apiUtils/apiUrl";
 import { authHeaders } from '../../utils/headers/headers';
 
-export function appservicesAction(app_id) {
+export async function appservicesAction(app_id) {
   const appServicesUrl = `${apiUrl.LIST_APP_SERVICES}/${app_id}/service/list`;
-    const config = authHeaders();
+
+  try {
+    const config = await authHeaders();
   
     return axios
       .get(appServicesUrl, config)
@@ -17,19 +19,18 @@ export function appservicesAction(app_id) {
         }
         return res;
       })
-      .catch((error) => {
-        if (error.response) {
-        
-          return {
-            errors: {
-              _error: 'The contacts could not be returned.',
-            },
-          };
-        }   
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: 'Network error. Please try again.',
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
   }
