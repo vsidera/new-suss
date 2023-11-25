@@ -5,6 +5,8 @@ import { authHeaders } from '../../../api/utils/headers/headers';
 export function appsAction(formValues) {
     const appsUrl = `${apiUrl.LIST_APPLICATIONS}/${formValues.app_id}/list?page=${formValues.page}&limit=${formValues.limit}`;
     const config = authHeaders();
+
+    
   
     return axios
       .get(appsUrl, config, formValues)
@@ -34,37 +36,35 @@ export function appsAction(formValues) {
       });
   }
 
-  export function userApps() {
+  export async function userApps() {
     const appsUrl = `${apiUrl.USER_APPS}`;
-    console.log("THE URL IS!!!!!!!", appsUrl)
-    const config = authHeaders();
+    console.log("THE URL IS!!!!!!!", appsUrl);
   
-    return axios
-      .get(appsUrl, config)
-      .then((res) => {
-      
-        if (res.data && res.status === 200) {
-
-            console.log("THE RESPONSE IS !!!!!!!",res)
-          
-        }
-        return res;
-      })
-      .catch((error) => {
-        if (error.response) {
-        
-          return {
-            errors: {
-              _error: 'The contacts could not be returned.',
-            },
-          };
-        }   
+    try {
+      const config = await authHeaders();
+      console.log("THE CONFIG IS !!!!!!!", config);
+  
+      const res = await axios.get(appsUrl, config);
+  
+      if (res.data && res.status === 200) {
+        console.log("THE RESPONSE IS !!!!!!!", res);
+      }
+  
+      return res;
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: 'Network error. Please try again.',
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
   }
 
   export function appCreate(formValues) {
