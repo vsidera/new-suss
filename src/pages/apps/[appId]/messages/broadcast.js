@@ -139,7 +139,7 @@ const SendForm = () => {
 
     const getAppServices = () => {
       
-      appservicesAction(app_id)
+      appservicesAction({selectedChannel,app_id})
         .then((res) => {
           if (res.errors) {
             console.log("AN ERROR HAS OCCURED");
@@ -160,7 +160,7 @@ const SendForm = () => {
 
     useEffect(() => {
       getAppServices();
-    }, [app_id]);
+    }, [app_id, selectedChannel]);
  
     return (
         <MiniDrawer>
