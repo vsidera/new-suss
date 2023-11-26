@@ -93,7 +93,7 @@ const AppServices = () => {
 
   const columns = [
     {
-      name: "appname",
+      name: "sendername",
       label: "Name",
       options: {
         filter: true,
@@ -120,6 +120,25 @@ const AppServices = () => {
       },
     },
     {
+      name: "channel",
+      label: "Channel",
+      options: {
+        filter: true,
+        sort: false,
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "180px",
+            maxWidth: "180px",
+            backgroundColor: "#094C95",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
+        
+      },
+    },
+    {
       name: "telco",
       label: "Telco",
       options: {
@@ -137,27 +156,10 @@ const AppServices = () => {
         }),
       },
     },
-    {
-      name: "sendername",
-      label: "Sender",
-      options: {
-        filter: true,
-        sort: false,
-        setCellHeaderProps: () => ({
-          style: {
-            minWidth: "180px",
-            maxWidth: "180px",
-            backgroundColor: "#094C95",
-            color: "white",
-            fontSize: "0.9rem",
-            lineHeight: 2.0,
-          },
-        }),
-      },
-    },
+   
     {
       name: "appemail",
-      label: "Email",
+      label: "Status",
       options: {
         filter: true,
         sort: false,
@@ -171,6 +173,7 @@ const AppServices = () => {
             lineHeight: 2.0,
           },
         }),
+        customBodyRender: (value) => "ACTIVE"
       },
     },
   ];

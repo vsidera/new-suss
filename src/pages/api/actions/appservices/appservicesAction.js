@@ -2,8 +2,8 @@ import axios from 'axios';
 import apiUrl from "../../utils/apiUtils/apiUrl";
 import { authHeaders } from '../../utils/headers/headers';
 
-export async function appservicesAction(app_id) {
-  const appServicesUrl = `${apiUrl.LIST_APP_SERVICES}/${app_id}/service/list`;
+export async function appservicesAction(formValues) {
+  const appServicesUrl = `${apiUrl.LIST_APP_SERVICES}/${formValues.app_id}/service/list?eq__channel=${formValues.selectedChannel}`;
 
   try {
     const config = await authHeaders();
