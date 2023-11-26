@@ -515,7 +515,7 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
             </ListItemButton>
           </NextLink>
-          <NextLink href="/login" passHref>
+          <NextLink href="/" passHref>
             <Divider />
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
@@ -527,7 +527,7 @@ export default function MiniDrawer({ children }) {
                   style={{ fontSize: 15 }}
                   onClick={handleLogout}
                 >
-                  Logout
+                  Sign Out
                 </Typography>
               </ListItemText>
             </ListItemButton>
