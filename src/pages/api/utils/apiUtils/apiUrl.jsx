@@ -37,7 +37,7 @@ export default {
     USER_ATTACH: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/application`,
     SERVICE_ATTACH: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/application`,
     CONTACTS_ATTACH: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/group`,
-    CREATE_SERVICE: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/service/create`,
+    CREATE_SERVICE: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/service`,
     CREATE_APP: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/application/create`,
     SEND_SMS: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/message`,
     LIST_APPLICATIONS: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/application`,

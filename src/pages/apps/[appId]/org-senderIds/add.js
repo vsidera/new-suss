@@ -14,14 +14,19 @@ import {
 } from "@mui/material";
 import SnackbarAlert from "../../../../components/utils/snackbar";
 import { serviceCreate } from "../../../api/actions/services/servicesAction";
+import { useRouter } from "next/router";
 
 const AddSenderId = () => {
+  const router = useRouter();
+
   const [isSnackBarAlertOpen, setIsSnackBarAlertOpen] = useState(false);
   const [eventType, setEventType] = useState("");
   const [eventMessage, setEventMessage] = useState("");
   const [eventTitle, setEventTitle] = useState("");
   const [isButtonClicked, setIsButtonClicked] = useState(false);
   const [selectedChannel, setSelectedChannel] = useState("");
+
+  const app_id = router.query.appId;
 
   const channels = ["WHATSAPP", "SHORTCODE", "SENDERNAME"];
 
@@ -50,7 +55,7 @@ const AddSenderId = () => {
       channel: selectedChannel
     };
 
-    const res = serviceCreate(newService).then((res) => {
+    const res = serviceCreate({app_id,newService}).then((res) => {
       if (res.status === 201) {
         setEventType("success");
         setEventMessage("Service Successfully Created");

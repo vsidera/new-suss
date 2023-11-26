@@ -35,12 +35,12 @@ export async function servicesAction(formValues) {
   }
 
   export async function serviceCreate(formValues) {
-    const appCreateUrl = apiUrl.CREATE_SERVICE;
+    const appCreateUrl = `${apiUrl.CREATE_SERVICE}/${formValues.app_id}/create`;
     try{
     const config = await authHeaders();
   
     return axios
-      .post(appCreateUrl, formValues, config)
+      .post(appCreateUrl, formValues.newService, config)
       .then((res) => {
       
         if (res.data && res.status === 200) {
