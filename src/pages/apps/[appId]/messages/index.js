@@ -196,6 +196,24 @@ const Messages = () => {
       }
      },
      {
+      name: "channel",
+      label: "CHANNEL",
+      options: {
+       filter: true,
+       sort: false,
+       setCellHeaderProps: () => ({
+         style: {
+           minWidth: "120px",
+           maxWidth: "120px",
+           backgroundColor: "#094C95",
+           color: "white",
+           fontSize: "0.9rem",
+           lineHeight: 2.0,
+         },
+       }),
+      }
+     },
+     {
       name: "status_desc",
       label: "STATUS",
       options: {
