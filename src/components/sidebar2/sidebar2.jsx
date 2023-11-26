@@ -153,6 +153,7 @@ export default function MiniDrawer({ children }) {
   };
 
   const handleLogout = (e) => {
+    e.preventDefault()
     localStorage.clear();
     signOut();
   };
@@ -402,6 +403,7 @@ export default function MiniDrawer({ children }) {
               </Collapse>
             </NextLink>
           {/* </NextLink> */}
+         
           <NextLink href={`/apps/${appId}/org-senderIds`} passHref>
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
@@ -409,11 +411,27 @@ export default function MiniDrawer({ children }) {
               </ListItemIcon>
               <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Sender Ids
+                  List Sender Ids
                 </Typography>
               </ListItemText>
             </ListItemButton>
           </NextLink>
+          <NextLink href={`/apps/${appId}/org-senderIds`} passHref>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                    <ListIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  List Sender Ids
+                </Typography>
+              </ListItemText>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </NextLink>
           <NextLink href={`/apps/${appId}/org-senderIds/add`} passHref>
               <Collapse in={open1} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>

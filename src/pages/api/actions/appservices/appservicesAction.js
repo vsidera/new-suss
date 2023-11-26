@@ -3,8 +3,17 @@ import apiUrl from "../../utils/apiUtils/apiUrl";
 import { authHeaders } from '../../utils/headers/headers';
 
 export async function appservicesAction(formValues) {
-  const appServicesUrl = `${apiUrl.LIST_APP_SERVICES}/${formValues.app_id}/service/list?eq__channel=${formValues.selectedChannel}`;
 
+  let appServicesUrl = ""
+
+  if (formValues.selectedChannel){
+    appServicesUrl = `${apiUrl.LIST_APP_SERVICES}/${formValues.app_id}/service/list?eq__channel=${formValues.selectedChannel}`;
+  }
+  else{
+    appServicesUrl = `${apiUrl.LIST_APP_SERVICES}/${formValues.app_id}/service/list`;
+
+  }
+  
   try {
     const config = await authHeaders();
   

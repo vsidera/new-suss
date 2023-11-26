@@ -71,9 +71,11 @@ const AppServices = () => {
   const [appservices, setAppservices] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const selectedChannel = ""
+
   const getAppServices = () => {
 
-    appservicesAction(app_id)
+    appservicesAction({app_id, selectedChannel})
       .then((res) => {
         if (res.errors) {
           console.log("AN ERROR HAS OCCURED");

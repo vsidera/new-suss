@@ -195,9 +195,28 @@ const Messages = () => {
        }),
       }
      },
+     
      {
       name: "channel",
       label: "CHANNEL",
+      options: {
+       filter: true,
+       sort: false,
+       setCellHeaderProps: () => ({
+         style: {
+           minWidth: "120px",
+           maxWidth: "120px",
+           backgroundColor: "#094C95",
+           color: "white",
+           fontSize: "0.9rem",
+           lineHeight: 2.0,
+         },
+       }),
+      }
+     },
+     {
+      name: "direction",
+      label: "DIRECTION",
       options: {
        filter: true,
        sort: false,
@@ -233,16 +252,18 @@ const Messages = () => {
           console.log("VALUE OF STATUS IS!!!!!!", value)
           if (value == 'SUCCESS') {
             return { value: 'SUCCESS', style: { color: '#36970E' } };
-          } else if (value == 'FAILED') {
-            return { value: 'FAILED', style: { color: '#970E21' } };
-          } else if (value == 'Accepted for processing') {
-            return { value: 'PROCESSING', style: { color: '#0E1D97' } };
+          } else if (value == 'REJECTED' || value == 'REJECTED_DESTINATION_NOT_REGISTERED' || value == 'Message sent not delivered' || value == 'Failed to authenticate sms on provider') {
+            return { value: 'REJECTED', style: { color: '#970E21' } };
+          // } else if (value == 'Accepted for processing') {
+          //   return { value: 'PROCESSING', style: { color: '#0E1D97' } };
+          // } else if (value == 'DELIVERED') {
+          //   return { value: 'DELIVERED', style: { color: '#36970E' } };
           } else {
-            return { value: 'FAILED AUTHENTICATION'};
+            return { value: 'FAILED AUTHENTICATION', style: { color: '#0E1D97' }};
           }
         },
-        customBodyRender: (value) =>
-        (value =='SUCCESS' ? 'SUCCESS' : value == 'Failed to send sms to provider' ? 'FAILED': value == 'Accepted for processing' ? 'PROCESSING' : 'FAILED AUTHENTICATION')
+        // customBodyRender: (value) =>
+        // (value =='SUCCESS' ? 'SUCCESS' : value == 'Failed to send sms to provider' ? 'FAILED': value == 'Accepted for processing' ? 'PROCESSING' : 'FAILED AUTHENTICATION')
        
       },
     },
