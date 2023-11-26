@@ -414,6 +414,22 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
             </ListItemButton>
           </NextLink>
+          <NextLink href={`/apps/${appId}/org-senderIds/add`} passHref>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                    <AddIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Add Sender Id
+                </Typography>
+              </ListItemText>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </NextLink>
           <NextLink href={`/apps/${appId}/analytics`} passHref>
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
