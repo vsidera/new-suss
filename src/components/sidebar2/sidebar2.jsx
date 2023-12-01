@@ -401,9 +401,7 @@ export default function MiniDrawer({ children }) {
                   </ListItemButton>
                 </List>
               </Collapse>
-            </NextLink>
-          {/* </NextLink> */}
-         
+            </NextLink>         
           <NextLink href={`/apps/${appId}/org-senderIds`} passHref>
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>

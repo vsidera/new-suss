@@ -25,8 +25,10 @@ export default function Applications() {
   const router = useRouter();
   const backUrl = `/images/back.jpg`;
 
+  const email = session && session.user.email
+
   const getApps = () => {
-    userApps()
+    userApps({email})
       .then((res) => {
         if (res.errors) {
           console.log("AN ERROR HAS OCCURED");

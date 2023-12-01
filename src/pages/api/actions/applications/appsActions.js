@@ -35,8 +35,8 @@ export async function appsAction(formValues) {
     }
   }
   
-  export async function userApps() {
-    const appsUrl = `${apiUrl.USER_APPS}`;
+  export async function userApps(formValues) {
+    const appsUrl = `${apiUrl.USER_APPS}?eq__email=${formValues.email}`;
     console.log("THE URL IS!!!!!!!", appsUrl);
   
     try {
