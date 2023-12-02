@@ -120,7 +120,7 @@ export default function Applications() {
                 SELECT AN ORGANISATION
               </MenuItem>
               {apps.map((app, index) => (
-                <MenuItem value={app.code} key={index}>
+                <MenuItem value={app.id} key={index}>
                   {app.name}
                 </MenuItem>
               ))}
