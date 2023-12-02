@@ -165,10 +165,10 @@ export default function MiniDrawer({ children }) {
         <Toolbar 
         sx={{
           backgroundColor: "#FFFFFF",
-          backgroundImage: "url('/images/banner.jpg')",
-          backgroundPosition: "center",
-          position: 'relative',
-          overflow: 'hidden', // Hide overflow for child elements
+          // backgroundImage: "url('/images/banner.jpg')",
+          // backgroundPosition: "center",
+          // position: 'relative',
+          // overflow: 'hidden', // Hide overflow for child elements
         }}
         >
           <IconButton
@@ -184,6 +184,15 @@ export default function MiniDrawer({ children }) {
           >
             <MenuIcon />
           </IconButton>
+          <Typography
+            variant="caption"
+            noWrap
+            component="div"
+            sx={{ color: "#000F2D" }}
+          >
+            Unlock the Power of Communication: Send Messages That Make an
+            Impact!
+          </Typography>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -378,7 +387,7 @@ export default function MiniDrawer({ children }) {
                     </ListItemIcon>
                     <ListItemText>
                       <Typography variant="body2" style={{ fontSize: 15 }}>
-                        Send SMS
+                        Send Message
                       </Typography>
                     </ListItemText>
                   </ListItemButton>
@@ -394,7 +403,7 @@ export default function MiniDrawer({ children }) {
                     </ListItemIcon>
                     <ListItemText>
                       <Typography variant="body2" style={{ fontSize: 15 }}>
-                        Send Bulk SMS
+                        Send Bulk Messages
                       </Typography>
                     </ListItemText>
                   </ListItemButton>
