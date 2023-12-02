@@ -162,7 +162,15 @@ export default function MiniDrawer({ children }) {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar sx={{ backgroundColor: "#FFFFFF" }}>
+        <Toolbar 
+        sx={{
+          backgroundColor: "#FFFFFF",
+          backgroundImage: "url('/images/banner.jpg')",
+          backgroundPosition: "center",
+          position: 'relative',
+          overflow: 'hidden', // Hide overflow for child elements
+        }}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -176,15 +184,6 @@ export default function MiniDrawer({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="caption"
-            noWrap
-            component="div"
-            sx={{ color: "#000F2D" }}
-          >
-            Unlock the Power of Communication: Send Messages That Make an
-            Impact!
-          </Typography>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
