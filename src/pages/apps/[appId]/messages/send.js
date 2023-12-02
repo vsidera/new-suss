@@ -263,7 +263,7 @@ const SendForm = () => {
                         onChange={handleSwitchChange}
                       />
                     }
-                    label="*Turn on to send scheduled SMS*"
+                    label="*Turn on to send scheduled Message*"
                   />
                 </FormGroup>
                 {schedule ? (
