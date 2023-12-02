@@ -63,9 +63,9 @@ export default function Applications() {
   };
 
   const handleApply = () => {
-    const selectedApp = apps.find((app) => app.code === selectedAppCode);
+    const selectedApp = apps.find((app) => app.id === selectedAppCode);
     if (selectedApp) {
-      handleAppClick(selectedApp.code);
+      handleAppClick(selectedApp.id);
     }
   };
 
