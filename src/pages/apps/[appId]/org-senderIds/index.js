@@ -175,6 +175,15 @@ const AppServices = () => {
             lineHeight: 2.0,
           },
         }),
+        setCellProps: () => {
+ 
+          return {
+            style: {
+              color: "green", // Add the fontWeight property to make the text bold
+            },
+          };
+  
+      },
         customBodyRender: (value) => "ACTIVE"
       },
     },
@@ -257,7 +266,7 @@ const AppServices = () => {
   return (
     <MiniDrawer>
       <div className="m-16">
-      <h2 className='mt-4 text-xl font-semibold'>Organisation Sender Ids</h2>
+      <h2 className='mt-4 text-xl font-semibold'>Sender Ids</h2>
             <p className='mb-24 text-gray-700'>A list of the organisation's sender Ids</p>
       
       <div className="mt-4">

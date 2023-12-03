@@ -17,6 +17,7 @@ export default function Login() {
     }
   }, [status]);
   const logoUrl = `/images/logo.jpg`;
+  const iconSize = 96;
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -25,17 +26,17 @@ export default function Login() {
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
               <div className="flex flex-col items-center justify-center mb-4">
                 <img src={logoUrl} alt="Logo" />
-                {/* <AccountCircleIcon/>
-                <a
-                  href="/api/auth/signin"
-                  className="mt-2 text-blue-500 hover:underline"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    signIn("auth0");
-                  }}
-                >
-                  Log in
-                </a> */}
+                <div className="mt-4">
+                <AccountCircleIcon style={{ fontSize: `${iconSize}px` }} />
+                </div>
+                
+ 
+                <p className="mt-4 text-xl ">
+                  Welcome Back !
+                </p>
+                <p className="mt-4 text-sm ">
+                Sign in to your account to continue
+                </p>
                 <button
                 href="/api/auth/signin"
                 type="submit"
