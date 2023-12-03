@@ -120,7 +120,7 @@ const AddSenderId = () => {
                   type="text"
                   variant="outlined"
                   color="secondary"
-                  label="Sender"
+                  label="Sender Id"
                   onChange={handleChange}
                   value={state.sender}
                   name="sender"

@@ -47,16 +47,19 @@ const SendForm = () => {
   const currentDateTime = dayjs();
 
   const ImportantText = styled.span`
+    font-weight: semibold;
     font-size: 0.8em; /* Adjust the font size as needed */
     // background-color: yellow; /* You can change the background color to highlight the text */
-    padding: 2px 4px; /* Add padding for better visual appearance */
-    border: 1px solid #000; /* Add a border for better visibility */
-
+    // padding: 1px 2px; /* Add padding for better visual appearance */
+    // border: 1px solid #000; /* Add a border for better visibility */
+    em {
+      font-style: italic;
+    }
     /* Additional styles can be added as needed */
   `;
 
   const [value, setValue] = useState(currentDateTime);
-  console.log("NEW VALUE!!!!!!!!", value);
+  // console.log("NEW VALUE!!!!!!!!", value);
   const handleDateTimeChange = (newValue) => {
     setValue(newValue);
   };
@@ -146,7 +149,7 @@ const SendForm = () => {
       <React.Fragment>
         <div className="m-16">
           <h2 className="mt-4 text-xl font-semibold">Send Message</h2>
-          <p className="mb-12 text-gray-700">
+          <p className="mb-16 text-gray-700">
             Send message to a single contact
           </p>
           <Card>
@@ -242,18 +245,7 @@ const SendForm = () => {
                     borderRadius: "4px",
                   }}
                 />
-                <ImportantText>
-                  **To send an sms with dynamic attributes, first identify the
-                  attributes the contacts have available(You can find them on
-                  the contact list under 'More'). These will be the column names
-                  in the csv that was used to upload contacts.**
-                  <br />
-                  **Paste your message in the message field. Each dynamic
-                  attribute in the message should be CAPITALISED and enclosed by
-                  the Caret/Hat symbol(^). For example , if my contacts have a
-                  firstname attribute, this will be put in the message as-
-                  ^FIRSTNAME^. **
-                </ImportantText>
+                
 
                 <FormGroup>
                   <FormControlLabel
@@ -276,7 +268,7 @@ const SendForm = () => {
                 ) : (
                   <></>
                 )}
-
+                <div>
                 <button
                   className="bg-blue-900 text-white font-normal my-4 py-1.5 px-5 rounded text-[14px]"
                   onClick={(e) => {
@@ -286,6 +278,21 @@ const SendForm = () => {
                 >
                   {isButtonClicked ? "SENDING..." : "SEND"}
                 </button>
+                </div>
+
+                <ImportantText>
+                  To send an sms with dynamic attributes, first identify the
+                  attributes the contacts have available(You can find them on
+                  the contact list under 'More').<br/> These will be the column names
+                  in the csv that was used to upload contacts.
+                  <br />
+                  Paste your message in the message field. Each dynamic
+                  attribute in the message should be CAPITALISED and enclosed by
+                  the Caret/Hat symbol(^).<br/> For example , if my contacts have a
+                  firstname attribute, this will be put in the message as-
+                  ^FIRSTNAME^. 
+                </ImportantText>
+                
               </form>
             </CardContent>
           </Card>
