@@ -189,6 +189,7 @@ export default function MiniDrawer({ children }) {
         height="100%" // Set the height to 100% of the parent div (Toolbar)
         style={{ position: "absolute", top: 0, left: 0 }}
         loop
+        autoPlay
         // controls // Show video controls (play, pause, etc.)
       >
         <source src="/videos/video.mp4" type="video/mp4" />
