@@ -184,15 +184,16 @@ export default function MiniDrawer({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="caption"
-            noWrap
-            component="div"
-            sx={{ color: "#000F2D" }}
-          >
-            Unlock the Power of Communication: Send Messages That Make an
-            Impact!
-          </Typography>
+          <video
+        width="100%" // Set the width to 100% of the parent div (Toolbar)
+        height="100%" // Set the height to 100% of the parent div (Toolbar)
+        style={{ position: "absolute", top: 0, left: 0 }}
+        loop
+        // controls // Show video controls (play, pause, etc.)
+      >
+        <source src="/videos/video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
