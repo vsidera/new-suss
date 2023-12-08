@@ -25,6 +25,7 @@ const SendForm = () => {
 
     const [groups, setGroups] = useState([]);
     const [selectedGroup, setSelectedGroup] = useState("");
+    const [selectedChannel, setSelectedChannel] = useState("");
 
     const [appservices, setAppservices] = useState([]);
     const [selectedSenderId, setSelectedSenderId] = useState("");
@@ -33,6 +34,8 @@ const SendForm = () => {
     const [limit, setLimit] = useState(10);
 
     const [schedule, setSchedule] = useState(false)
+
+    const channels = ["WHATSAPP", "SHORTCODE", "SENDERNAME"];
 
     const currentDateTime = dayjs();
 
@@ -48,11 +51,14 @@ const SendForm = () => {
     };
 
     const ImportantText = styled.span`
+    font-weight: semibold;
     font-size: 0.8em; /* Adjust the font size as needed */
     // background-color: yellow; /* You can change the background color to highlight the text */
-    padding: 2px 4px; /* Add padding for better visual appearance */
-    border: 1px solid #000; /* Add a border for better visibility */
-  
+    // padding: 1px 2px; /* Add padding for better visual appearance */
+    // border: 1px solid #000; /* Add a border for better visibility */
+    em {
+      font-style: italic;
+    }
     /* Additional styles can be added as needed */
   `;
 
@@ -60,7 +66,8 @@ const SendForm = () => {
       content: "",
       name: "",
       description: "",
-      scheduled: ""
+      scheduled: "",
+      channel: ""
     };
     
     const [state, setState] = React.useState(initialState);
@@ -94,7 +101,8 @@ const SendForm = () => {
         service_id: selectedSenderId,
         requestid: randomUuid,
         content: formattedContent,
-        scheduled: value
+        scheduled: value,
+        channel: selectedChannel
     };
   
       const res = broadcastMessages({selectedSenderId,newSms}).then((res) => {
@@ -134,7 +142,7 @@ const SendForm = () => {
 
     const getAppServices = () => {
       
-      appservicesAction(app_id)
+      appservicesAction({selectedChannel,app_id})
         .then((res) => {
           if (res.errors) {
             console.log("AN ERROR HAS OCCURED");
@@ -155,7 +163,7 @@ const SendForm = () => {
 
     useEffect(() => {
       getAppServices();
-    }, [app_id]);
+    }, [app_id, selectedChannel]);
  
     return (
         <MiniDrawer>
@@ -169,7 +177,7 @@ const SendForm = () => {
         <React.Fragment>
             <div className='m-16'>
             <h2 className='mt-4 text-xl font-semibold'>Broadcast Mesage</h2>
-            <p className='mb-24 text-gray-700'>Send message to a group of contacts</p>
+            <p className='mb-16 text-gray-700'>Send message to a group of contacts</p>
             <Card>
             <CardContent>
             <Typography variant="body1" sx={{ mb: 2 }}>
@@ -177,7 +185,7 @@ const SendForm = () => {
             </Typography>
                 <form className="m-4" onSubmit={handleSubmit}>
 
-                <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
+                <Stack spacing={2} direction="row" sx={{ marginBottom: 2 }}>
                   <TextField
                     type="text"
                     name="name"
@@ -203,7 +211,28 @@ const SendForm = () => {
                     required
                   />
                 </Stack>
-
+                
+                <InputLabel htmlFor="select-channel">
+                      <span style={{ color: "red" }}>*</span>Select Channel
+                    </InputLabel>
+                    <Select
+                      id="select-channel"
+                      value={selectedChannel}
+                      onChange={(event) =>
+                        setSelectedChannel(event.target.value)
+                      }
+                      variant="outlined"
+                      color="secondary"
+                      fullWidth
+                      required
+                      sx={{ mb: 2 }}
+                    >
+                      {channels.map((channel) => (
+                        <MenuItem key={channel} value={channel}>
+                          {channel}
+                        </MenuItem>
+                      ))}
+                    </Select>
                 <InputLabel htmlFor="select-option">
                   <span style={{ color: "red" }}>*</span>Select Group
                 </InputLabel>
@@ -215,7 +244,7 @@ const SendForm = () => {
                   color="secondary"
                   fullWidth
                   required
-                  sx={{ mb: 4 }}
+                  sx={{ mb: 2 }}
                 >
                   {groups.map((group) => (
                     <MenuItem key={group.group_id} value={group.group_id}>
@@ -223,6 +252,7 @@ const SendForm = () => {
                     </MenuItem>
                   ))}
                 </Select>
+                
 
                 <InputLabel htmlFor="select-option"><span style={{ color: 'red' }}>*</span>Select Sender Id</InputLabel>
                 <Select
@@ -233,7 +263,7 @@ const SendForm = () => {
                     color='secondary'
                     fullWidth
                     required
-                    sx={{ mb: 4 }}
+                    sx={{ mb: 2 }}
                 >
                     {appservices.map((appservice) => (
                     <MenuItem key={appservice.service_id} value={appservice.service_id}>
@@ -259,15 +289,7 @@ const SendForm = () => {
                       }}
                       inputProps={{ maxLength: 20 }}
                     />
-                    <ImportantText>
-                     **To send an sms with dynamic attributes, first identify the attributes the contacts have available(You can find them on the contact list under 'More'). These will be the column names in the csv that was used to upload contacts.** 
-                     <br/>
-                </ImportantText>
-                     
-                <ImportantText>
-                **Paste your message in the message field. Each dynamic attribute in the message should be CAPITALISED and enclosed by the Caret/Hat symbol(^).
-                     For example , if my contacts have a firstname attribute, this will be put in the message as- ^FIRSTNAME^. ** 
-      </ImportantText>
+                   
                    <FormGroup>
                   <FormControlLabel control={<Switch checked={schedule} onChange={handleSwitchChange} />} label="*Turn on to send scheduled SMS*" />
                 </FormGroup>
@@ -277,11 +299,23 @@ const SendForm = () => {
                     />
                   </div>   : <></> 
                }     
-               <div className='mt-4'> 
+               <div className='mt-2 mb-2'> 
                <Button variant="contained" sx={{ backgroundColor: '#094C95 !important', color: '#FFFFFF !important', '&:hover': { backgroundColor: '#001041 !important' } }} type="submit">
                {isButtonClicked ? "SENDING..." : "SEND"}
                 </Button>
                 </div>
+                <ImportantText>
+                  To send an sms with dynamic attributes, first identify the
+                  attributes the contacts have available(You can find them on
+                  the contact list under 'More').<br/> These will be the column names
+                  in the csv that was used to upload contacts.
+                  <br />
+                  Paste your message in the message field. Each dynamic
+                  attribute in the message should be CAPITALISED and enclosed by
+                  the Caret/Hat symbol(^).<br/> For example , if my contacts have a
+                  firstname attribute, this will be put in the message as-
+                  ^FIRSTNAME^. 
+                </ImportantText>
                 </form>
             </CardContent>
             </Card>

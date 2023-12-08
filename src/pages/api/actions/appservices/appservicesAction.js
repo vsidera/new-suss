@@ -2,9 +2,20 @@ import axios from 'axios';
 import apiUrl from "../../utils/apiUtils/apiUrl";
 import { authHeaders } from '../../utils/headers/headers';
 
-export function appservicesAction(app_id) {
-  const appServicesUrl = `${apiUrl.LIST_APP_SERVICES}/${app_id}/service/list`;
-    const config = authHeaders();
+export async function appservicesAction(formValues) {
+
+  let appServicesUrl = ""
+
+  if (formValues.selectedChannel){
+    appServicesUrl = `${apiUrl.LIST_APP_SERVICES}/${formValues.app_id}/service/list?eq__channel=${formValues.selectedChannel}`;
+  }
+  else{
+    appServicesUrl = `${apiUrl.LIST_APP_SERVICES}/${formValues.app_id}/service/list`;
+
+  }
+  
+  try {
+    const config = await authHeaders();
   
     return axios
       .get(appServicesUrl, config)
@@ -17,19 +28,18 @@ export function appservicesAction(app_id) {
         }
         return res;
       })
-      .catch((error) => {
-        if (error.response) {
-        
-          return {
-            errors: {
-              _error: 'The contacts could not be returned.',
-            },
-          };
-        }   
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: 'Network error. Please try again.',
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
   }

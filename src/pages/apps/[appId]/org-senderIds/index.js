@@ -71,9 +71,11 @@ const AppServices = () => {
   const [appservices, setAppservices] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const selectedChannel = ""
+
   const getAppServices = () => {
 
-    appservicesAction(app_id)
+    appservicesAction({app_id, selectedChannel})
       .then((res) => {
         if (res.errors) {
           console.log("AN ERROR HAS OCCURED");
@@ -93,7 +95,7 @@ const AppServices = () => {
 
   const columns = [
     {
-      name: "appname",
+      name: "sendername",
       label: "Name",
       options: {
         filter: true,
@@ -120,6 +122,25 @@ const AppServices = () => {
       },
     },
     {
+      name: "channel",
+      label: "Channel",
+      options: {
+        filter: true,
+        sort: false,
+        setCellHeaderProps: () => ({
+          style: {
+            minWidth: "180px",
+            maxWidth: "180px",
+            backgroundColor: "#094C95",
+            color: "white",
+            fontSize: "0.9rem",
+            lineHeight: 2.0,
+          },
+        }),
+        
+      },
+    },
+    {
       name: "telco",
       label: "Telco",
       options: {
@@ -137,27 +158,10 @@ const AppServices = () => {
         }),
       },
     },
-    {
-      name: "sendername",
-      label: "Sender",
-      options: {
-        filter: true,
-        sort: false,
-        setCellHeaderProps: () => ({
-          style: {
-            minWidth: "180px",
-            maxWidth: "180px",
-            backgroundColor: "#094C95",
-            color: "white",
-            fontSize: "0.9rem",
-            lineHeight: 2.0,
-          },
-        }),
-      },
-    },
+   
     {
       name: "appemail",
-      label: "Email",
+      label: "Status",
       options: {
         filter: true,
         sort: false,
@@ -171,6 +175,16 @@ const AppServices = () => {
             lineHeight: 2.0,
           },
         }),
+        setCellProps: () => {
+ 
+          return {
+            style: {
+              color: "green", // Add the fontWeight property to make the text bold
+            },
+          };
+  
+      },
+        customBodyRender: (value) => "ACTIVE"
       },
     },
   ];
@@ -252,7 +266,7 @@ const AppServices = () => {
   return (
     <MiniDrawer>
       <div className="m-16">
-      <h2 className='mt-4 text-xl font-semibold'>Organisation Sender Ids</h2>
+      <h2 className='mt-4 text-xl font-semibold'>Sender Ids</h2>
             <p className='mb-24 text-gray-700'>A list of the organisation's sender Ids</p>
       
       <div className="mt-4">

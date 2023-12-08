@@ -153,6 +153,7 @@ export default function MiniDrawer({ children }) {
   };
 
   const handleLogout = (e) => {
+    e.preventDefault()
     localStorage.clear();
     signOut();
   };
@@ -161,7 +162,15 @@ export default function MiniDrawer({ children }) {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar sx={{ backgroundColor: "#FFFFFF" }}>
+        <Toolbar 
+        sx={{
+          backgroundColor: "#FFFFFF",
+          // backgroundImage: "url('/images/banner.jpg')",
+          // backgroundPosition: "center",
+          // position: 'relative',
+          // overflow: 'hidden', // Hide overflow for child elements
+        }}
+        >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -175,15 +184,17 @@ export default function MiniDrawer({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="caption"
-            noWrap
-            component="div"
-            sx={{ color: "#000F2D" }}
-          >
-            Unlock the Power of Communication: Send Messages That Make an
-            Impact!
-          </Typography>
+          <video
+        width="100%" // Set the width to 100% of the parent div (Toolbar)
+        height="100%" // Set the height to 100% of the parent div (Toolbar)
+        style={{ position: "absolute", top: 0, left: 0 }}
+        loop
+        autoPlay
+        // controls // Show video controls (play, pause, etc.)
+      >
+        <source src="/videos/video.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
@@ -378,7 +389,7 @@ export default function MiniDrawer({ children }) {
                     </ListItemIcon>
                     <ListItemText>
                       <Typography variant="body2" style={{ fontSize: 15 }}>
-                        Send SMS
+                        Send Message
                       </Typography>
                     </ListItemText>
                   </ListItemButton>
@@ -394,14 +405,13 @@ export default function MiniDrawer({ children }) {
                     </ListItemIcon>
                     <ListItemText>
                       <Typography variant="body2" style={{ fontSize: 15 }}>
-                        Send Bulk SMS
+                        Send Bulk Messages
                       </Typography>
                     </ListItemText>
                   </ListItemButton>
                 </List>
               </Collapse>
-            </NextLink>
-          {/* </NextLink> */}
+            </NextLink>         
           <NextLink href={`/apps/${appId}/org-senderIds`} passHref>
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
@@ -409,11 +419,43 @@ export default function MiniDrawer({ children }) {
               </ListItemIcon>
               <ListItemText>
                 <Typography variant="body2" style={{ fontSize: 15 }}>
-                  Sender Ids
+                  List Sender Ids
                 </Typography>
               </ListItemText>
             </ListItemButton>
           </NextLink>
+          <NextLink href={`/apps/${appId}/org-senderIds`} passHref>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                    <ListIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  List Sender Ids
+                </Typography>
+              </ListItemText>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </NextLink>
+          <NextLink href={`/apps/${appId}/org-senderIds/add`} passHref>
+              <Collapse in={open1} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                  <ListItemButton sx={{ pl: 4 }}>
+                    <ListItemIcon style={{ color: "#FFFFFF8F" }}>
+                    <AddIcon />
+                    </ListItemIcon>
+                    <ListItemText>
+                <Typography variant="body2" style={{ fontSize: 15 }}>
+                  Add Sender Id
+                </Typography>
+              </ListItemText>
+                  </ListItemButton>
+                </List>
+              </Collapse>
+            </NextLink>
           <NextLink href={`/apps/${appId}/analytics`} passHref>
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
@@ -499,7 +541,7 @@ export default function MiniDrawer({ children }) {
               </ListItemText>
             </ListItemButton>
           </NextLink>
-          <NextLink href="/login" passHref>
+          <NextLink href="/" passHref>
             <Divider />
             <ListItemButton>
               <ListItemIcon style={{ color: "#FFFFFF8F" }}>
@@ -511,7 +553,7 @@ export default function MiniDrawer({ children }) {
                   style={{ fontSize: 15 }}
                   onClick={handleLogout}
                 >
-                  Logout
+                  Sign Out
                 </Typography>
               </ListItemText>
             </ListItemButton>

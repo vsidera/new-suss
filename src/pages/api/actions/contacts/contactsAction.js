@@ -2,10 +2,12 @@ import axios from 'axios';
 import apiUrl from "../../utils/apiUtils/apiUrl";
 import { authHeaders } from '../../utils/headers/headers';
 
-export function contactsAction(formValues) {
+export async function contactsAction(formValues) {
     console.log("FORMVALUES ARE!!!!!!!88!!!!!!",formValues)
     const contactsUrl = `${apiUrl.LIST_CONTACTS}/${formValues.app_id}/list?page=${formValues.page}&limit=${formValues.limit}`;
-    const config = authHeaders();
+
+    try {
+    const config =await authHeaders();
   
     return axios
       .get(contactsUrl, config)
@@ -18,27 +20,28 @@ export function contactsAction(formValues) {
         }
         return res;
       })
-      .catch((error) => {
-        if (error.response) {
-        
-          return {
-            errors: {
-              _error: 'The contacts could not be returned.',
-            },
-          };
-        }   
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: 'Network error. Please try again.',
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
   }
 
-export function contactCreate(formValues) {
+export async function contactCreate(formValues) {
     
     const contactCreateUrl = `${apiUrl.CREATE_CONTACT}/${formValues.app_id}/create`;
-    const config = authHeaders();
+
+    try {
+    const config = await authHeaders();
   
     return axios
       .post(contactCreateUrl, formValues.newContact, config)
@@ -51,28 +54,28 @@ export function contactCreate(formValues) {
         }
         return res;
       })
-      .catch((error) => {
-        if (error.response) {
-        
-          return {
-            errors: {
-              _error: 'The app could not be created.',
-            },
-          };
-        }   
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: 'Network error. Please try again.',
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
-  }  
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
+  }
 
-  export function contactsUpload(formValues) {
+  export async function contactsUpload(formValues) {
     const uploadContactsUrl = `${apiUrl.UPLOAD_CONTACTS}/${formValues.app_id}/bulk/upload/contact/${formValues.selectedGroup}`;
+    try {
     const selectedFile = formValues.contacts;
   
-    const headers = {
+    const headers = await {
       ...authHeaders().headers, // Extract the headers from authHeaders() object
     };
 
@@ -90,19 +93,26 @@ export function contactCreate(formValues) {
         console.log("Response:", res.data);
         return res;
       })
-      .catch((error) => {
-        console.log("Error:", error);
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: "Network error. Please try again.",
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
   }
 
-  export function contactsAttach(formValues) {
+  export async function contactsAttach(formValues) {
     const attachUrl = `${apiUrl.CONTACTS_ATTACH}/${formValues.app_id}/attach/contact`;
-    const config = authHeaders();
+    try {
+    const config = await authHeaders();
   
     return axios
       .post(attachUrl, formValues.data, config)
@@ -115,22 +125,21 @@ export function contactCreate(formValues) {
         }
         return res;
       })
-      .catch((error) => {
-        if (error.response) {
-        
-          return {
-            errors: {
-              _error: 'The user could not be created.',
-            },
-          };
-        }   
+    } catch (error) {
+      if (error.response) {
         return {
           errors: {
-            _error: 'Network error. Please try again.',
+            _error: 'The contacts could not be returned.',
           },
         };
-      });
-  }  
+      }
+      return {
+        errors: {
+          _error: 'Network error. Please try again.',
+        },
+      };
+    }
+  }
   
   
   
