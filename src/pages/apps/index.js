@@ -25,7 +25,7 @@ export default function Applications() {
   const router = useRouter();
   const backUrl = `/images/back.jpg`;
 
-  const email = session && session.user.email
+  const email = session && session.user && session.user.email
 
   const getApps = () => {
     userApps({email})
@@ -82,7 +82,7 @@ export default function Applications() {
 
   useEffect(() => {
     getApps();
-  }, []);
+  }, [session]);
 
   
   
