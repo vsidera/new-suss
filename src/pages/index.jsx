@@ -9,13 +9,13 @@ export default function Login() {
 
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
-  const { status } = useSession();
+  const {  data: session, status } = useSession();
   console.log("THE STATUS IS!!!!!!!!!!!!",status)
   useEffect(() => {
-    if (status === "authenticated") {
+    if (status === "authenticated" && session) {
       void router.push("/apps");
     }
-  }, [status]);
+  }, [status, session]);
   const logoUrl = `/images/logo.jpg`;
   const iconSize = 96;
   return (
