@@ -14,10 +14,19 @@ export default function Login() {
   useEffect(() => {
     if (status === "authenticated" && session) {
       void router.push("/apps");
+      setIsButtonClicked(false);
     }
+    
   }, [status, session]);
   const logoUrl = `/images/logo.jpg`;
   const iconSize = 96;
+
+  const greenButton = {
+    backgroundColor: "green",
+    color: "white",
+  };
+
+
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900">
@@ -48,7 +57,9 @@ export default function Login() {
                 }}      
                 onClick={(e) => {
                   e.preventDefault();
+                  setIsButtonClicked(true);
                   signIn("auth0");
+                  
                 }}
               >
                 {isButtonClicked ? "authenticating..." : "Sign In"}
