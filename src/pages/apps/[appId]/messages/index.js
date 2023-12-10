@@ -379,7 +379,7 @@ const Messages = () => {
       <MiniDrawer>
       <div className="m-16">
       <h2 className='mt-4 text-xl font-semibold'>Messages</h2>
-            <p className='mb-24 text-gray-700'>A list of messages sent to clients</p>
+            <p className='mb-16 text-gray-700'>A list of messages sent to clients</p>
       <div className="flex justify-end">
 
       </div>
