@@ -9,12 +9,23 @@ export default function Login() {
 
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
-  const {  data: session, status } = useSession();
-  console.log("THE STATUS IS!!!!!!!!!!!!",status)
   useEffect(() => {
-    if (status === "authenticated" && session) {
+    if (typeof window !== 'undefined') {
+      const initialIsButtonClicked = localStorage.getItem('isButtonClicked') === 'true';
+      setIsButtonClicked(initialIsButtonClicked);
+    }
+  }, []);
+
+  
+
+  const {  data: session, status } = useSession();
+  console.log("THE STATUS IS!!!!!!!!!!!!",status, session, isButtonClicked)
+  useEffect(() => {
+    if (status === "authenticated" && session && isButtonClicked) {
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('isButtonClicked');
+      }
       void router.push("/apps");
-      setIsButtonClicked(false);
     }
     
   }, [status, session]);
@@ -57,8 +68,10 @@ export default function Login() {
                 }}      
                 onClick={(e) => {
                   e.preventDefault();
-                  setIsButtonClicked(true);
                   signIn("auth0");
+                  if (typeof window !== 'undefined') {
+                    localStorage.setItem('isButtonClicked', 'true');
+                  }
                   
                 }}
               >
@@ -72,15 +85,3 @@ export default function Login() {
     </div>
   );
 }
-
-// export const getServerSideProps = async (context) => {
-//   const session = await getSession(context);
-
-//   console.log("THIS IS THE SESSION LOGIN!!!!!!", session);
-
-//   return {
-//     props: {
-//       session,
-//     },
-//   };
-// };
