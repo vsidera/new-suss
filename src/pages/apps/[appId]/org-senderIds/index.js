@@ -158,7 +158,25 @@ const AppServices = () => {
         }),
       },
     },
-   
+    {
+      name: "service_id",
+      label: "SERVICE ID",
+      options: {
+       filter: true,
+       sort: false,
+       setCellHeaderProps: () => ({
+         style: {
+           minWidth: "150px",
+           maxWidth: "150px",
+           backgroundColor: "#094C95",
+           color: "white",
+           fontSize: "0.9rem",
+           lineHeight: 2.0,
+         },
+       }),
+       
+      }
+     },
     {
       name: "appemail",
       label: "Status",
