@@ -74,7 +74,7 @@ const AppServices = () => {
   const selectedChannel = ""
 
   const getAppServices = () => {
-
+    if (app_id) {
     appservicesAction({app_id, selectedChannel})
       .then((res) => {
         if (res.errors) {
@@ -87,6 +87,9 @@ const AppServices = () => {
       .catch((err) => {
         console.log(err);
       });
+    } else {
+      console.log("app_id is null or undefined. Skipping API call.");
+    }
   };
 
   useEffect(() => {

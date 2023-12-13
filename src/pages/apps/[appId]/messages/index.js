@@ -87,7 +87,7 @@ const Messages = () => {
 
 
   const getMessages = () => {
-
+    if (app_id) {
     messagesAction({app_id,page,limit})
       .then((res) => {
         if (res.errors) {
@@ -100,6 +100,9 @@ const Messages = () => {
       .catch((err) => {
         console.log(err)
       });
+    } else {
+      console.log("app_id is null or undefined. Skipping API call.");
+    }  
   };
 
   const closeSendModal = (e) => {
