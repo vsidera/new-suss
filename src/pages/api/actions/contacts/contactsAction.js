@@ -74,10 +74,14 @@ export async function contactCreate(formValues) {
     const uploadContactsUrl = `${apiUrl.UPLOAD_CONTACTS}/${formValues.app_id}/bulk/upload/contact/${formValues.selectedGroup}`;
     try {
     const selectedFile = formValues.contacts;
+
+    const authHeaderObject = await authHeaders(); // Assuming authHeaders() returns a promise
+    const headers = authHeaderObject.headers;
+
   
-    const headers = await {
-      ...authHeaders().headers, // Extract the headers from authHeaders() object
-    };
+    // const headers = await {
+    //   ...authHeaders().headers, // Extract the headers from authHeaders() object
+    // };
 
     const formData = new FormData();
     formData.append("contacts", selectedFile); // Use the correct key name 'contacts' (as used in the curl request)
