@@ -84,6 +84,7 @@ const Groups = () => {
   const [limit, setLimit] = useState(10);
 
   const getGroups = () => {
+    if (app_id) {
     groupsAction({ app_id, limit, page })
       .then((res) => {
         if (res.errors) {
@@ -96,6 +97,9 @@ const Groups = () => {
       .catch((err) => {
         console.log(err);
       });
+    } else {
+      console.log("app_id is null or undefined. Skipping API call.");
+    }
   };
 
   useEffect(() => {
