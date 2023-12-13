@@ -28,18 +28,22 @@ export default function Applications() {
   const email = session && session.user && session.user.email
 
   const getApps = () => {
-    userApps({email})
-      .then((res) => {
-        if (res.errors) {
-          console.log("AN ERROR HAS OCCURED");
-        } else {
-          setApps(res.data);
-          setIsLoaded(true);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (email) { // Checking if email is not null or undefined
+      userApps({ email })
+        .then((res) => {
+          if (res.errors) {
+            console.log("AN ERROR HAS OCCURRED");
+          } else {
+            setApps(res.data);
+            setIsLoaded(true);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      console.log("Email is null or undefined. Skipping API call.");
+    }
   };
 
   const handleAppSelect = (event) => {
@@ -82,7 +86,7 @@ export default function Applications() {
 
   useEffect(() => {
     getApps();
-  }, [session]);
+  }, [session, email]); 
 
   
   
