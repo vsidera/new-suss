@@ -42,7 +42,7 @@ const UploadForm = () => {
   font-size: 0.8em; /* Adjust the font size as needed */
   // background-color: yellow; /* You can change the background color to highlight the text */
   padding: 2px 4px; /* Add padding for better visual appearance */
-  border: 1px solid #000; /* Add a border for better visibility */
+  // border: 1px solid #000; /* Add a border for better visibility */
 
   /* Additional styles can be added as needed */
 `;
@@ -231,6 +231,21 @@ const UploadForm = () => {
                   required
                   sx={{ mb: 1 }}
                 />
+                
+
+                <Button
+                  variant="contained"
+                  sx={{
+                    mt: 2,
+                    backgroundColor: "#094C95 !important",
+                    color: "#FFFFFF !important",
+                    "&:hover": { backgroundColor: "#001041 !important" },
+                  }}
+                  type="submit"
+                >
+                  Upload
+                </Button>
+                <div className="mt-4">
                 <ImportantText>
                 **The first column in the csv should be the phone number.The phone numbers should all start with 254. You can add any other columns after.**<br/>
                 </ImportantText>
@@ -250,19 +265,7 @@ const UploadForm = () => {
         , click on 'Remove Duplicates', & download the resulting file.
         <br />
       </ImportantText>
-
-                <Button
-                  variant="contained"
-                  sx={{
-                    mt: 2,
-                    backgroundColor: "#094C95 !important",
-                    color: "#FFFFFF !important",
-                    "&:hover": { backgroundColor: "#001041 !important" },
-                  }}
-                  type="submit"
-                >
-                  Upload
-                </Button>
+      </div>
               </form>
             </CardContent>
           </Card>
