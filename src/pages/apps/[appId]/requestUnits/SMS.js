@@ -73,7 +73,7 @@ const RequestSMS = () => {
     };
 
     const res = unitsRequest({app_id,unitsPayload}).then((res) => {
-      if (res.status === 200) {
+      if (res.status === 201) {
         setIsButtonClicked(false)
         setEventType("success");
         setEventMessage("Units Successfully Created");
@@ -87,8 +87,10 @@ const RequestSMS = () => {
         setIsSnackBarAlertOpen(true);
       }
     });
-
+    setIsSnackBarAlertOpen(false);
+    setUnits(null)
     return res;
+    
   };
 
   return (
