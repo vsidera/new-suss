@@ -11,8 +11,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
-import Faq from "../../components/faqs/faq";
-import MiniDrawer from "../../components/sidebar2/sidebar2";
+import MiniDrawer from "../../../../components/sidebar2/sidebar2";
 import { Avatar } from "@mui/material";
 
 const Support = () => {
