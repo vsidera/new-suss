@@ -29,7 +29,7 @@ const RequestSMS = () => {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   const [amount, setAmount] = useState("");
-  const [units, setUnits] = useState("");
+  const [units, setUnits] = useState(null);
   const [smspackage, setPackage] = useState("")
 
   const calculateUnits = (inputAmount) => {
@@ -65,10 +65,11 @@ const RequestSMS = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    const numericPart = units.replace('KES', '').trim();
+    
     const unitsPayload = {
       package: smspackage,
-      units: units,
+      units: parseInt(numericPart, 10),
     };
 
     const res = unitsRequest({app_id,unitsPayload}).then((res) => {
