@@ -47,5 +47,6 @@ export default {
     LIST_USERS: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/application`,
     SERVICE_SEARCH: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/service`,
     UNITS_EXPENDITURE: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/analytics/annualsms`,
-    DELIVERY_METER: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/analytics/smsstats`
+    DELIVERY_METER: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/analytics/smsstats`,
+    UNITS_REQUEST: `${process.env.NEXT_PUBLIC_SUSS_URL}/api/v1/recharge`,
 };

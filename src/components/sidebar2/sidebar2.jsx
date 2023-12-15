@@ -405,7 +405,7 @@ export default function MiniDrawer({ children }) {
                     </ListItemIcon>
                     <ListItemText>
                       <Typography variant="body2" style={{ fontSize: 15 }}>
-                        Send Bulk Messages
+                        Send Bulk
                       </Typography>
                     </ListItemText>
                   </ListItemButton>
@@ -496,7 +496,7 @@ export default function MiniDrawer({ children }) {
               </List>
             </Collapse>
           </NextLink>
-          <NextLink href="/requestUnits/SMS" passHref>
+          <NextLink href={`/apps/${appId}/requestUnits/SMS`} passHref>
             <Collapse in={open1} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 <ListItemButton sx={{ pl: 4 }}>

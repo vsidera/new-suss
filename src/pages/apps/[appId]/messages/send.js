@@ -98,6 +98,7 @@ const SendForm = () => {
       requestid: randomUuid,
       scheduled: value,
       channel: selectedChannel,
+      organization_id: app_id
     };
 
     const res = sendSms({ selectedSenderId, newSms }).then((res) => {
