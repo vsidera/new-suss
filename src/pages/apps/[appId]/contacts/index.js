@@ -326,7 +326,7 @@ const Contacts = () => {
     tableBodyHeight: 'auto',
     enableNestedDataAccess: '.',
     elevation: 0,
-    count: 10000,
+    count: 1000000,
     rowsPerPageOptions: [10, 20, 50],
     serverSide: true,
     onTableChange: (action, tableState) => {
