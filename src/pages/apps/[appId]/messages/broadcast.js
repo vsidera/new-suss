@@ -31,7 +31,7 @@ const SendForm = () => {
     const [selectedSenderId, setSelectedSenderId] = useState("");
 
     const [page, setPage] = useState(1);
-    const [limit, setLimit] = useState(10);
+    const [limit, setLimit] = useState(100);
 
     const [schedule, setSchedule] = useState(false)
 
