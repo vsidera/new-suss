@@ -57,7 +57,7 @@ const Support = () => {
                 variant="contained"
                 sx={{
                   backgroundColor: "#094C95 !important",
-                  color: "#FFFFFF !important",
+                  color: "#FFD700 !important",
                   "&:hover": { backgroundColor: "#001041 !important" },
                   fontSize: "10px",
                   padding: "4px 12px",
@@ -90,7 +90,7 @@ const Support = () => {
                 color="text.secondary"
                 className="mb-8"
               >
-                This product registers a Sender ID with the Airtel Ltd network.
+                This product registers a Sender ID with the Airtel Limited network.
               </Typography>
               <Typography
                 variant="body1"
@@ -103,7 +103,7 @@ const Support = () => {
                 variant="contained"
                 sx={{
                   backgroundColor: "#094C95 !important",
-                  color: "#FFFFFF !important",
+                  color: "#FFD700 !important",
                   "&:hover": { backgroundColor: "#001041 !important" },
                   fontSize: "10px",
                   padding: "4px 12px",
@@ -149,7 +149,7 @@ const Support = () => {
                 variant="contained"
                 sx={{
                   backgroundColor: "#094C95 !important",
-                  color: "#FFFFFF !important",
+                  color: "#FFD700 !important",
                   "&:hover": { backgroundColor: "#001041 !important" },
                   fontSize: "10px",
                   padding: "4px 12px",

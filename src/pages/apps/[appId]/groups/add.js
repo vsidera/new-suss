@@ -120,7 +120,7 @@ const CreateGroup = () => {
                   variant="contained"
                   sx={{
                     backgroundColor: "#094C95 !important",
-                    color: "#FFFFFF !important",
+                    color: "#FFD700 !important",
                     "&:hover": { backgroundColor: "#001041 !important" },
                   }}
                   type="submit"

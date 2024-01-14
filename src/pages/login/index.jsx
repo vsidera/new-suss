@@ -77,7 +77,7 @@ const Login = ({openExpiryModal}) => {
       });
   };
 
-  const logoUrl = `/images/logo.jpg`;
+  const logoUrl = `/images/zoharilogo.jpeg`;
 
   return (
     <>

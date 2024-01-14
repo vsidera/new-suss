@@ -61,7 +61,7 @@ const Support = () => {
                         borderRadius: "4px",
                       }}
                     />
-                  <Button variant="contained" sx={{ backgroundColor: '#094C95 !important', color: '#FFFFFF !important', '&:hover': { backgroundColor: '#001041 !important' } }} type="submit">
+                  <Button variant="contained" sx={{ backgroundColor: '#094C95 !important', color: '#FFD700 !important', '&:hover': { backgroundColor: '#001041 !important' } }} type="submit">
                 Ask
                 </Button>
                 </div>

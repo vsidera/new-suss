@@ -149,10 +149,9 @@ const SendForm = () => {
       />
       <React.Fragment>
         <div className="m-16">
-          <h2 className="mt-4 text-xl font-semibold">Send Message</h2>
-          <p className="mb-16 text-gray-700">
-            Send message to a single contact
-          </p>
+        <h2 className='mt-4 text-2xl text-[#233044] font-medium'>Send Message</h2>
+            <p className='mb-16 font-thin text-[#233044] text-base'>Send message to a single client</p>
+
           <Card>
             <CardContent>
               <Typography variant="body1" sx={{ mb: 2 }}>
@@ -271,7 +270,7 @@ const SendForm = () => {
                 )}
                 <div>
                 <button
-                  className="bg-blue-900 text-white font-normal my-4 py-1.5 px-5 rounded text-[14px]"
+                  className="bg-blue-900 text-[#FFD700] font-normal my-4 py-1.5 px-5 rounded text-[14px]"
                   onClick={(e) => {
                     handleSubmit(e);
                     setIsButtonClicked(true);

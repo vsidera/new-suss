@@ -162,15 +162,7 @@ export default function MiniDrawer({ children }) {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}>
-        <Toolbar 
-        sx={{
-          backgroundColor: "#FFFFFF",
-          // backgroundImage: "url('/images/banner.jpg')",
-          // backgroundPosition: "center",
-          // position: 'relative',
-          // overflow: 'hidden', // Hide overflow for child elements
-        }}
-        >
+      <Toolbar sx={{ backgroundColor: "#FFFFFF" }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -184,23 +176,21 @@ export default function MiniDrawer({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <video
-        width="100%" // Set the width to 100% of the parent div (Toolbar)
-        height="100%" // Set the height to 100% of the parent div (Toolbar)
-        style={{ position: "absolute", top: 0, left: 0 }}
-        loop
-        autoPlay
-        // controls // Show video controls (play, pause, etc.)
-      >
-        <source src="/videos/video.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
+          <Typography
+            variant="caption"
+            noWrap
+            component="div"
+            sx={{ color: "#000F2D" }}
+          >
+            Unlock the Power of Communication: Send Messages That Make an
+            Impact!
+          </Typography>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader sx={{ backgroundColor: "#FFFFFF" }}>
-          <img src="/images/logo.png" alt="Logo" height={30} />{" "}
-          <IconButton onClick={handleDrawerClose}>
+      <DrawerHeader sx={{ backgroundColor: "#FFFFFF", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+          <img src="/images/zoharilogo.jpeg" alt="Logo" height={20} sx={{ marginRight: 4 }} />{" "}
+          <IconButton onClick={handleDrawerClose} sx={{ width: 12, height: 12, marginRight: 4  }}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />
             ) : (
@@ -225,7 +215,7 @@ export default function MiniDrawer({ children }) {
               <Button variant='contained'
               sx={{
                 backgroundColor: "#094C95 !important",
-                color: "#FFFFFF !important",
+                color: "#FFD700 !important",
                 "&:hover": { backgroundColor: "#001041 !important" },
               }}
               onClick={handleSwitch}>
@@ -480,7 +470,7 @@ export default function MiniDrawer({ children }) {
             </ListItemText>
             {open1 ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-          <NextLink href="/requestUnits/senderIds" passHref>
+          <NextLink href={`/apps/${appId}/requestUnits/senderIds`} passHref>
             <Collapse in={open1} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
                 <ListItemButton sx={{ pl: 4 }}>
@@ -592,7 +582,7 @@ export default function MiniDrawer({ children }) {
             />
           </Typography>
           <NextLink
-            href="https://www.facebook.com/Suss-103409912014881"
+            href="https://zohari.tech/"
             passHref
           >
             <Typography
@@ -603,7 +593,7 @@ export default function MiniDrawer({ children }) {
               Facebook
             </Typography>
           </NextLink>
-          <NextLink href="https://twitter.com/Sussdigital" passHref>
+          <NextLink href="https://zohari.tech/" passHref>
             <Typography
               variant="caption"
               color="textPrimary"
@@ -613,7 +603,7 @@ export default function MiniDrawer({ children }) {
             </Typography>
           </NextLink>
           <NextLink
-            href="https://www.linkedin.com/company/suss-digital-africa/"
+            href="https://zohari.tech/"
             passHref
           >
             <Typography
@@ -625,7 +615,7 @@ export default function MiniDrawer({ children }) {
             </Typography>
           </NextLink>
           <NextLink
-            href="https://www.instagram.com/sussads/"
+            href="https://zohari.tech/"
             passHref
           >
             <Typography
@@ -636,7 +626,7 @@ export default function MiniDrawer({ children }) {
               Instagram |
             </Typography>
           </NextLink>
-          <NextLink href="https://suss.co.ke/privacy-policy/" passHref>
+          <NextLink href="https://zohari.tech/" passHref>
             <Typography
               variant="caption"
               color="textPrimary"
@@ -645,7 +635,7 @@ export default function MiniDrawer({ children }) {
               Privacy Policy |
             </Typography>
           </NextLink>
-          <NextLink href="https://www.suss.co.ke/suss-sms-terms-and-conditions/" passHref>
+          <NextLink href="https://zohari.tech/" passHref>
             <Typography
               variant="caption"
               color="textPrimary"

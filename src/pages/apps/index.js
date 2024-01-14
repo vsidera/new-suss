@@ -96,7 +96,7 @@ export default function Applications() {
       {isLoaded ? (
         <div
           className="relative flex items-center justify-center h-screen bg-cover bg-center"
-          style={{ backgroundImage: 'url("/images/appsback.jpg")' }}
+          style={{ backgroundImage: 'url("/images/zohari3.jpeg")' }}
         >
           <Box
             className="absolute top-1/2 left-0 flex flex-col items-center ml-32"
@@ -130,7 +130,7 @@ export default function Applications() {
               ))}
             </Select>
             <button
-              className="bg-[#094C95] text-white px-20 py-2 mt-8 rounded-full"
+              className="bg-[#FFD700] text-[#233044] px-20 py-2 mt-8 rounded-full"
               // onClick={handleApply}
               onClick={() => {
                 setIsButtonClicked(true);

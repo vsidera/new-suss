@@ -29,7 +29,7 @@ export default function Login() {
     }
     
   }, [status, session]);
-  const logoUrl = `/images/logo.jpg`;
+  const logoUrl = `/images/zoharilogo.jpeg`;
   const iconSize = 96;
 
   const greenButton = {

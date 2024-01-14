@@ -215,9 +215,9 @@ export default function MiniDrawer2({ children }) {
             <ListSubheader component="div" id="nested-list-subheader">
               <Button variant='contained'
               sx={{
-                backgroundColor: "#094C95 !important",
+                backgroundColor: "#FFD700 !important",
                 color: "#FFFFFF !important",
-                "&:hover": { backgroundColor: "#001041 !important" },
+                "&:hover": { backgroundColor: "#FFD700 !important" },
               }}
               onClick={handleSwitch}>
                 SWITCH APPLICATION

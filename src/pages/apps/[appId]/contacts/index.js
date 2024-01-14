@@ -45,7 +45,7 @@ const getMuiTheme = () =>
       MUIDataTableSelectCell: {
         styleOverrides: {
           headerCell: {
-            backgroundColor: "#094C95",
+            backgroundColor: "#FFD700",
             color: "wh",
           },
         },
@@ -168,8 +168,8 @@ const Contacts = () => {
           style: {
             minWidth: "120px",
             maxWidth: "120px",
-            backgroundColor: "#094C95",
-            color: "white",
+            backgroundColor: "#FFD700",
+            color: "#233044",
             fontSize: "0.9rem",
             lineHeight: 2.0,
           },
@@ -195,8 +195,8 @@ const Contacts = () => {
           style: {
             minWidth: "120px",
             maxWidth: "120px",
-            backgroundColor: "#094C95",
-            color: "white",
+            backgroundColor: "#FFD700",
+            color: "#233044",
             fontSize: "0.9rem",
             lineHeight: 2.0,
           },
@@ -223,8 +223,8 @@ const Contacts = () => {
           style: {
             minWidth: "150px",
             maxWidth: "150px",
-            backgroundColor: "#094C95",
-            color: "white",
+            backgroundColor: "#FFD700",
+            color: "#233044",
             fontSize: "0.9rem",
             lineHeight: 2.0,
           },
@@ -241,8 +241,8 @@ const Contacts = () => {
           style: {
             minWidth: "120px",
             maxWidth: "120px",
-            backgroundColor: "#094C95",
-            color: "white",
+            backgroundColor: "#FFD700",
+            color: "#233044",
             fontSize: "0.9rem",
             lineHeight: 2.0,
           },
@@ -271,8 +271,8 @@ const Contacts = () => {
           style: {
             minWidth: "120px",
             maxWidth: "120px",
-            backgroundColor: "#094C95",
-            color: "white",
+            backgroundColor: "#FFD700",
+            color: "#233044",
             fontSize: "0.9rem",
             lineHeight: 2.0,
           },
@@ -293,8 +293,8 @@ const Contacts = () => {
           style: {
             minWidth: "150px",
             maxWidth: "150px",
-            backgroundColor: "#094C95",
-            color: "white",
+            backgroundColor: "#FFD700",
+            color: "#233044",
             fontSize: "0.9rem",
             lineHeight: 2.0,
           },
@@ -412,7 +412,7 @@ const Contacts = () => {
       <div className="flex justify-end">
             <button
           type="button"
-          className="text-white w-42 bg-blue-900 focus:ring-4 focus:outline-none font-light text-thin rounded-lg text-md px-2 py-2 mt-1 flex items-center ml-2"
+          className="text-[#FFD700] 233044 w-42 bg-blue-900 focus:ring-4 focus:outline-none font-light text-thin rounded-lg text-md px-2 py-2 mt-1 flex items-center ml-2"
           onClick={handleAttach}
         >
           <AddCircleIcon />

@@ -127,8 +127,8 @@ const Messages = () => {
         style: {
           minWidth: "120px",
           maxWidth: "120px",
-          backgroundColor: "#094C95",
-          color: "white",
+          backgroundColor: "#FFD700",
+          color: "#233044",
           fontSize: "0.9rem",
           lineHeight: 2.0,
         },
@@ -154,8 +154,8 @@ const Messages = () => {
     //     style: {
     //       minWidth: "120px",
     //       maxWidth: "120px",
-    //       backgroundColor: "#094C95",
-    //       color: "white",
+    //       backgroundColor: "#FFD700",
+    //       color: "233044",
     //       fontSize: "0.9rem",
     //       lineHeight: 2.0,
     //     },
@@ -172,8 +172,8 @@ const Messages = () => {
         style: {
           minWidth: "120px",
           maxWidth: "120px",
-          backgroundColor: "#094C95",
-          color: "white",
+          backgroundColor: "#FFD700",
+          color: "#233044",
           fontSize: "0.9rem",
           lineHeight: 2.0,
         },
@@ -190,8 +190,8 @@ const Messages = () => {
          style: {
            minWidth: "120px",
            maxWidth: "120px",
-           backgroundColor: "#094C95",
-           color: "white",
+           backgroundColor: "#FFD700",
+           color: "#233044",
            fontSize: "0.9rem",
            lineHeight: 2.0,
          },
@@ -209,8 +209,8 @@ const Messages = () => {
          style: {
            minWidth: "120px",
            maxWidth: "120px",
-           backgroundColor: "#094C95",
-           color: "white",
+           backgroundColor: "#FFD700",
+           color: "#233044",
            fontSize: "0.9rem",
            lineHeight: 2.0,
          },
@@ -227,8 +227,8 @@ const Messages = () => {
          style: {
            minWidth: "120px",
            maxWidth: "120px",
-           backgroundColor: "#094C95",
-           color: "white",
+           backgroundColor: "#FFD700",
+           color: "#233044",
            fontSize: "0.9rem",
            lineHeight: 2.0,
          },
@@ -245,8 +245,8 @@ const Messages = () => {
           style: {
             minWidth: "120px",
             maxWidth: "120px",
-            backgroundColor: "#094C95",
-            color: "white",
+            backgroundColor: "#FFD700",
+            color: "#233044",
             fontSize: "0.9rem",
             lineHeight: 2.0,
           },
@@ -281,8 +281,8 @@ const Messages = () => {
          style: {
            minWidth: "130px",
            maxWidth: "130px",
-           backgroundColor: "#094C95",
-           color: "white",
+           backgroundColor: "#FFD700",
+           color: "#233044",
            fontSize: "0.9rem",
            lineHeight: 2.0,
          },
@@ -381,8 +381,8 @@ const Messages = () => {
     return (
       <MiniDrawer>
       <div className="m-16">
-      <h2 className='mt-4 text-xl font-semibold'>Messages</h2>
-            <p className='mb-16 text-gray-700'>A list of messages sent to clients</p>
+      <h2 className='mt-4 text-2xl text-[#233044] font-medium'>Messages</h2>
+            <p className='mb-16 font-thin text-[#233044] text-base'>A list of messages sent to clients</p>
       <div className="flex justify-end">
 
       </div>
